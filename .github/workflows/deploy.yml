@@ -29,7 +29,6 @@ jobs:
           chmod u+x elan-init.sh
           ./elan-init.sh -y --default-toolchain leanprover/lean4:v4.13.0-rc3
           echo "$HOME/.elan/bin" >> $GITHUB_PATH
-          elan toolchain list
 
       - name: Get Mathlib
         run: |
