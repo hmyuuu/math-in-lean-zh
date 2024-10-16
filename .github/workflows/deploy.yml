@@ -1,0 +1,54 @@
+name: Build and Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master  # 根据您的默认分支名称进行修改
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r scripts/requirements.txt
+
+      - name: Install Lean toolchain
+        run: |
+          curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh
+          echo 'export PATH="$HOME/.elan/bin:$PATH"' >> $GITHUB_ENV
+          source $GITHUB_ENV
+          elan default leanprover/lean4:stable
+
+      - name: Get Mathlib
+        run: |
+          lake exe cache get
+
+      - name: Run build script
+        run: |
+          chmod +x scripts/mkall.py
+          python scripts/mkall.py
+          make html
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          branch: gh-pages
+          folder: ./build/html
+
+      # - name: Deploy to GitHub Pages
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ./build/html
+      #     destination_branch: gh-pages
