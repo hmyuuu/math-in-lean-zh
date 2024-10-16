@@ -25,10 +25,12 @@ jobs:
 
       - name: Install Lean toolchain
         run: |
-          curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh
-          echo 'export PATH="$HOME/.elan/bin:$PATH"' >> $GITHUB_ENV
-          source $GITHUB_ENV
-          elan default leanprover/lean4:stable
+          curl -O --location https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh
+          chmod u+x elan-init.sh
+          ./elan-init.sh -y --default-toolchain leanprover/lean4:v4.13.0-rc3
+          echo Checking location "$HOME/.elan/bin"...
+          ls -al "$HOME/.elan/bin"
+          elan toolchain list
 
       - name: Get Mathlib
         run: |
