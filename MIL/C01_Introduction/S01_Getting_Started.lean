@@ -1,102 +1,59 @@
 /- TEXT:
-Getting Started
+
+入门指南
 ---------------
 
-The goal of this book is to teach you to formalize mathematics using the
-Lean 4 interactive proof assistant.
-It assumes that you know some mathematics, but it does not require much.
-Although we will cover examples ranging from number theory
-to measure theory and analysis,
-we will focus on elementary aspects of those fields,
-in the hopes that if they are not familiar to you,
-you can pick them up as you go.
-We also don't presuppose any background with formal methods.
-Formalization can be seen as a kind of computer programming:
-we will write mathematical definitions, theorems, and proofs in
-a regimented language, like a programming language,
-that Lean can understand.
-In return, Lean provides feedback and information,
-interprets expressions and guarantees that they are well-formed,
-and ultimately certifies the correctness of our proofs.
+本书的目标是教你使用 Lean 4 交互式证明助手来形式化数学。
+它假设你了解一些数学知识，但并不需要太多。
+虽然我们将涵盖从数论到测度论和分析的例子，但我们将重点放在这些领域的基础方面，希望如果你对它们不熟悉，你可以在学习的过程中逐渐掌握。
+我们也不预设任何对形式化方法的背景知识。形式化可以被视为一种计算机编程：我们将用一种 Lean 可以理解的规范化的语言，类似于编程语言，
+编写数学定义、定理和证明。
+作为回报，Lean 提供反馈和信息，解析表达式并保证它们是良好形式的，并最终确认我们的证明的正确性。
 
-You can learn more about Lean from the
-`Lean project page <https://leanprover.github.io>`_
-and the
-`Lean community web pages <https://leanprover-community.github.io/>`_.
-This tutorial is based on Lean's large and ever-growing library, *Mathlib*.
-We also strongly recommend joining the
-`Lean Zulip online chat group <https://leanprover.zulipchat.com/>`_
-if you haven't already.
-You'll find a lively and welcoming community of Lean enthusiasts there,
-happy to answer questions and offer moral support.
+你可以从 `Lean 项目页面 <https://leanprover.github.io>`_
+和 `Lean 社区网页 <https://leanprover-community.github.io/>`_
+了解更多关于 Lean 的信息。本教程基于 Lean 庞大且不断增长的库 *Mathlib*.
+我们也强烈建议加入 `Lean Zulip 在线聊天群 <https://leanprover.zulipchat.com/>`_，如果你还没有加入的话。
+在那里你会发现一个活跃而友好的 Lean 爱好者社区，愿意回答问题并提供精神支持。
 
-Although you can read a pdf or html version of this book online,
-it is designed to be read interactively,
-running Lean from inside the VS Code editor.
-To get started:
+虽然你可以在线阅读本书的 pdf 或 html 版本，但它设计为可以交互式阅读，在 VS Code 编辑器中运行 Lean 代码。开始学习吧：
 
-1. Install Lean 4 and VS Code following
-   these `installation instructions <https://leanprover-community.github.io/get_started.html>`_.
+1. 按照这些 `安装说明 <https://leanprover-community.github.io/get_started.html>`_ 安装 Lean 4 和 VS Code.
 
-2. Make sure you have `git <https://git-scm.com/>`_ installed.
+2. 确保你已安装了 `git <https://git-scm.com/>`_.
 
-3. Follow these `instructions <https://leanprover-community.github.io/install/project.html#working-on-an-existing-project>`_
-   to fetch the ``mathematics_in_lean`` repository and open it up in VS Code.
+3. 按照这些 `说明 <https://leanprover-community.github.io/install/project.html#working-on-an-existing-project>`_ 来获取 ``mathematics_in_lean`` 存储库并在 VS Code 中打开它。
 
-4. Each section in this book has an associated Lean file with examples and exercises.
-   You can find them in the folder ``MIL``, organized by chapter.
-   We strongly recommend making a copy of that folder and experimenting and doing the
-   exercises in that copy.
-   This leaves the originals intact, and it also makes it easier to update the repository as it changes (see below).
-   You can call the copy ``my_files`` or whatever you want and use it to create
-   your own Lean files as well.
+4. 本书的每个部分都有一个与之相关联的 Lean 文件，其中包含示例和练习。你可以在名为 ``MIL`` 的文件夹中按章节组织的地方找到它们。
+我们强烈建议复制该文件夹，并在复制的文件夹中进行实验和练习。这样可以保持原始文件的完整性，并且在存储库改动时更容易同步（见下文）。
+你可以将复制的文件夹命名为 ``my_files`` 或其他任何你喜欢的名字，并在其中创建自己的 Lean 文件。
 
-At that point, you can open the textbook in a side panel in VS Code as follows:
+在这之后，你可以按照以下步骤在 VS Code 的侧边栏中打开教科书：
 
-1. Type ``ctrl-shift-P`` (``command-shift-P`` in macOS).
+1. 输入 ``ctrl-shift-P`` （在 macOS 中为 ``command-shift-P`` ）。
 
-2. Type ``Lean 4: Docs: Show Documentation Resources`` in the bar that appears, and then
-   press return. (You can press return to select it as soon as it is highlighted
-   in the menu.)
+2. 在出现的栏中输入 ``Lean 4: Open Documentation View``，然后按回车键。（一旦该选项在菜单中被高亮显示，你就可以按回车键选择它。）
 
-3. In the window that opens, click on ``Mathematics in Lean``.
+3. 在打开的窗口中，点击 ``Open documentation of current project``.
 
-Alternatively, you can run Lean and VS Code in the cloud,
-using `Gitpod <https://gitpod.io/>`_.
-You can find instructions as to how to do that on the Mathematics in Lean
-`project page <https://github.com/leanprover-community/mathematics_in_lean>`_
-on Github. We still recommend working in a copy of the `MIL` folder,
-as described above.
+或者，你还可以在云中运行 Lean 和 VS Code，使用 `Gitpod <https://gitpod.io/>`_。
+你可以在 Github 上的 Mathematics in Lean `项目页面 <https://github.com/leanprover-community/mathematics_in_lean>`_ 找到如何操作的说明。
+尽管如此，我们仍然建议按照上述方式在 ``MIL`` 文件夹的副本中进行操作。
 
-This textbook and the associated repository are still a work in progress.
-You can update the repository by typing ``git pull``
-followed by ``lake exe cache get`` inside the ``mathematics_in_lean`` folder.
-(This assumes that you have not changed the contents of the ``MIL`` folder,
-which is why we suggested making a copy.)
+这本教科书及其相关存储库仍在不断完善中。你可以通过在 ``mathematics_in_lean`` 文件夹内输入 ``git pull``,
+接着输入 ``lake exe cache get`` 来更新存储库。（这假设你没有改变 ``MIL`` 文件夹的内容，这也是我们建议你制作副本的原因。）
 
-We intend for you to work on the exercises in the ``MIL`` folder while reading the
-textbook, which contains explanations, instructions, and hints.
-The text will often include examples, like this one:
+我们希望你在阅读教科书的同时，在 ``MIL`` 文件夹中完成练习，该文件夹包含了解释、说明和提示。文本通常会包含示例，就像这个例子一样：
 TEXT. -/
 -- QUOTE:
 #eval "Hello, World!"
 -- QUOTE.
 
 /- TEXT:
-You should be able to find the corresponding example in the associated
-Lean file.
-If you click on the line, VS Code will show you Lean's feedback in
-the ``Lean Goal`` window, and if you hover
-your cursor over the ``#eval`` command VS Code will show you Lean's response
-to this command in a pop-up window.
-You are encouraged to edit the file and try examples of your own.
+你应该能够在相关的 Lean 文件中找到相应的示例。如果你点击该行，VS Code 将在 ``Lean Goal`` 窗口中显示 Lean 的反馈，
+如果你将光标悬停在 ``#eval`` 命令上，VS Code 将在弹出窗口中显示 Lean 对此命令的响应。我们鼓励你编辑文件并尝试自己的示例。
 
-This book moreover provides lots of challenging exercises for you to try.
-Don't rush past these!
-Lean is about *doing* mathematics interactively, not just reading about it.
-Working through the exercises is central to the experience.
-You don't have to do all of them; when you feel comfortable that you have mastered
-the relevant skills, feel free to move on.
-You can always compare your solutions to the ones in the ``solutions``
-folder associated with each section.
+此外，本书还提供了许多具有挑战性的练习供你尝试。不要匆忙跳过这些练习！Lean 需要*交互式地做*数学，而不仅仅是阅读。
+完成练习是学习的核心内容。你不必完成所有练习；当你觉得已经掌握了相关技能时，可以自由地继续前进。
+你始终可以将你的解决方案与与每个部分相关的 ``solutions`` 文件夹中的解决方案进行比较。
 TEXT. -/
