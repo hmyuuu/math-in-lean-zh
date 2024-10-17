@@ -560,9 +560,9 @@ since it does not assume the existence of a ``Algebra R S`` instance, so dot not
 you would expect.
 EXAMPLES: -/
 -- QUOTE:
-#check (Complex.ofRealHom : ℝ →+* ℂ)
+#check (Complex.ofReal : ℝ →+* ℂ)
 
-example : (X ^ 2 + 1 : ℝ[X]).eval₂ Complex.ofRealHom Complex.I = 0 := by simp
+example : (X ^ 2 + 1 : ℝ[X]).eval₂ Complex.ofReal Complex.I = 0 := by simp
 -- QUOTE.
 
 /- TEXT:
