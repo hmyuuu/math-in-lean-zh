@@ -3,20 +3,23 @@
 入门指南
 ---------------
 
-本书的目标是教你使用 Lean 4 交互式证明助手来形式化数学。
-它假设你了解一些数学知识，但并不需要太多。
-虽然我们将涵盖从数论到测度论和分析的例子，但我们将重点放在这些领域的基础方面，希望如果你对它们不熟悉，你可以在学习的过程中逐渐掌握。
-我们也不预设任何对形式化方法的背景知识。形式化可以被视为一种计算机编程：我们将用一种 Lean 可以理解的规范化的语言，类似于编程语言，
-编写数学定义、定理和证明。
-作为回报，Lean 提供反馈和信息，解析表达式并保证它们是良好形式的，并最终确认我们的证明的正确性。
+本书教你使用 Lean 4 交互式证明助手来形式化数学。你需要一点儿数学知识，但并不需要太多。
+我们将涵盖从数论到测度论和分析的基础方面，如果你对它们不熟悉，你可以在学习的过程中逐渐掌握。
+我们也不预设任何对形式化方法的背景知识。
+形式化可以被视为一种计算机编程：我们将用一种 Lean 可以理解的规范化的语言，类似于编程语言，来编写数学定义、定理和证明。
+作为回报，Lean 提供反馈和信息，解析表达式并保证它们是形式良好的，并最终验证我们的证明的正确性。
 
 你可以从 `Lean 项目页面 <https://leanprover.github.io>`_
 和 `Lean 社区网页 <https://leanprover-community.github.io/>`_
-了解更多关于 Lean 的信息。本教程基于 Lean 庞大且不断增长的库 *Mathlib*.
+了解更多关于 Lean 的信息。本教程基于 Lean 庞大且不断增长的库 *Mathlib*。
 我们也强烈建议加入 `Lean Zulip 在线聊天群 <https://leanprover.zulipchat.com/>`_，如果你还没有加入的话。
 在那里你会发现一个活跃而友好的 Lean 爱好者社区，愿意回答问题并提供精神支持。
 
-虽然你可以在线阅读本书的 pdf 或 html 版本，但它设计为可以交互式阅读，在 VS Code 编辑器中运行 Lean 代码。开始学习吧：
+- 项目在Mathlib版本 15a391f3007c5c377ba21af3e0a1d53502310685 上测试通过（2024.20.16）。Mathlib 更新迅速，可能会遇到旧版代码在新版 Mathlib 下无法通过的问题。如果读者遇到了版本不兼容问题，请提交PR以使本项目跟进最新 Mathlib，或者提交issue或联系译者协助解决。
+
+虽然你可以在线阅读本书的 pdf （注：中文版暂不支持 pdf） 或 html 版本，但它设计为可以交互式阅读，在 VS Code 编辑器中运行 Lean 代码。开始学习吧：
+
+（中文用户可以参考 `中文安装教程 <https://www.leanprover.cn/tutorial/install/>`_ ）
 
 1. 按照这些 `安装说明 <https://leanprover-community.github.io/get_started.html>`_ 安装 Lean 4 和 VS Code.
 
@@ -32,12 +35,12 @@
 
 1. 输入 ``ctrl-shift-P`` （在 macOS 中为 ``command-shift-P`` ）。
 
-2. 在出现的栏中输入 ``Lean 4: Open Documentation View``，然后按回车键。（一旦该选项在菜单中被高亮显示，你就可以按回车键选择它。）
+2. 在出现的栏中输入 ``Lean 4: Docs: Show Documentation Resources``，然后按回车键。（一旦该选项在菜单中被高亮显示，你就可以按回车键选择它。）
 
-3. 在打开的窗口中，点击 ``Open documentation of current project``.
+3. 在打开的窗口中，点击 ``Mathematics in Lean``.
 
 或者，你还可以在云中运行 Lean 和 VS Code，使用 `Gitpod <https://gitpod.io/>`_。
-你可以在 Github 上的 Mathematics in Lean `项目页面 <https://github.com/leanprover-community/mathematics_in_lean>`_ 找到如何操作的说明。
+你可以在 Github 上的 Mathematics in Lean `项目官方页面 <https://github.com/leanprover-community/mathematics_in_lean>`_ 或 `中文页面 <https://github.com/Lean-zh/math-in-lean-zh>`_ 找到如何操作的说明。
 尽管如此，我们仍然建议按照上述方式在 ``MIL`` 文件夹的副本中进行操作。
 
 这本教科书及其相关存储库仍在不断完善中。你可以通过在 ``mathematics_in_lean`` 文件夹内输入 ``git pull``,
