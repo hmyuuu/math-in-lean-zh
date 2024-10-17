@@ -14,25 +14,12 @@ noncomputable section
 
 .. _measure_theory:
 
-Measure Theory
+测度论
 --------------
+Mathlib 中积分的数学基础是测度论。甚至前一节的初等积分实际上也是 Bochner 积分。Bochner 积分是 Lebesgue 积分的推广，目标空间可以是任意的Banach空间，不一定是有限维的。
 
-The general context for integration in Mathlib is measure theory. Even the elementary
-integrals of the previous section are in fact Bochner integrals. Bochner integration is
-a generalization of Lebesgue integration where the target space can be any Banach space,
-not necessarily finite dimensional.
+测度论的第一部分是集合的 :math:`\sigma` -代数的语言，被称作*可测集*。`MeasurableSpace` 类型族提供了带有这种结构的类型。空集 `empty` 和单元素集 `univ` 是可测的，可测集的补集是可测的，可数交和可数并是可测的。注意，这些公理是冗余的；如果你 `#print MeasurableSpace`，你会看到Mathlib用来构造可测集的公理。可数性条件可以使用 `Encodable` 类型族来表示。
 
-The first component in the development of measure theory
-is the notion of a :math:`\sigma`-algebra of sets, which are called the
-*measurable* sets.
-The type class ``MeasurableSpace`` serves to equip a type with such a structure.
-The sets ``empty`` and ``univ`` are measurable,
-the complement of a measurable set is measurable,
-and a countable union or intersection of measurable sets is measurable.
-Note that these axioms are redundant; if you ``#print MeasurableSpace``,
-you will see the ones that Mathlib uses.
-As the examples below show, countability assumptions can be expressed using the
-``Encodable`` type class.
 BOTH: -/
 -- QUOTE:
 variable {α : Type*} [MeasurableSpace α]
@@ -63,17 +50,7 @@ example {f : ι → Set α} (h : ∀ b, MeasurableSet (f b)) : MeasurableSet (�
 -- QUOTE.
 
 /- TEXT:
-Once a type is measurable, we can measure it. On paper, a measure on a set
-(or type) equipped with a
-:math:`\sigma`-algebra is a function from the measurable sets to
-the extended non-negative reals that is
-additive on countable disjoint unions.
-In Mathlib, we don't want to carry around measurability assumptions
-every time we write an application of the measure to a set.
-So we extend the measure to any set ``s``
-as the infimum of measures of measurable sets containing ``s``.
-Of course, many lemmas still require
-measurability assumptions, but not all.
+如果一个类型是可测的，那么我们就可以测量它。字面上，对配备 :math:`\sigma` -代数的集合（或者类型）的测量是一个函数，它是从可测集到扩展（即允许无穷）非负实数的函数，并且满足可数无交并集合上可加性。在 Mathlib 中，我们不希望每次测量集合时都带着写一个集合可测。因此我们把这个测度推广到任何集合 `s` ，作为包含`s`的可测集合的测度的最小值。当然，许多引理仍然需要可测假设，但不是全部。
 BOTH: -/
 -- QUOTE:
 open MeasureTheory
@@ -92,12 +69,8 @@ example {f : ℕ → Set α} (hmeas : ∀ i, MeasurableSet (f i)) (hdis : Pairwi
 -- QUOTE.
 
 /- TEXT:
-Once a type has a measure associated with it, we say that a property ``P``
-holds *almost everywhere* if the set of elements where the property fails
-has measure 0.
-The collection of properties that hold almost everywhere form a filter,
-but Mathlib introduces special notation for saying that a property holds
-almost everywhere.
+一旦一个类型有了与它相关联的测度，我们就说，如果性质 `P` 只在一个测度为0的集合上失效，则 `P` “几乎处处”成立 (almost everywhere, ae)。几乎处处的性质集合形成了一个过滤器 (filter)，但是 Mathlib 引入了特殊的符号来表示一个性质几乎处处成立。
+
 EXAMPLES: -/
 -- QUOTE:
 example {P : α → Prop} : (∀ᵐ x ∂μ, P x) ↔ ∀ᶠ x in ae μ, P x :=
