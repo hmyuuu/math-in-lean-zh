@@ -39,6 +39,7 @@ jobs:
           chmod +x scripts/mkall.py
           python scripts/mkall.py
           make html
+          touch ./build/html/.nojekyll
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.5
