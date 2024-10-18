@@ -2,5 +2,5 @@
 
 .. index:: integration
 
-Integration and Measure Theory
+积分和测度论
 ==============================
