@@ -13,7 +13,7 @@ import MIL.Common
 
 数学中，环由一个对象集合 :math:`R`、运算 :math:`+` :math:`\times`、常数 :math:`0` 和 :math:`1`、求逆运算 :math:`x \mapsto -x` 构成，并满足：
 
-- :math:`R`与 :math:`+` 构成阿贝尔群，:math:`0` 是加法单位元，负数是逆。
+- :math:`R` 与 :math:`+` 构成阿贝尔群，:math:`0` 是加法单位元，负数是逆。
 - :math:`1` 是乘法单位元，乘法满足结合律和对加法的分配律。
 
 在 Lean 中，一组对象被表示为类型 ``R``。环公理如下：
@@ -152,7 +152,7 @@ theorem mul_zero (a : R) : a * 0 = 0 := by
 /- TEXT:
 .. index:: have, tactics ; have
 
-你通过 ``have`` 策略引入了一个辅助性新目标，``a * 0 + a * 0 = a * 0 + 0``，与原始目标具有相同的语境。这个目标下的“子证明”块需要缩进。证出这个子目标之后我们就多了一个新的命题``h``，可以用于证明原目标。这里我们看到 ``add_left_cancel h`` 的结果恰好就是原目标。
+你通过 ``have`` 策略引入了一个辅助性新目标，``a * 0 + a * 0 = a * 0 + 0``，与原始目标具有相同的语境。这个目标下的“子证明”块需要缩进。证出这个子目标之后我们就多了一个新的命题 ``h`` ，可以用于证明原目标。这里我们看到 ``add_left_cancel h`` 的结果恰好就是原目标。
 
 .. index:: apply, tactics ; apply, exact, tactics ; exact
 
@@ -279,12 +279,7 @@ end MyRing
 /- TEXT:
 .. index:: group (algebraic structure)
 
-上面的一些定理并不需要环结构甚至加法交换律，有**群**结构就够了，群公理是下面这些：
-We close this section by noting that some of the facts about
-addition and negation that we established above do not
-need the full strength of the ring axioms, or even
-commutativity of addition. The weaker notion of a *group*
-can be axiomatized as follows:
+上面的一些定理并不需要环结构甚至加法交换律，有 **群** 结构就够了，群公理是下面这些：
 TEXT. -/
 section
 -- QUOTE:
@@ -298,7 +293,7 @@ variable (A : Type*) [AddGroup A]
 end
 
 /- TEXT:
-群运算可交换的话习惯上用加号（但是这只是习惯而已，``AddGroup`` 并不真的可交换），否则用乘号。Lean 提供乘法版本 ``Group`` 和加法版本``AddGroup``，以及它们的可交换版本 ``CommGroup`` 和 ``AddCommGroup``。
+群运算可交换的话习惯上用加号（但是这只是习惯而已，``AddGroup`` 并不真的可交换），否则用乘号。Lean 提供乘法版本 ``Group`` 和加法版本 ``AddGroup`` ，以及它们的可交换版本 ``CommGroup`` 和 ``AddCommGroup``。
 TEXT. -/
 -- BOTH:
 section
