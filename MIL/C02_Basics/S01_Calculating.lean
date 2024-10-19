@@ -1,34 +1,20 @@
 import MIL.Common
 import Mathlib.Data.Real.Basic
 /- TEXT:
-Calculating
+计算
 -----------
 
-We generally learn to carry out mathematical calculations
-without thinking of them as proofs.
-But when we justify each step in a calculation,
-as Lean requires us to do,
-the net result is a proof that the left-hand side of the calculation
-is equal to the right-hand side.
+通常我们学习数学计算时并不将其视为证明。
+但是，当我们像 Lean 要求的那样验证计算中的每一步时，最终的结果就是一个证明，我们在证明了算式的左侧等于右侧。
 
 .. index:: rewrite, rw, tactics ; rw and rewrite
 
-In Lean, stating a theorem is tantamount to stating a goal,
-namely, the goal of proving the theorem.
-Lean provides the rewriting tactic ``rw``,
-to replace the left-hand side of an identity by the right-hand side
-in the goal. If ``a``, ``b``, and ``c`` are real numbers,
-``mul_assoc a b c``  is the identity ``a * b * c = a * (b * c)``
-and ``mul_comm a b`` is the identity ``a * b = b * a``.
-Lean provides automation that generally eliminates the need
-to refer the facts like these explicitly,
-but they are useful for the purposes of illustration.
-In Lean, multiplication associates to the left,
-so the left-hand side of ``mul_assoc`` could also be written ``(a * b) * c``.
-However, it is generally good style to be mindful of Lean's
-notational conventions and leave out parentheses when Lean does as well.
+在 Lean 中，陈述一个定理等同于设立证明该定理的目标。Lean 提供了重写（rewrite）策略 ``rw``，它会使用一个等式，``rw`` 在**目标**中找到符合等式左侧的部分，然后将这部分替换为等式右侧。例如：
+如果 ``a``、 ``b`` 和 ``c`` 是实数，那么 ``mul_assoc a b c`` 是等式 ``a * b * c = a * (b * c)``,
+而 ``mul_comm a b`` 是等式 ``a * b = b * a``。 你想运用这些等式时可以只引用它们的名字。
+在 Lean 中，乘法左结合，因此 ``mul_assoc`` 的左侧也可以写成 ``(a * b) * c``，但是没必要写括号就最好不写。
 
-Let's try out ``rw``.
+让我们尝试一下 ``rw``。
 
 .. index:: real numbers
 TEXT. -/
@@ -40,32 +26,17 @@ example (a b c : ℝ) : a * b * c = b * (a * c) := by
 -- QUOTE.
 
 /- TEXT:
-The ``import`` lines at the beginning of the associated examples file
-import the theory of the real numbers from Mathlib, as well as useful automation.
-For the sake of brevity,
-we generally suppress information like this in the textbook.
+教材源码里的 ``import`` 行从 Mathlib 中导入了实数理论，以及有用的自动化功能。为简洁计正文中省略，如果你想自己试着运行例子，你可以查询源码来了解。
 
-You are welcome to make changes to see what happens.
-You can type the ``ℝ`` character as ``\R`` or ``\real``
-in VS Code.
-The symbol doesn't appear until you hit space or the tab key.
-If you hover over a symbol when reading a Lean file,
-VS Code will show you the syntax that can be used to enter it.
-If you are curious to see all available abbreviations, you can hit Ctrl-Shift-P
-and then type abbreviations to get access to the ``Lean 4: Show all abbreviations`` command.
-If your keyboard does not have an easily accessible backslash,
-you can change the leading character by changing the
-``lean4.input.leader`` setting.
+``ℝ`` 字符通过 ``\R`` 或 ``\real`` 输入，然后按下空格或 Tab 键。
+当阅读 Lean 文件时，如果你将光标悬停在一个符号上，VS Code 将显示用于输入该符号的语法。
+如果你想查看所有可用的缩写，可以按下 Ctrl-Shift-P，然后输入 abbreviations 来访问 ``Lean 4: Show all abbreviations`` 命令。
+如果您的键盘上没有方便使用的反斜杠，可以通过更改 ``lean4.input.leader`` 设置来改变前导字符。
 
 .. index:: proof state, local context, goal
 
-When a cursor is in the middle of a tactic proof,
-Lean reports on the current *proof state* in the
-*Lean Infoview* window.
-As you move your cursor past each step of the proof,
-you can see the state change.
-A typical proof state in Lean might look as follows:
-
+当光标位于策略证明的中间时，Lean 会在 *Lean Infoview* 窗口中报告当前的**证明状态**。
+当你将光标移到证明的每一步时，你可以看到状态的变化。Lean 中的典型证明状态可能如下所示：
 .. code-block::
 
     1 goal
@@ -75,31 +46,13 @@ A typical proof state in Lean might look as follows:
     h₃ : y > x
     ⊢ y ≥ 4
 
-The lines before the one that begins with ``⊢`` denote the *context*:
-they are the objects and assumptions currently at play.
-In this example, these include two objects, ``x`` and ``y``,
-each a natural number.
-They also include three assumptions,
-labelled ``h₁``, ``h₂``, and ``h₃``.
-In Lean, everything in a context is labelled with an identifier.
-You can type these subscripted labels as ``h\1``, ``h\2``, and ``h\3``,
-but any legal identifiers would do:
-you can use ``h1``, ``h2``, ``h3`` instead,
-or ``foo``, ``bar``, and ``baz``.
-The last line represents the *goal*,
-that is, the fact to be proved.
-Sometimes people use *target* for the fact to be proved,
-and *goal* for the combination of the context and the target.
-In practice, the intended meaning is usually clear.
+`⊢` 前面的部分是当前位置处我们所拥有的对象和假设，称为**语境（context）**。
+在这个例子中，语境包括两个对象，自然数 ``x`` 和 ``y``；包括三个假设，分别具有标识符 ``h₁``、``h₂`` 和 ``h₃`` （下标用 ``\1``、``\2`` …… 键入）。
+Lean 的语法要求在语境中每个假设都拥有一个名字，叫什么都可以，比如不下标的 `h1` 也可以（实际上这是类型论的要求，例如本例中`h₁`这个"名字"其实标记着类型为命题 `Prime x` 的项。），或者 ``foo``、 ``bar`` 和 ``baz``。
+最后一行用 ``⊢`` 标记的代表 **目标（goal）**，即要证明的事实。对于目标这个词，一些人有时人们使用 **目的（target）** 表示要证明的事实，使用 **目标（goal）** 表示语境和目的（target）的组合，不过在特定上下文中不致混淆。
 
-Try proving these identities,
-in each case replacing ``sorry`` by a tactic proof.
-With the ``rw`` tactic, you can use a left arrow (``\l``)
-to reverse an identity.
-For example, ``rw [← mul_assoc a b c]``
-replaces ``a * (b * c)`` by ``a * b * c`` in the current goal. Note that
-the left-pointing arrow refers to going from right to left in the identity provided
-by ``mul_assoc``, it has nothing to do with the left or right side of the goal.
+接下来做一些练习！用 `rw` 策略替换掉下面的`sorry`。
+为此再告诉你一个新技巧：你可以用左箭头 `←`（``\l``）来调转一个等式的方向，从而让 `rw` 从另一边做替换操作。例如，`rw ← mul_assoc a b c`会把目标里的 `a * (b * c)` 替换成 `a * b * c` 。注意这里指的是 `mul_assoc` 等式的从右到左，它与目标的左边或右边无关。
 TEXT. -/
 -- Try these.
 -- QUOTE:
@@ -122,10 +75,7 @@ example (a b c : ℝ) : a * (b * c) = b * (a * c) := by
   rw [mul_assoc b a c]
 
 /- TEXT:
-You can also use identities like ``mul_assoc`` and ``mul_comm`` without arguments.
-In this case, the rewrite tactic tries to match the left-hand side with
-an expression in the goal,
-using the first pattern it finds.
+你也可以不带参数使用诸如 `mul_assoc` 或者 `mul_comm` 这些等式。这些情况下重写策略会识别它在目标中匹配到的第一个模式。
 TEXT. -/
 -- An example.
 -- QUOTE:
@@ -135,12 +85,7 @@ example (a b c : ℝ) : a * b * c = b * c * a := by
 -- QUOTE.
 
 /- TEXT:
-You can also provide *partial* information.
-For example, ``mul_comm a`` matches any pattern of the form
-``a * ?`` and rewrites it to ``? * a``.
-Try doing the first of these examples without
-providing any arguments at all,
-and the second with only one argument.
+你还可以只提供一部分参数，例如 `mul_comm a` 识别所有形如 `a * ?` 或者 `? * a` 的模式。下面的练习中你可以试试在第一个里面不给参数，第二个里面只给一个参数.
 TEXT. -/
 /- Try doing the first of these without providing any arguments at all,
    and the second with only one argument. -/
@@ -163,7 +108,7 @@ example (a b c : ℝ) : a * (b * c) = b * (a * c) := by
   rw [mul_assoc]
 
 /- TEXT:
-You can also use ``rw`` with facts from the local context.
+你也可以 `rw` 局部语境里的条件：
 TEXT. -/
 -- Using facts from the local context.
 -- QUOTE:
@@ -175,7 +120,8 @@ example (a b c d e f : ℝ) (h : a * b = c * d) (h' : e = f) : a * (b * e) = c *
 -- QUOTE.
 
 /- TEXT:
-Try these, using the theorem ``sub_self`` for the second one:
+试试看：
+（第二个练习里面你可以使用定理`sub_self`，`sub_self a`代表等式`a - a = 0`。）
 TEXT. -/
 -- QUOTE:
 example (a b c d e f : ℝ) (h : b * c = e * f) : a * b * c * d = a * e * f * d := by
@@ -198,8 +144,7 @@ example (a b c d : ℝ) (hyp : c = b * a - d) (hyp' : d = a * b) : c = 0 := by
   rw [sub_self]
 
 /- TEXT:
-Multiple rewrite commands can be carried out with a single command,
-by listing the relevant identities separated by commas inside the square brackets.
+现在我们介绍 Lean 的一些有用的特性. 首先，通过在方括号内列出相关等式，可以用一行 rewrite 执行多个命令。
 TEXT. -/
 -- QUOTE:
 example (a b c d e f : ℝ) (h : a * b = c * d) (h' : e = f) : a * (b * e) = c * (d * f) := by
@@ -207,11 +152,9 @@ example (a b c d e f : ℝ) (h : a * b = c * d) (h' : e = f) : a * (b * e) = c *
 -- QUOTE.
 
 /- TEXT:
-You still see the incremental progress by placing the cursor after
-a comma in any list of rewrites.
+将光标放在rewrite列表中的任意逗号后，仍然可以看到进度.
 
-Another trick is that we can declare variables once and for all outside
-an example or theorem. Lean then includes them automatically.
+另一个技巧是我们可以在例子或定理之外一次性地声明变量. 当Lean在定理的陈述中看到它们时，它会自动将它们包含进来.
 TEXT. -/
 section
 
@@ -225,12 +168,7 @@ example (h : a * b = c * d) (h' : e = f) : a * (b * e) = c * (d * f) := by
 end
 
 /- TEXT:
-Inspection of the tactic state at the beginning of the above proof
-reveals that Lean indeed included all variables.
-We can delimit the scope of the declaration by putting it
-in a ``section ... end`` block.
-Finally, recall from the introduction that Lean provides us with a
-command to determine the type of an expression:
+检查上述证明开头的策略状态，可以发现 Lean 确实包含了相关变量，而忽略了声明中没有出现的 g. 我们可以把声明的范围放在一个 `section ... end` 块中做成类似其他编程语言中局部变量的效果. 最后，回顾一下第一章，Lean为我们提供了一个命令来确定表达式的类型:
 TEXT. -/
 -- QUOTE:
 section
@@ -249,23 +187,9 @@ end
 -- QUOTE.
 
 /- TEXT:
-The ``#check`` command works for both objects and facts.
-In response to the command ``#check a``, Lean reports that ``a`` has type ``ℝ``.
-In response to the command ``#check mul_comm a b``,
-Lean reports that ``mul_comm a b`` is a proof of the fact ``a * b = b * a``.
-The command ``#check (a : ℝ)`` states our expectation that the
-type of ``a`` is ``ℝ``,
-and Lean will raise an error if that is not the case.
-We will explain the output of the last three ``#check`` commands later,
-but in the meanwhile, you can take a look at them,
-and experiment with some ``#check`` commands of your own.
+`#check` 命令对对象和命题都有效。在响应命令 `#check a` 时，Lean 报告 `a` 的类型为 `ℝ`。作为对命令 `#check mul_comm a b` 的响应，Lean报告 `mul_comm a b` 是事实 `a * b = b * a` 的证明。命令 `#check (a : ℝ)` 表明我们期望 `a` 的类型是 `ℝ`，如果不是这样，Lean 将引发一个错误。稍后我们将解释最后三个 `#check` 命令的输出，你可以尝试自己写一些 `#check` 命令。
 
-Let's try some more examples. The theorem ``two_mul a`` says
-that ``2 * a = a + a``. The theorems ``add_mul`` and ``mul_add``
-express the distributivity of multiplication over addition,
-and the theorem ``add_assoc`` expresses the associativity of addition.
-Use the ``#check`` command to see the precise statements.
-
+我们再举几个例子。定理 `two_mul a` 表示 `2 * a = a + a`。定理 `add_mul` 和 `mul_add` 表示乘法对加法的分配律，定理 `add_assoc` 表示加法的结合律。使用`#check`命令查看精确的语句。
 .. index:: calc, tactics ; calc
 TEXT. -/
 section
@@ -279,11 +203,7 @@ example : (a + b) * (a + b) = a * a + 2 * (a * b) + b * b := by
 -- QUOTE.
 
 /- TEXT:
-Whereas it is possible to figure out what it going on in this proof
-by stepping through it in the editor,
-it is hard to read on its own.
-Lean provides a more structured way of writing proofs like this
-using the ``calc`` keyword.
+虽然可以通过在编辑器中逐步检查来弄清楚这个证明中发生了什么，但很难单独阅读。Lean 使用 `calc` 关键字提供了一种更结构化的方法来编写类似这样的证明。
 TEXT. -/
 -- QUOTE:
 example : (a + b) * (a + b) = a * a + 2 * (a * b) + b * b :=
@@ -297,21 +217,10 @@ example : (a + b) * (a + b) = a * a + 2 * (a * b) + b * b :=
 -- QUOTE.
 
 /- TEXT:
-Notice that the proof does *not* begin with ``by``:
-an expression that begins with ``calc`` is a *proof term*.
-A ``calc`` expression can also be used inside a tactic proof,
-but Lean interprets it as the instruction to use the resulting
-proof term to solve the goal.
-The ``calc`` syntax is finicky: the underscores and justification
-have to be in the format indicated above.
-Lean uses indentation to determine things like where a block
-of tactics or a ``calc`` block begins and ends;
-try changing the indentation in the proof above to see what happens.
+请注意，证明 **不** 以 ``by`` 开头：以 `calc` 开头的表达式是一个证明项。
+`calc` 表达式也可以在策略证明块中使用，Lean将其解释为使用证明项的结果来解决当前目标的指令。`calc` 语法必须严格仿照上例格式使用下划线和对齐。Lean 使用缩进来确定策略块或 `calc` 块开始和结束的地方。试着改变上面证明中的缩进，看看会发生什么。
 
-One way to write a ``calc`` proof is to outline it first
-using the ``sorry`` tactic for justification,
-make sure Lean accepts the expression modulo these,
-and then justify the individual steps using tactics.
+编写`calc`证明的一种方法是首先使用`sorry`策略填空，确保 Lean 认可中间步骤表达式，然后使用策略对各个步骤进行论证。
 TEXT. -/
 -- QUOTE:
 example : (a + b) * (a + b) = a * a + 2 * (a * b) + b * b :=
@@ -327,8 +236,7 @@ example : (a + b) * (a + b) = a * a + 2 * (a * b) + b * b :=
 end
 
 /- TEXT:
-Try proving the following identity using both a pure ``rw`` proof
-and a more structured ``calc`` proof:
+试试用两种方法证明以下等式：只用 `rw` 和用更结构化的 `calc`。
 TEXT. -/
 -- Try these. For the second, use the theorems listed underneath.
 section
@@ -340,8 +248,7 @@ example : (a + b) * (c + d) = a * c + a * d + b * c + b * d := by
 -- QUOTE.
 
 /- TEXT:
-The following exercise is a little more challenging.
-You can use the theorems listed underneath.
+接下来的练习有点挑战性。你可以用下列的定理。
 TEXT. -/
 -- QUOTE:
 example (a b : ℝ) : (a + b) * (a - b) = a ^ 2 - b ^ 2 := by
@@ -359,10 +266,7 @@ end
 
 /- TEXT:
 .. index:: rw, tactics ; rw and rewrite
-
-We can also perform rewriting in an assumption in the context.
-For example, ``rw [mul_comm a b] at hyp`` replaces ``a * b`` by ``b * a``
-in the assumption ``hyp``.
+我们还可以在语句集中的假设中执行重写。例如，`rw [mul_comm a b] at hyp` 将假设 `hyp` 中的 `a * b` 替换为 `b * a`。
 TEXT. -/
 -- Examples.
 
@@ -381,15 +285,11 @@ example (a b c d : ℝ) (hyp : c = d * a + b) (hyp' : b = a * d) : c = 2 * a * d
 /- TEXT:
 .. index:: exact, tactics ; exact
 
-In the last step, the ``exact`` tactic can use ``hyp`` to solve the goal
-because at that point ``hyp`` matches the goal exactly.
+最后一步中 `exact` 策略使用 `hyp` 来解决目标的原理是，到此 `hyp` 不就是目标本身了吗！（Exactly!）
 
 .. index:: ring (tactic), tactics ; ring
 
-We close this section by noting that Mathlib provides a
-useful bit of automation with a ``ring`` tactic,
-which is designed to prove identities in any commutative ring as long as they follow
-purely from the ring axioms, without using any local assumption.
+最后我们介绍一个 Mathlib 提供的强力自动化工具 `ring` 策略，它专门用来解决交换环中的等式，只要这些等式是完全由环公理导出的而不涉及别的假设。
 TEXT. -/
 -- QUOTE:
 example : c * b * a = b * (a * c) := by
@@ -409,19 +309,9 @@ example (hyp : c = d * a + b) (hyp' : b = a * d) : c = 2 * a * d := by
 end
 
 /- TEXT:
-The ``ring`` tactic is imported indirectly when we
-import ``Mathlib.Data.Real.Basic``,
-but we will see in the next section that it can be used
-for calculations on structures other than the real numbers.
-It can be imported explicitly with the command
-``import Mathlib.Tactic``.
-We will see there are similar tactics for other common kind of algebraic
-structures.
+`ring` 策略通过 `import Mathlib.Data.Real.Basic` 导入，但下一节会看到它不止可以用在实数的计算上。它还可以通过 `import Mathlib.Tactic` 导入。对于其他常见的代数结构也有类似的策略。
 
-There is a variation of ``rw`` called ``nth_rw`` that allows you to replace only particular instances of an expression in the goal.
-Possible matches are enumerated starting with 1,
-so in the following example, ``nth_rw 2 [h]`` replaces the second
-occurrence of ``a + b`` with ``c``.
+`rw` 有一种叫做 `nth_rewrite` 的变体，如果目标中存在多处匹配，`nth_rw` 允许你指出想要实施替换的位置。匹配项从 1 开始计数，在下面的例子中 `nth_rewrite 2 [h]` 用 `c` 替换了第二个 `a + b`。
 EXAMPLES: -/
 -- QUOTE:
 example (a b c : ℕ) (h : a + b = c) : (a + b) * (a + b) = a * c + b * c := by
