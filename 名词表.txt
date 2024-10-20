@@ -1,3 +1,6 @@
-structure	结构体
-ring	环
-lattice	格
+structure		结构体
+ring		环
+lattice		格
+annotation	注解
+extensionality	外延性
+anonymous projection notation	匿名投影记号

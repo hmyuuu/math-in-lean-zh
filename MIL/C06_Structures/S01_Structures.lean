@@ -8,15 +8,11 @@ noncomputable section
 /- TEXT:
 .. _section_structures:
 
-Defining structures
+定义结构体
 -------------------
 
-In the broadest sense of the term, a *structure* is a specification
-of a collection of data, possibly with constraints that the
-data is required to satisfy.
-An *instance* of the structure is a particular bundle of data satisfying
-the constraints. For example, we can specify that a point is
-a tuple of three real numbers:
+广义上来说，结构体约定了数据集合的规范，同时可能包括这些数据必须满足的约束条件。
+而结构体的实例则是一组满足约束的具体数据。例如，我们可以规定一个点是由三个实数组成的三元组：
 BOTH: -/
 -- QUOTE:
 @[ext]
@@ -27,9 +23,7 @@ structure Point where
 -- QUOTE.
 
 /- TEXT:
-The ``@[ext]`` annotation tells Lean to automatically generate theorems
-that can be used to prove that two instances of a structure are equal
-when their components are equal, a property known as *extensionality*.
+上面用到的 ``@[ext]`` 注解让 Lean 自动生成一个定理，内容是当该结构体的两个实例各组成部分对应相同时，这两个实例相等。该属性也称为外延性（extensionality）。
 EXAMPLES: -/
 -- QUOTE:
 #check Point.ext
@@ -40,8 +34,8 @@ example (a b : Point) (hx : a.x = b.x) (hy : a.y = b.y) (hz : a.z = b.z) : a = b
 -- QUOTE.
 
 /- TEXT:
-We can then define particular instances of the ``Point`` structure.
-Lean provides multiple ways of doing that.
+接着我们定义一个 ``Point`` 结构体的实例。
+Lean 提供多种实例化方式来达成目的。
 EXAMPLES: -/
 -- QUOTE:
 def myPoint1 : Point where
@@ -65,12 +59,9 @@ def myPoint3 :=
   give you the option of inserting a template definition
   with the field names listed for you.
 
-In the first example, the fields of the structure are named
-explicitly.
-The function ``Point.mk`` referred to in the definition of ``myPoint3``
-is known as the *constructor* for the ``Point`` structure, because
-it serves to construct elements.
-You can specify a different name if you want, like ``build``.
+第一个例子中，我们明确地指明了结构体的各个字段。
+而在定义 ``myPoint3`` 时用到的函数 ``Point.mk`` 叫做 ``Point`` 结构体的构造函数（constructor），用于构造结构体成员。
+你也可以为构造函数指定一个不同的名字，比如 ``build``。
 EXAMPLES: -/
 -- QUOTE:
 structure Point' where build ::
@@ -82,21 +73,14 @@ structure Point' where build ::
 -- QUOTE.
 
 /- TEXT:
-The next two examples show how to define functions on structures.
-Whereas the second example makes the ``Point.mk``
-constructor explicit, the first example uses an anonymous constructor
-for brevity.
-Lean can infer the relevant constructor from the indicated type of
-``add``.
-It is conventional to put definitions and theorems associated
-with a structure like ``Point`` in a namespace with the same name.
-In the example below, because we have opened the ``Point``
-namespace, the full name of ``add`` is ``Point.add``.
-When the namespace is not open, we have to use the full name.
-But remember that it is often convenient to use
-anonymous projection notation,
-which allows us to write ``a.add b`` instead of ``Point.add a b``.
-Lean interprets the former as the latter because ``a`` has type ``Point``.
+接下来的两个例子展示了如何定义结构体的函数。
+第二个例子中明确指出了构造函数 ``Point.mk`` 中的字段名，而第一个例子则使用更为简洁的匿名构造函数。
+Lean 能根据 ``add`` 的目标类型推断出所需的构造函数。
+通常，我们会将与结构体（例如这里的 ``Point``）相关的定义和定理放在一个同名的命名空间（namespace）中。
+在下面的示例中，由于我们启用了 ``Point`` 命名空间，所以 ``add`` 的完整名称实际是 ``Point.add``。
+当命名空间没被启用时，就得使用完整名称。
+不过这时也可以使用匿名投影记号（anonymous projection notation），它允许我们用 ``a.add b`` 代替 ``Point.add a b``。
+因为 a 的类型是 ``Point``，Lean 能在没有开启对应命名空间的时候将 ``a.add b`` 推断为 ``Point.add a b``。
 BOTH: -/
 -- QUOTE:
 namespace Point
@@ -120,16 +104,10 @@ end Point
 -- QUOTE.
 
 /- TEXT:
-Below we will continue to put definitions in the relevant
-namespace, but we will leave the namespacing commands out of the quoted
-snippets. To prove properties of the addition function,
-we can use ``rw`` to expand the definition and ``ext`` to
-reduce an equation between two elements of the structure to equations
-between the components.
-Below we use the ``protected`` keyword so that the name of the
-theorem is ``Point.add_comm``, even when the namespace is open.
-This is helpful when we want to avoid ambiguity with a generic
-theorem like ``add_comm``.
+接下来我们继续在相关命名空间中添加定义，但在引用的代码片段中会省略开关命名空间相关的指令。
+在证明加法函数性质时，可使用 ``rw`` 来展开定义，并用 ``ext`` 来将结构体两个实例之间的等式转化为它们组成部分之间的等式。
+下面的代码使用 ``protected`` 关键字，使得在命名空间打开的情况下定理的名字依然是 ``Point.add_comm``。
+当我们希望避免与更通用的定理如 ``add_comm`` 产生歧义时，这样做是有帮助的。
 EXAMPLES: -/
 namespace Point
 
