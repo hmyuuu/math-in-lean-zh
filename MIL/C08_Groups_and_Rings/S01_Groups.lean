@@ -9,38 +9,26 @@ import MIL.Common
 /- TEXT:
 .. _groups:
 
-Monoids and Groups
+幺半群与群
 ------------------
 
 .. index:: monoid
 .. index:: group (algebraic structure)
 
-Monoids and their morphisms
+幺半群和同态
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Courses in abstract algebra often start with groups and
-then progress to rings, fields, and vector spaces. This involves some contortions when discussing
-multiplication on rings since the multiplication operation does not come from a group structure
-but many of the proofs carry over verbatim from group theory to this new setting.
-The most common fix, when doing mathematics with pen and paper,
-is to leave those proofs as exercises. A less efficient but safer and
-more formalization-friendly way of proceeding is to use monoids. A *monoid* structure on a type `M`
-is an internal composition law that is associative and has a neutral element.
-Monoids are used primarily to accommodate both groups and the multiplicative structure of
-rings. But there are also a number of natural examples; for instance, the set of natural numbers
-equipped with addition forms a monoid.
+抽象代数课程往往会从群讲起，一步步推进到环、域直至向量空间。这样的做法常会为讨论环上的乘法这样并不来自于群结构的运算带来不必要的曲折：许多群中的定理的证明方法其实也能适用，但我们却要再证一遍。
+一般来说，当你是对着书本学习数学时，一行 “以下留作习题” 便是多数作者解决此窘境的方法。不过，在 Lean 中，我们有另一种虽然不那么方便，但却更安全，更对形式化友好的方法：引入幺半群 (monoid)。
 
-From a practical point of view, you can mostly ignore monoids when using Mathlib. But you need
-to know they exist when you are looking for a lemma by browsing Mathlib files. Otherwise, you
-might end up looking for a statement in the group theory files when it is actually in the found
-with monoids because it does not require elements to be invertible.
+类型 `M` 上的 **幺半群** 是一个在内部具有结合律和单位元的复合法则。幺半群被引入的首要目的是同时涵盖群和环上的乘法结构。有些较为自然的例子：比如，自然数与加法就构成一个幺半群。
 
-The type of monoid structures on a type ``M`` is written ``Monoid M``.
-The function ``Monoid`` is a type class so it will almost always appear as an instance implicit
-argument (in other words, in square brackets).
-By default, ``Monoid`` uses multiplicative notation for the operation; for additive notation
-use ``AddMonoid`` instead.
-The commutative versions of these structures add the prefix ``Comm`` before ``Monoid``.
+从实际应用的角度来说，你几乎可以忘记 Mathlib 中的幺半群。不过你最好记得它存在，不然当你在为一个实际上并不需要元素可逆的命题寻找引理时，你可能不会想起它们在幺半群而不是群的相关文件中。
+
+类型 ``M`` 上的幺半群被写作 ``Monoid M``.
+函数 ``Monoid`` 是一个类型类，所以它几乎总是作为隐式实例参数而出现。（即出现在方括号中）
+``Monoid`` 默认使用乘号作为运算的记号。要使用加号，可以用 ``AddMonoid`` 代替。
+如果需要带有交换律，可使用 ``CommMonoid``.
 EXAMPLES: -/
 -- QUOTE:
 example {M : Type*} [Monoid M] (x : M) : x * 1 = x := mul_one x
@@ -49,13 +37,10 @@ example {M : Type*} [AddCommMonoid M] (x y : M) : x + y = y + x := add_comm x y
 -- QUOTE.
 
 /- TEXT:
-Note that although ``AddMonoid`` is found in the library,
-it is generally confusing to use additive notation with a non-commutative operation.
+注意：虽然库中确实定义了 ``AddMonoid``，但对非交换的运算使用加号往往会给人带来迷惑。
 
-The type of morphisms between monoids ``M`` and ``N`` is called ``MonoidHom M N`` and written
-``M →* N``. Lean will automatically see such a morphism as a function from ``M`` to ``N`` when
-we apply it to elements of ``M``. The additive version is called ``AddMonoidHom`` and written
-``M →+ N``.
+幺半群 ``M`` 与 ``N`` 间的同态的类型称为 ``MonoidHom M N``，可写作 ``M →* N``. 在将一个同态作用于类型 ``M`` 的元素时，Lean 将自动将其视为一个由 ``M`` 到 ``N`` 的函数。相应的加法版本被称为 ``AddMonoidHom``, 对应写作 ``M →+ N``.
+``M →* N``.
 EXAMPLES: -/
 -- QUOTE:
 example {M N : Type*} [Monoid M] [Monoid N] (x y : M) (f : M →* N) : f (x * y) = f x * f y :=
@@ -66,10 +51,9 @@ example {M N : Type*} [AddMonoid M] [AddMonoid N] (f : M →+ N) : f 0 = 0 :=
 -- QUOTE.
 
 /- TEXT:
-These morphisms are bundled maps, i.e. they package together a map and some of its properties.
-Remember that :numref:`section_hierarchies_morphisms` explains bundled maps;
-here we simply note the slightly unfortunate consequence that we cannot use ordinary function
-composition to compose maps. Instead, we need to use ``MonoidHom.comp`` and ``AddMonoidHom.comp``.
+同态其实是一系列映射, 即：同态映射本身和它的一些性质。
+:numref:`section_hierarchies_morphisms` 中对这样的系列映射有过解释。
+现在，我们发现这也产生了些许不妙的效果：我们无法使用常规的函数复合来组合两个映射。对此，有 ``MonoidHom.comp`` 和 ``AddMonoidHom.comp`` 作为替代方法.
 EXAMPLES: -/
 -- QUOTE:
 example {M N P : Type*} [AddMonoid M] [AddMonoid N] [AddMonoid P]
@@ -77,11 +61,10 @@ example {M N P : Type*} [AddMonoid M] [AddMonoid N] [AddMonoid P]
 -- QUOTE.
 
 /- TEXT:
-Groups and their morphisms
+群和同态
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-We will have much more to say about groups, which are monoids with the extra
-property that every element has an inverse.
+对于群，我们有更多可以探讨的。群，就是幺半群加上每一个元素都有逆元的性质。
 EXAMPLES: -/
 -- QUOTE:
 example {G : Type*} [Group G] (x : G) : x * x⁻¹ = 1 := mul_inv_cancel x
@@ -91,9 +74,8 @@ example {G : Type*} [Group G] (x : G) : x * x⁻¹ = 1 := mul_inv_cancel x
 
 .. index:: group (tactic), tactics ; group
 
-Similar to the ``ring`` tactic that we saw earlier, there is a ``group`` tactic that proves
-any identity that holds in any group. (Equivalently, it proves the identities that hold in
-free groups.)
+正如之前我们看到的 ``ring`` 策略，我们有 ``group`` 策略用来证明所有群所共同满足的恒等式。
+(即自由群所满足的恒等式)
 
 EXAMPLES: -/
 -- QUOTE:
@@ -104,7 +86,7 @@ example {G : Type*} [Group G] (x y z : G) : x * (y * z) * (x * z)⁻¹ * (x * y 
 /- TEXT:
 .. index:: abel, tactics ; abel
 
-There is also a tactic for identities in commutative additive groups called ``abel``.
+对满足交换律的群，还有 ``abel`` 策略.
 
 EXAMPLES: -/
 -- QUOTE:
@@ -113,9 +95,7 @@ example {G : Type*} [AddCommGroup G] (x y z : G) : z + x + (y - z - x) = y := by
 -- QUOTE.
 
 /- TEXT:
-Interestingly, a group
-morphism is nothing more than a monoid morphism between groups. So we can copy and paste one of our
-earlier examples, replacing ``Monoid`` with ``Group``.
+有趣的是，群同态所需满足的实际上与幺半群别无二致。所以我们之前的例子可以照搬过来。
 EXAMPLES: -/
 -- QUOTE:
 example {G H : Type*} [Group G] [Group H] (x y : G) (f : G →* H) : f (x * y) = f x * f y :=
@@ -123,7 +103,7 @@ example {G H : Type*} [Group G] [Group H] (x y : G) (f : G →* H) : f (x * y) =
 -- QUOTE.
 
 /- TEXT:
-Of course we do get some new properties, such as this one:
+当然也有点新性质：
 EXAMPLES: -/
 -- QUOTE:
 example {G H : Type*} [Group G] [Group H] (x : G) (f : G →* H) : f (x⁻¹) = (f x)⁻¹ :=
@@ -131,11 +111,7 @@ example {G H : Type*} [Group G] [Group H] (x : G) (f : G →* H) : f (x⁻¹) = 
 -- QUOTE.
 
 /- TEXT:
-You may be worried that constructing group morphisms will require us to do unnecessary work since
-the definition of monoid morphism enforces that neutral elements are sent to neutral elements
-while this is automatic in the case of group morphisms. In practice the extra work is not hard,
-but, to avoid it, there is a function building a group morphism from a function
-between groups that is compatible with the composition laws.
+你也许会担心构造一个群同态需要枉费些不必要的工夫：幺半群同态的定义需要映射保持幺元，可这是群的情况下由第一条保持运算的性质就能自动得到的。虽然在实际中多做这一步并不困难，但我们可以避免它。接下来的函数可以由保持运算的群间映射给出群同态.
 EXAMPLES: -/
 -- QUOTE:
 example {G H : Type*} [Group G] [Group H] (f : G → H) (h : ∀ x y, f (x * y) = f x * f y) :
@@ -144,14 +120,13 @@ example {G H : Type*} [Group G] [Group H] (f : G → H) (h : ∀ x y, f (x * y) 
 -- QUOTE.
 
 /- TEXT:
-There is also a type ``MulEquiv`` of group (or monoid) isomorphisms denoted by ``≃*`` (and
-``AddEquiv`` denoted by ``≃+`` in additive notation).
-The inverse of ``f : G ≃* H`` is ``MulEquiv.symm f : H ≃* G``,
-composition of ``f`` and ``g`` is ``MulEquiv.trans f g``, and
-the identity isomorphism of ``G`` is ``M̀ulEquiv.refl G``.
-Using anonymous projector notation, the first two can be written ``f.symm`` and
-``f.trans g`` respectively.
-Elements of this type are automatically coerced to morphisms and functions when necessary.
+同样对于群（幺半群）同构，我们有类型 ``MulEquiv`` , 记为 ``≃*`` (对应加号版本
+``AddEquiv`` 记为 ``≃+``).
+ ``f : G ≃* H`` 的逆是 ``MulEquiv.symm f : H ≃* G``,
+ ``f`` 和 ``g`` 的复合是 ``MulEquiv.trans f g``, ``G`` 到自身的恒等同构 ``M̀ulEquiv.refl G``.
+使用匿名投影子记号, 前两个可对应写作 ``f.symm`` 和
+``f.trans g``.
+这些类型的元素将在必要时自动提升为同态或函数.
 EXAMPLES: -/
 -- QUOTE:
 example {G H : Type*} [Group G] [Group H] (f : G ≃* H) :
@@ -160,8 +135,8 @@ example {G H : Type*} [Group G] [Group H] (f : G ≃* H) :
 -- QUOTE.
 
 /- TEXT:
-One can use ``MulEquiv.ofBijective`` to build an isomorphism from a bijective morphism.
-Doing so makes the inverse function noncomputable.
+你可以用 ``MulEquiv.ofBijective`` 从一个也是双射的同态构造同构.
+这样同时会使逆映射被标记为不可计算的 (noncomputable).
 EXAMPLES: -/
 -- QUOTE:
 noncomputable example {G H : Type*} [Group G] [Group H]
@@ -174,8 +149,7 @@ noncomputable example {G H : Type*} [Group G] [Group H]
 Subgroups
 ^^^^^^^^^
 
-Just as group morphisms are bundled, a subgroup of ``G`` is also a bundled structure consisting of
-a set in ``G`` with the relevant closure properties.
+就像群同态是一系列映射，``G`` 的子群也是一个由类型 ``G`` 的集合和相应的封闭性质共同构成结构。
 EXAMPLES: -/
 -- QUOTE:
 example {G : Type*} [Group G] (H : Subgroup G) {x y : G} (hx : x ∈ H) (hy : y ∈ H) :
