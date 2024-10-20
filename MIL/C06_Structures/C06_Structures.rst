@@ -10,9 +10,7 @@ Lean 提供了相应的方法来形式化定义这些结构并对其进行操作
 此前你已经接触过一些代数结构的示例，比如在
 :numref:`Chapter %s <basics>`
 中的环（rings）和格（lattices）。
-本章将解释之前出现过的方括号语法（如
-``[Ring α]``、
-``[Lattice α]``），并介绍如何创建和使用自定义的代数结构。
+本章将解释之前出现过的方括号语法，如 ``[Ring α]``、 ``[Lattice α]``），并介绍如何创建和使用自定义的代数结构。
 
 如需了解更多技术细节，可以参考
 `Theorem Proving in Lean <https://leanprover.github.io/theorem_proving_in_lean/>`_，
