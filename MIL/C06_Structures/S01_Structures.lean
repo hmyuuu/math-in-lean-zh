@@ -11,8 +11,8 @@ noncomputable section
 定义结构体
 -------------------
 
-广义上来说，结构体约定了数据集合的规范，同时可能包括这些数据必须满足的约束条件。
-而结构体的实例则是一组满足约束的具体数据。例如，我们可以规定一个点是由三个实数组成的三元组：
+广义上来说，结构体是对特定形式数据集合的约定，并且可能包含这些数据必须满足的约束条件。
+而结构体的实例则是某一组满足约束的具体数据。例如，我们可以规定一个点是由三个实数组成的三元组：
 BOTH: -/
 -- QUOTE:
 @[ext]
@@ -230,7 +230,7 @@ def swapXy (a : StandardTwoSimplex) : StandardTwoSimplex
 -- OMIT: (TODO) add a link when we have a good explanation of noncomputable section.
 /- TEXT:
 有趣的来了，我们可以计算单纯形内两个点的中点。
-为此我们需要先在文件开头加上 ``noncomputable section`` 语句以便使用实数上的除法。
+为此需要先在文件开头加上 ``noncomputable section`` 语句以便使用实数上的除法。
 BOTH: -/
 -- QUOTE:
 noncomputable section
@@ -282,7 +282,7 @@ end StandardTwoSimplex
 
 /- TEXT:
 结构体还可以依赖于参数。
-例如，我们可以将标准2-单纯形推广到任意维数 :math:`n` 下的 :math:`n` -单纯形。
+例如，可以将标准2-单纯形推广到任意维数 :math:`n` 下的 :math:`n` -单纯形。
 目前阶段，你不需要对 ``Fin n`` 了解太多，只需知道它有 :math:`n` 个元素，并且 Lean 直到如何在其上进行就和操作即可。
 BOTH: -/
 -- QUOTE:
@@ -417,7 +417,7 @@ end
 给定 ``s : StdSimplex``，它的第一个分量 ``s.fst`` 是个自然数，第二个分量是对应维数下标准单纯形中的一个元素 ``StandardSimplex s.fst``。
 Sigma 类型与子类型的区别在于 Sigma 类型的第二个分量是数据而非属性。
 
-不过，尽管我们可以使用乘积类型、子类型、 Sigma 类型等替代结构体，但使用结构体其实有许多好处。
+不过，尽管可以使用乘积类型、子类型、 Sigma 类型等替代结构体，但使用结构体其实有许多好处。
 定义结构体可以抽象出底层的表达，且能为成员提供自定义的名称以供访问。
 这使得证明更加健壮：
 对于那些仅依赖结构体接口的证明，通常只需用新接口替换旧接口，就能让证明代码在结构体定义变更后依然有效。
