@@ -8,11 +8,11 @@ open Nat
 概述
 --------
 
-简言之，Lean 是一种用于构建复杂表达式的工具，它基于一种称为 **依值类型论（Dependent type theory）** 的形式语言。
+简言之，Lean 是用于构建复杂表达式的工具，它基于一种称为 **依值类型论（Dependent type theory）** 的形式语言。
 
 .. index:: check, commands ; check
 
-每个表达式都有一个 **类型（Type）**，你可以使用 `#check` 命令来打印它。一些表达式的类型可能是像 `ℕ` 或 `ℕ → ℕ` 这样的。这些是数学对象。
+每个表达式都有一个 **类型（Type）**，你可以使用 `#check` 命令来打印它。一些数学对象表达式的类型可能是像 `ℕ` 或 `ℕ → ℕ` 这样的。
 TEXT. -/
 -- These are pieces of data.
 -- QUOTE:
