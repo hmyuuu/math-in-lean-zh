@@ -8,20 +8,14 @@ open Real
 /- TEXT:
 .. _using_theorems_and_lemmas:
 
-Using Theorems and Lemmas
+使用定理和引理
 -------------------------
 
 .. index:: inequalities
 
-Rewriting is great for proving equations,
-but what about other sorts of theorems?
-For example, how can we prove an inequality,
-like the fact that :math:`a + e^b \le a + e^c` holds whenever :math:`b \le c`?
-We have already seen that theorems can be applied to arguments and hypotheses,
-and that the ``apply`` and ``exact`` tactics can be used to solve goals.
-In this section, we will make good use of these tools.
+重写对于证明等式很有用，但是对于其他类型的定理呢？例如，我们如何证明一个不等式，比如在 :math:`b \le c` 时 :math:`a + e^b \le a + e^c` ？ 本节我们会着重使用 ``apply`` 和 ``exact`` 。
 
-Consider the library theorems ``le_refl`` and ``le_trans``:
+考虑库定理 ``le_refl`` 和 ``le_trans``：
 TEXT. -/
 -- QUOTE:
 #check (le_refl : ∀ a : ℝ, a ≤ a)
@@ -29,16 +23,7 @@ TEXT. -/
 -- QUOTE.
 
 /- TEXT:
-As we explain in more detail in  :numref:`implication_and_the_universal_quantifier`,
-the implicit parentheses in the statement of ``le_trans``
-associate to the right, so it should be interpreted as ``a ≤ b → (b ≤ c → a ≤ c)``.
-The library designers have set the arguments ``a``, ``b`` and ``c`` to ``le_trans`` implicit,
-so that Lean will *not* let you provide them explicitly (unless you
-really insist, as we will discuss later).
-Rather, it expects to infer them from the context in which they are used.
-For example, when hypotheses ``h : a ≤ b`` and  ``h' : b ≤ c``
-are in the context,
-all the following work:
+``→`` 是右结合的，因此 ``le_trans`` 应该被解释为 ``a ≤ b → (b ≤ c → a ≤ c)`` 。详细规则在 :numref:`蕴含和全称量词` 一节中解释。标准库设计者已经将 ``le_trans`` 中的 ``a`` , ``b`` 和 ``c`` 设置为隐式参数，也就是在使用时从语境中推断。(强制显式参数将在后面讨论)。例如，当假设 ``h : a ≤ b`` 和 ``h' : b ≤ c`` 在语境中时，以下所有语句都有效：
 TEXT. -/
 section
 -- QUOTE:
@@ -54,19 +39,18 @@ variable (h : a ≤ b) (h' : b ≤ c)
 end
 
 /- TEXT:
+
 .. index:: apply, tactics ; apply, exact, tactics ; exact
 
-The ``apply`` tactic takes a proof of a general statement or implication,
-tries to match the conclusion with the current goal,
-and leaves the hypotheses, if any, as new goals.
-If the given proof matches the goal exactly
-(modulo *definitional* equality),
-you can use the ``exact`` tactic instead of ``apply``.
-So, all of these work:
+``apply`` 策略的作用规则是：它把被 ``apply`` 的表达式的 **结论** 与当前的目标相匹配，并将 **前提**（如果有的话）作为新目标。如果给定的证明与目标完全匹配（定义等价），则可以使用 ``exact`` 策略代替 ``apply`` 。你可以考察下面的例子：
 TEXT. -/
 -- QUOTE:
 example (x y z : ℝ) (h₀ : x ≤ y) (h₁ : y ≤ z) : x ≤ z := by
   apply le_trans
+  -- le_trans : a ≤ b → b ≤ c → a ≤ c, `a ≤ c` 匹配到了目标 `x ≤ z`
+  -- 于是 `a` 被重命名（正式地：“实例化”）为 `x`，`c`被重命名为 `z`，
+  -- `b` 尚未得到它的新名字，因此处在“元变量”（metavariable）状态，表示为 `?b`
+  -- 接下来两个前提 `x ≤ ?b`，`?b ≤ z` 成为了新目标
   · apply h₀
   · apply h₁
 
@@ -85,19 +69,9 @@ example (x : ℝ) : x ≤ x :=
 -- QUOTE.
 
 /- TEXT:
-In the first example, applying ``le_trans``
-creates two goals,
-and we use the dots to indicate where the proof of each begins.
-The dots are optional, but they serve to *focus* the goal:
-within the block introduced by the dot, only one goal is visible,
-and it must be completed before the end of the block.
-Here we end the first block by starting a new one with another dot.
-We could just as well have decreased the indentation.
-In the fourth example and in the last example,
-we avoid going into tactic mode entirely:
-``le_trans h₀ h₁`` and ``le_refl x`` are the proof terms we need.
+在第一个示例中， ``apply le_trans`` 创建两个目标，我们使用点 ``·`` （用 ``\.`` 或 ``\centerdot`` 键入，或者直接用英文句号 ``.``也可以）来指示对每个目标分别进行证明。这些点并不是语法上必要的，但它们聚焦了目标增加了可读性：在点引入的代码块中，只有一个目标可见，并且必须在代码块结束之前完成证明。另外，点和策略之间其实也可以不用空格。在第三个和最后一个示例中，我们直接构造了证明项 ``le_transle_trans h₀ h₁`` 和 ``le_refl x`` 。
 
-Here are a few more library theorems:
+另一些库定理：
 TEXT. -/
 -- QUOTE:
 #check (le_refl : ∀ a, a ≤ a)
@@ -108,7 +82,7 @@ TEXT. -/
 -- QUOTE.
 
 /- TEXT:
-Use them together with ``apply`` and ``exact`` to prove the following:
+利用这些定理和 ``apply`` 和 ``exact`` 策略来证明下面的问题：
 TEXT. -/
 -- Try this.
 -- QUOTE:
@@ -123,9 +97,10 @@ example (h₀ : a ≤ b) (h₁ : b < c) (h₂ : c ≤ d) (h₃ : d < e) : a < e 
   exact lt_of_le_of_lt h₂ h₃
 
 /- TEXT:
+
 .. index:: linarith, tactics ; linarith
 
-In fact, Lean has a tactic that does this sort of thing automatically:
+实际上 Lean 有一个自动化策略来证明这类问题：
 TEXT. -/
 -- QUOTE:
 example (h₀ : a ≤ b) (h₁ : b < c) (h₂ : c ≤ d) (h₃ : d < e) : a < e := by
@@ -133,7 +108,7 @@ example (h₀ : a ≤ b) (h₁ : b < c) (h₂ : c ≤ d) (h₃ : d < e) : a < e 
 -- QUOTE.
 
 /- TEXT:
-The ``linarith`` tactic is designed to handle *linear arithmetic*.
+``linarith`` 策略用于处理 **线性算术** ，也就是仅涉及加法和数乘的等式和不等式。
 TEXT. -/
 section
 
@@ -145,17 +120,7 @@ example (h : 2 * a ≤ 3 * b) (h' : 1 ≤ a) (h'' : d = 2) : d + a ≤ 5 * b := 
 end
 
 /- TEXT:
-In addition to equations and inequalities in the context,
-``linarith`` will use additional inequalities that you pass as arguments.
-In the next example, ``exp_le_exp.mpr h'`` is a proof of
-``exp b ≤ exp c``, as we will explain in a moment.
-Notice that, in Lean, we write ``f x`` to denote the application
-of a function ``f`` to the argument ``x``,
-exactly the same way we write ``h x`` to denote the result of
-applying a fact or theorem ``h`` to the argument ``x``.
-Parentheses are only needed for compound arguments,
-as in ``f (x + y)``. Without the parentheses, ``f x + y``
-would be parsed as ``(f x) + y``.
+除了语境中的等式和不等式之外，你还能把其他式子作为参数传给 ``linarith`` 。在下一个示例中， ``exp_le_exp.mpr h'`` 对应表达式 ``exp b ≤ exp c`` ，稍后解释原因。在 Lean 中，我们用 ``f x`` 来表示将函数 ``f`` 应用于参数 ``x`` ，这与我们用 `h x` 来表示将事实或定理 ``h`` 应用到参数 ``x`` 完全相同。括号仅用于复合参数，如 ``f (x + y)`` 。 如果没有括号，``f x + y`` 将被解析为 ``(f x) + y`` 。
 TEXT. -/
 -- QUOTE:
 example (h : 1 ≤ a) (h' : b ≤ c) : 2 + a + exp b ≤ 3 * a + exp c := by
@@ -165,8 +130,7 @@ example (h : 1 ≤ a) (h' : b ≤ c) : 2 + a + exp b ≤ 3 * a + exp c := by
 /- TEXT:
 .. index:: exponential, logarithm
 
-Here are some more theorems in the library that can be used to establish
-inequalities on the real numbers.
+这里列出更多库定理，可以用于实数上的不等式：
 TEXT. -/
 -- QUOTE:
 #check (exp_le_exp : exp a ≤ exp b ↔ a ≤ b)
@@ -188,13 +152,7 @@ TEXT. -/
 -- QUOTE.
 
 /- TEXT:
-Some of the theorems, ``exp_le_exp``, ``exp_lt_exp``
-use a *bi-implication*, which represents the
-phrase "if and only if."
-(You can type it in VS Code with ``\lr`` of ``\iff``).
-We will discuss this connective in greater detail in the next chapter.
-Such a theorem can be used with ``rw`` to rewrite a goal to
-an equivalent one:
+``exp_le_exp`` 、 ``exp_lt_exp`` 和 ``log_le_log`` 等定理使用双向蕴含，表示“当且仅当”。(用 ``\lr`` 或者 ``\iff`` 输入)。我们将在下一章更详细地讨论这个连接词。 ``rw`` 也可以处理双向蕴含，就像等号一样，将目标中匹配到的表达式右侧重写成左侧。
 TEXT. -/
 -- QUOTE:
 example (h : a ≤ b) : exp a ≤ exp b := by
@@ -203,15 +161,7 @@ example (h : a ≤ b) : exp a ≤ exp b := by
 -- QUOTE.
 
 /- TEXT:
-In this section, however, we will use the fact that if ``h : A ↔ B``
-is such an equivalence,
-then ``h.mp`` establishes the forward direction, ``A → B``,
-and ``h.mpr`` establishes the reverse direction, ``B → A``.
-Here, ``mp`` stands for "modus ponens" and
-``mpr`` stands for "modus ponens reverse."
-You can also use ``h.1`` and ``h.2`` for ``h.mp`` and ``h.mpr``,
-respectively, if you prefer.
-Thus the following proof works:
+实际上，表达式 ``h : A ↔ B`` 是 ``A → B`` 和  ``B → A`` 的合取，我们可以用 ``h.mp`` “肯定前件式”（modus ponens）指代 ``A → B`` ，而 ``h.mpr`` “肯定前件式的反向”（modus ponens reverse）指代 ``B → A`` 。另外还可以用 ``h.1`` 表示 ``h.mp`` 和用``h.2`` 表示 ``h.mpr`` ，虽然这样或许会影响可读性。你可以考察下例；
 TEXT. -/
 -- QUOTE:
 example (h₀ : a ≤ b) (h₁ : c < d) : a + exp c + e < b + exp d + e := by
@@ -222,16 +172,9 @@ example (h₀ : a ≤ b) (h₁ : c < d) : a + exp c + e < b + exp d + e := by
 -- QUOTE.
 
 /- TEXT:
-The first line, ``apply add_lt_add_of_lt_of_le``,
-creates two goals,
-and once again we use a dot to separate the
-proof of the first from the proof of the second.
+第一行，``apply add_lt_add_of_lt_of_le`` 创建了两个目标，我们再次使用点将两个证明分开。
 
-.. index:: norm_num, tactics ; norm_num
-
-Try the following examples on your own.
-The example in the middle shows you that the ``norm_num``
-tactic can be used to solve concrete numeric goals.
+试试下面的例子。中间的例子展示了 ``norm_num`` 策略可用于解决具体数字的问题。
 TEXT. -/
 -- QUOTE:
 example (h₀ : d ≤ e) : c + exp (a + d) ≤ c + exp (a + e) := by sorry
@@ -250,7 +193,7 @@ example (h₀ : d ≤ e) : c + exp (a + d) ≤ c + exp (a + e) := by
   rw [exp_le_exp]
   apply add_le_add_left h₀
 
--- an alternative using `linarith`.
+-- 使用 `linarith`
 example (h₀ : d ≤ e) : c + exp (a + d) ≤ c + exp (a + e) := by
   have : exp (a + d) ≤ exp (a + e) := by
     rw [exp_le_exp]
@@ -264,36 +207,17 @@ example (h : a ≤ b) : log (1 + exp a) ≤ log (1 + exp b) := by
 
 -- SOLUTION.
 /- TEXT:
-From these examples, it should be clear that being able to
-find the library theorems you need constitutes an important
-part of formalization.
-There are a number of strategies you can use:
+你也许体会到了，寻找你想要的库定理是形式化的重要环节。有以下方式：
 
-* You can browse Mathlib in its
-  `GitHub repository <https://github.com/leanprover-community/mathlib4>`_.
+* 在 `GitHub 存储库 <https://github.com/leanprover-community/mathlib4>`_ 中浏览 Mathlib。
 
-* You can use the API documentation on the Mathlib
-  `web pages <https://leanprover-community.github.io/mathlib4_docs/>`_.
+* 在 `Mathlib 网页 <https://leanprover-community.github.io/mathlib4_docs/>`_ 上查询 API 文档。
 
-* You can rely on Mathlib naming conventions and Ctrl-space completion in
-  the editor to guess a theorem name (or Cmd-space on a Mac keyboard).
-  In Lean, a theorem named ``A_of_B_of_C`` establishes
-  something of the form ``A`` from hypotheses of the form ``B`` and ``C``,
-  where ``A``, ``B``, and ``C``
-  approximate the way we might read the goals out loud.
-  So a theorem establishing something like ``x + y ≤ ...`` will probably
-  start with ``add_le``.
-  Typing ``add_le`` and hitting Ctrl-space will give you some helpful choices.
-  Note that hitting Ctrl-space twice displays more information about the available
-  completions.
+* 根据 Mathlib 命名惯例和编辑器智能代码提示功能来猜测定理名称（有时需要手动用 ``Ctrl-空格`` 或 Mac 键盘上的 ``Cmd-空格`` 来开启自动补全）。 Mathlib 的一种命名惯例是，定理 `A_of_B_of_C` 是以前提 B 和 C 推出 A，其中 A 、B 和 C 差不多是把表达式用人类语言朗读出来的样子（但经常会去掉变量名）。因此，形如 `x + y ≤ ...` 的定理可能会以 `add_le` 开头。键入 `add_le` 然后看看编辑器有没有好建议。请注意，按两次 `Ctrl-空格` 将显示更多可用的信息。（译者注：我的vscode是自动提示，我点两下 `Ctrl-空格` 没效果，谁能告诉我这是哪个版本的功能）
 
-* If you right-click on an existing theorem name in VS Code,
-  the editor will show a menu with the option to
-  jump to the file where the theorem is defined,
-  and you can find similar theorems nearby.
+* VS Code 中，右键单击定理名称将显示一个菜单，其中包含“转到定义”，你可以在附近找到类似的定理。
 
-* You can use the ``apply?`` tactic,
-  which tries to find the relevant theorem in the library.
+* 你可以使用 ``apply?`` 策略，这是一个 Mathlib 自带的定理搜索工具，它会自己尝试在库中找到相关的定理。
 TEXT. -/
 -- QUOTE:
 example : 0 ≤ a ^ 2 := by
@@ -302,11 +226,7 @@ example : 0 ≤ a ^ 2 := by
 -- QUOTE.
 
 /- TEXT:
-To try out ``apply?`` in this example,
-delete the ``exact`` command and uncomment the previous line.
-Using these tricks,
-see if you can find what you need to do the
-next example:
+``--`` 是注释行，你可以取消注释来试着用用 ``apply?`` ，然后你可以尝试用这个工具证明下面的例子：
 TEXT. -/
 -- QUOTE:
 example (h : a ≤ b) : c - exp b ≤ c - exp a := by
@@ -318,15 +238,12 @@ example (h : a ≤ b) : c - exp b ≤ c - exp a := by
   apply sub_le_sub_left
   exact exp_le_exp.mpr h
 
--- alternatively:
+-- 另一法：
 example (h : a ≤ b) : c - exp b ≤ c - exp a := by
   linarith [exp_le_exp.mpr h]
 
 /- TEXT:
-Using the same tricks, confirm that ``linarith`` instead of ``apply?``
-can also finish the job.
-
-Here is another example of an inequality:
+你可以再试试用 ``linarith`` 而不是 ``apply?`` 来实现它。其他例子：
 TEXT. -/
 -- QUOTE:
 example : 2 * a * b ≤ a ^ 2 + b ^ 2 := by
@@ -342,24 +259,11 @@ example : 2 * a * b ≤ a ^ 2 + b ^ 2 := by
 -- QUOTE.
 
 /- TEXT:
-Mathlib tends to put spaces around binary operations like ``*`` and ``^``,
-but in this example, the more compressed format increases readability.
-There are a number of things worth noticing.
-First, an expression ``s ≥ t`` is definitionally equivalent to ``t ≤ s``.
-In principle, this means one should be able to use them interchangeably.
-But some of Lean's automation does not recognize the equivalence,
-so Mathlib tends to favor ``≤`` over ``≥``.
-Second, we have used the ``ring`` tactic extensively.
-It is a real timesaver!
-Finally, notice that in the second line of the
-second ``calc`` proof,
-instead of writing ``by exact add_le_add (le_refl _) h``,
-we can simply write the proof term ``add_le_add (le_refl _) h``.
+Mathlib 习惯于在二元运算符如 ``*`` 和 ``^`` 旁边加空格，不过我不会干扰你的审美喜好。
 
-In fact, the only cleverness in the proof above is figuring
-out the hypothesis ``h``.
-Once we have it, the second calculation involves only
-linear arithmetic, and ``linarith`` can handle it:
+有几个值得注意的地方。首先，表达式 ``s ≥ t`` 和 ``t ≤ s``定义等价，对人类来说可以互换，但是 Lean 的某些功能不理解这种等价（so sad），因此在 Mathlib 中习惯于使用 ``≤`` 而不是 ``≥``。其次，``ring`` 策略真好用！最后，注意到在第二个 ``calc`` 证明的第二行中使用了证明项 ``add_le_add (le_refl _) h``，没必要写成 ``by exact add_le_add (le_refl _) h``。
+
+事实上，上例中的唯一需要人类智慧的地方就是找出假设 ``h`` ，后面其实只涉及线性算术，都交给 ``linarith`` ：
 TEXT. -/
 -- QUOTE:
 example : 2 * a * b ≤ a ^ 2 + b ^ 2 := by
@@ -371,10 +275,8 @@ example : 2 * a * b ≤ a ^ 2 + b ^ 2 := by
 -- QUOTE.
 
 /- TEXT:
-How nice! We challenge you to use these ideas to prove the
-following theorem. You can use the theorem ``abs_le'.mpr``.
-You will also need the ``constructor`` tactic to split a conjunction
-to two goals; see :numref:`conjunction_and_biimplication`.
+好极了！下面是对你的挑战。你可以使用定理 ``abs_le'.mpr``.
+你大概还会用到 ``constructor`` 策略将一个合取分解为两个目标；参见 :numref:`合取和双向蕴含`。
 TEXT. -/
 -- QUOTE:
 example : |a * b| ≤ (a ^ 2 + b ^ 2) / 2 := by
@@ -408,6 +310,5 @@ example : |a * b| ≤ (a ^ 2 + b ^ 2) / 2 := by
   apply fact2
 
 /- TEXT:
-If you managed to solve this, congratulations!
-You are well on your way to becoming a master formalizer.
+如果你连这都解决了，说明你马上要成为形式化大师了！
 TEXT. -/

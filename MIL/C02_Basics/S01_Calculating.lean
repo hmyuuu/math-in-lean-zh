@@ -190,7 +190,9 @@ end
 ``#check`` 命令对对象和命题都有效。在响应命令 ``#check a`` 时，Lean 报告 ``a`` 的类型为 ``ℝ``。作为对命令 ``#check mul_comm a b`` 的响应，Lean报告 ``mul_comm a b`` 是事实 ``a * b = b * a`` 的证明。命令 ``#check (a : ℝ)`` 表明我们期望 ``a`` 的类型是 ``ℝ``，如果不是这样，Lean 将引发一个错误。稍后我们将解释最后三个 ``#check`` 命令的输出，你可以尝试自己写一些 ``#check`` 命令。
 
 我们再举几个例子。定理 ``two_mul a`` 表示 ``2 * a = a + a``。定理 ``add_mul`` 和 ``mul_add`` 表示乘法对加法的分配律，定理 ``add_assoc`` 表示加法的结合律。使用 ``#check`` 命令查看精确的语句。
+
 .. index:: calc, tactics ; calc
+
 TEXT. -/
 section
 variable (a b : ℝ)

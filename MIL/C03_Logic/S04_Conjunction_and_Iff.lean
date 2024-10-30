@@ -8,7 +8,7 @@ namespace C03S04
 /- TEXT:
 .. _conjunction_and_biimplication:
 
-Conjunction and Iff
+合取和双向蕴含
 -------------------
 
 .. index:: constructor, tactics ; constructor

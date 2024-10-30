@@ -7,7 +7,7 @@ namespace C03S01
 /- TEXT:
 .. _implication_and_the_universal_quantifier:
 
-Implication and the Universal Quantifier
+蕴含和全称量词
 ----------------------------------------
 
 Consider the statement after the ``#check``:
