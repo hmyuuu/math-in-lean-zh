@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3. Logic &mdash; Mathematics in Lean 0.1 documentation</title>
+  <title>3. &#36923;&#36753; &mdash; Mathematics in Lean 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=0731ccc3" />
@@ -48,11 +48,11 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="C01_Introduction.html">1. &#24341;&#35328;</a></li>
 <li class="toctree-l1"><a class="reference internal" href="C02_Basics.html">2. &#22522;&#30784;</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Logic</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#implication-and-the-universal-quantifier">3.1. Implication and the Universal Quantifier</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. &#36923;&#36753;</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#implication-and-the-universal-quantifier">3.1. &#34164;&#21547;&#21644;&#20840;&#31216;&#37327;&#35789;</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-existential-quantifier">3.2. The Existential Quantifier</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#negation">3.3. Negation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#conjunction-and-iff">3.4. Conjunction and Iff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conjunction-and-biimplication">3.4. &#21512;&#21462;&#21644;&#21452;&#21521;&#34164;&#21547;</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#disjunction">3.5. Disjunction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sequences-and-convergence">3.6. Sequences and Convergence</a></li>
 </ul>
@@ -85,7 +85,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">3. </span>Logic</li>
+      <li class="breadcrumb-item active"><span class="section-number">3. </span>&#36923;&#36753;</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/C03_Logic.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -96,18 +96,10 @@
            <div itemprop="articleBody">
              
   <section id="logic">
-<span id="id1"></span><h1><span class="section-number">3. </span>Logic<a class="headerlink" href="#logic" title="Link to this heading">&#61633;</a></h1>
-<p>In the last chapter, we dealt with equations, inequalities,
-and basic mathematical statements like
-&#8220;<span class="math notranslate nohighlight">\(x\)</span> divides <span class="math notranslate nohighlight">\(y\)</span>.&#8221;
-Complex mathematical statements are built up from
-simple ones like these
-using logical terms like &#8220;and,&#8221; &#8220;or,&#8221; &#8220;not,&#8221; and
-&#8220;if &#8230; then,&#8221; &#8220;every,&#8221; and &#8220;some.&#8221;
-In this chapter, we show you how to work with statements
-that are built up in this way.</p>
+<span id="id1"></span><h1><span class="section-number">3. </span>&#36923;&#36753;<a class="headerlink" href="#logic" title="Link to this heading">&#61633;</a></h1>
+<p>&#19978;&#19968;&#33410;&#20013;&#65292;&#25105;&#20204;&#22788;&#29702;&#20102;&#31561;&#24335;&#12289;&#19981;&#31561;&#24335;&#21644;&#31867;&#20284;&#19982;&#8220; <span class="math notranslate nohighlight">\(x\)</span> &#25972;&#38500; <span class="math notranslate nohighlight">\(y\)</span> &#8221;&#36825;&#26679;&#30340;&#21629;&#39064;&#12290;&#22797;&#26434;&#30340;&#25968;&#23398;&#21629;&#39064;&#26159;&#30001;&#31616;&#21333;&#30340;&#21629;&#39064;&#36890;&#36807;&#36923;&#36753;&#36830;&#25509;&#35789;&#32452;&#35013;&#36215;&#26469;&#30340;&#65292;&#20363;&#22914;&#8220;&#19982;&#8221;&#12289;&#8220;&#25110;&#8221;&#12289;&#8220;&#38750;&#8221;&#12289;&#8220;&#22914;&#26524;&#8230;&#8230;&#37027;&#20040;&#8230;&#8230;&#8221;&#12289;&#8220;&#25152;&#26377;&#8230;&#8230;&#8221;&#21644;&#8220;&#23384;&#22312;&#8230;&#8230;&#8221;&#12290;&#26412;&#31456;&#25105;&#20204;&#20250;&#22788;&#29702;&#36825;&#20123;&#20351;&#29992;&#21040;&#36923;&#36753;&#30340;&#21629;&#39064;&#12290;</p>
 <section id="implication-and-the-universal-quantifier">
-<span id="id2"></span><h2><span class="section-number">3.1. </span>Implication and the Universal Quantifier<a class="headerlink" href="#implication-and-the-universal-quantifier" title="Link to this heading">&#61633;</a></h2>
+<span id="id2"></span><h2><span class="section-number">3.1. </span>&#34164;&#21547;&#21644;&#20840;&#31216;&#37327;&#35789;<a class="headerlink" href="#implication-and-the-universal-quantifier" title="Link to this heading">&#61633;</a></h2>
 <p>Consider the statement after the <code class="docutils literal notranslate"><span class="pre">#check</span></code>:</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="k">#check</span><span class="w"> </span><span class="bp">&#8704;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">&#8477;</span><span class="o">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="bp">&#8804;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">&#8594;</span><span class="w"> </span><span class="bp">|</span><span class="n">x</span><span class="bp">|</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">x</span>
 </pre></div>
@@ -1082,8 +1074,8 @@ by finding a contradiction in the hypotheses,
 such as a pair of the form <code class="docutils literal notranslate"><span class="pre">h</span> <span class="pre">:</span> <span class="pre">P</span></code> and <code class="docutils literal notranslate"><span class="pre">h'</span> <span class="pre">:</span> <span class="pre">&#172;</span> <span class="pre">P</span></code>.
 Of course, in this example, <code class="docutils literal notranslate"><span class="pre">linarith</span></code> also works.</p>
 </section>
-<section id="conjunction-and-iff">
-<span id="conjunction-and-biimplication"></span><h2><span class="section-number">3.4. </span>Conjunction and Iff<a class="headerlink" href="#conjunction-and-iff" title="Link to this heading">&#61633;</a></h2>
+<section id="conjunction-and-biimplication">
+<span id="id5"></span><h2><span class="section-number">3.4. </span>&#21512;&#21462;&#21644;&#21452;&#21521;&#34164;&#21547;<a class="headerlink" href="#conjunction-and-biimplication" title="Link to this heading">&#61633;</a></h2>
 <p id="index-18">You have already seen that the conjunction symbol, <code class="docutils literal notranslate"><span class="pre">&#8743;</span></code>,
 is used to express &#8220;and.&#8221;
 The <code class="docutils literal notranslate"><span class="pre">constructor</span></code> tactic allows you to prove a statement of
@@ -1342,7 +1334,7 @@ to be instantiated to different values.</p>
 </div>
 </section>
 <section id="disjunction">
-<span id="id5"></span><h2><span class="section-number">3.5. </span>Disjunction<a class="headerlink" href="#disjunction" title="Link to this heading">&#61633;</a></h2>
+<span id="id6"></span><h2><span class="section-number">3.5. </span>Disjunction<a class="headerlink" href="#disjunction" title="Link to this heading">&#61633;</a></h2>
 <p id="index-21">The canonical way to prove a disjunction <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">&#8744;</span> <span class="pre">B</span></code> is to prove
 <code class="docutils literal notranslate"><span class="pre">A</span></code> or to prove <code class="docutils literal notranslate"><span class="pre">B</span></code>.
 The <code class="docutils literal notranslate"><span class="pre">left</span></code> tactic chooses <code class="docutils literal notranslate"><span class="pre">A</span></code>,
@@ -1584,7 +1576,7 @@ using <code class="docutils literal notranslate"><span class="pre">by_cases</spa
 </div>
 </section>
 <section id="sequences-and-convergence">
-<span id="id6"></span><h2><span class="section-number">3.6. </span>Sequences and Convergence<a class="headerlink" href="#sequences-and-convergence" title="Link to this heading">&#61633;</a></h2>
+<span id="id7"></span><h2><span class="section-number">3.6. </span>Sequences and Convergence<a class="headerlink" href="#sequences-and-convergence" title="Link to this heading">&#61633;</a></h2>
 <p>We now have enough skills at our disposal to do some real mathematics.
 In Lean, we can represent a sequence <span class="math notranslate nohighlight">\(s_0, s_1, s_2, \ldots\)</span> of
 real numbers as a function <code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">:</span> <span class="pre">&#8469;</span> <span class="pre">&#8594;</span> <span class="pre">&#8477;</span></code>.
