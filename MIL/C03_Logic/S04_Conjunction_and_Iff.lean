@@ -6,7 +6,7 @@ import Mathlib.Data.Nat.Prime.Basic
 namespace C03S04
 
 /- TEXT:
-.. _合取和双向蕴含:
+.. _conjunction_and_biimplication:
 
 合取和双向蕴含
 -------------------

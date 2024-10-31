@@ -5,7 +5,7 @@ import Mathlib.Data.Real.Basic
 namespace C03S01
 
 /- TEXT:
-.. _蕴含和全称量词:
+.. _implication_and_the_universal_quantifier:
 
 蕴含和全称量词
 ----------------------------------------
