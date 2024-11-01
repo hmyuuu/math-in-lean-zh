@@ -52,7 +52,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#proving-identities-in-algebraic-structures">2.2. &#35777;&#26126;&#20195;&#25968;&#32467;&#26500;&#20013;&#30340;&#31561;&#24335;</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#using-theorems-and-lemmas">2.3. &#20351;&#29992;&#23450;&#29702;&#21644;&#24341;&#29702;</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#apply-rw">2.4. apply &#21644; rw &#30340;&#26356;&#22810;&#20363;&#23376;</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#proving-facts-about-algebraic-structures">2.5. Proving Facts about Algebraic Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#proving-facts-about-algebraic-structures">2.5. &#35777;&#26126;&#20851;&#20110;&#20195;&#25968;&#32467;&#26500;&#30340;&#21629;&#39064;</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="C03_Logic.html">3. &#36923;&#36753;</a></li>
@@ -723,17 +723,8 @@ Lean &#30340;&#35821;&#27861;&#35201;&#27714;&#22312;&#35821;&#22659;&#20013;&#2
 <p>&#25552;&#31034;&#65306;&#20320;&#21487;&#20197;&#20351;&#29992; <code class="docutils literal notranslate"><span class="pre">dvd_antisymm</span></code>&#65292;&#20294;&#23427;&#26377;&#36890;&#29992;&#23450;&#29702;&#21644;&#19987;&#38376;&#38024;&#23545;&#33258;&#28982;&#25968;&#30340;&#20004;&#20010;&#29256;&#26412;&#65292;Lean &#26377;&#21487;&#33021;&#20250;&#25265;&#24616;&#36825;&#37324;&#30340;&#27495;&#20041;&#12290;&#27492;&#26102;&#20320;&#21487;&#20197;&#20351;&#29992; <code class="docutils literal notranslate"><span class="pre">_root_.dvd_antisymm</span></code> &#26469;&#26126;&#30830;&#25351;&#23450;&#20351;&#29992;&#36890;&#29992;&#29256;&#26412;&#65292;&#25110;&#32773; <code class="docutils literal notranslate"><span class="pre">Nat.dvd_antisymm</span></code> &#26469;&#25351;&#23450;&#20351;&#29992;&#33258;&#28982;&#25968;&#29256;&#26412;&#65292;&#20219;&#20309;&#19968;&#20010;&#37117;&#26377;&#25928;&#12290;</p>
 </section>
 <section id="proving-facts-about-algebraic-structures">
-<span id="id7"></span><h2><span class="section-number">2.5. </span>Proving Facts about Algebraic Structures<a class="headerlink" href="#proving-facts-about-algebraic-structures" title="Link to this heading">&#61633;</a></h2>
-<p id="index-26">In <a class="reference internal" href="#proving-identities-in-algebraic-structures"><span class="std std-numref">Section 2.2</span></a>,
-we saw that many common identities governing the real numbers hold
-in more general classes of algebraic structures,
-such as commutative rings.
-We can use any axioms we want to describe an algebraic structure,
-not just equations.
-For example, a <em>partial order</em> consists of a set with a
-binary relation that is reflexive, transitive, and antisymmetric.
-like <code class="docutils literal notranslate"><span class="pre">&#8804;</span></code> on the real numbers.
-Lean knows about partial orders:</p>
+<span id="id7"></span><h2><span class="section-number">2.5. </span>&#35777;&#26126;&#20851;&#20110;&#20195;&#25968;&#32467;&#26500;&#30340;&#21629;&#39064;<a class="headerlink" href="#proving-facts-about-algebraic-structures" title="Link to this heading">&#61633;</a></h2>
+<p id="index-26">&#22312;:numref:<cite>proving_identities_in_algebraic_structures</cite> &#20013;&#65292;&#25105;&#20204;&#30475;&#21040;&#35768;&#22810;&#20851;&#20110;&#23454;&#25968;&#30340;&#24120;&#35265;&#24658;&#31561;&#24335;&#36866;&#29992;&#20110;&#26356;&#19968;&#33324;&#30340;&#20195;&#25968;&#32467;&#26500;&#31867;&#65292;&#27604;&#22914;&#20132;&#25442;&#29615;&#12290;&#25105;&#20204;&#36824;&#26377;&#20854;&#20182;&#20195;&#25968;&#32467;&#26500;&#65292;&#20363;&#22914;&#65292;<strong>&#20559;&#24207;</strong> &#26159;&#19968;&#20010;&#20855;&#26377;&#20108;&#20803;&#20851;&#31995;&#30340;&#38598;&#21512;&#65292;&#35813;&#20851;&#31995;&#26159;&#33258;&#21453;&#30340;&#12289;&#20256;&#36882;&#30340;&#21644;&#21453;&#23545;&#31216;&#30340;&#65292;&#23601;&#20687;&#23454;&#25968;&#19978;&#30340; <code class="docutils literal notranslate"><span class="pre">&#8804;</span></code> &#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span><span class="w"> </span><span class="o">{</span><span class="n">&#945;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="bp">*</span><span class="o">}</span><span class="w"> </span><span class="o">[</span><span class="n">PartialOrder</span><span class="w"> </span><span class="n">&#945;</span><span class="o">]</span>
 <span class="kd">variable</span><span class="w"> </span><span class="o">(</span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">&#945;</span><span class="o">)</span>
 
@@ -743,22 +734,8 @@ Lean knows about partial orders:</p>
 <span class="k">#check</span><span class="w"> </span><span class="o">(</span><span class="n">le_antisymm</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">&#8804;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="bp">&#8594;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="bp">&#8804;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">&#8594;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">y</span><span class="o">)</span>
 </pre></div>
 </div>
-<p>Here we are adopting the Mathlib convention of using
-letters like <code class="docutils literal notranslate"><span class="pre">&#945;</span></code>, <code class="docutils literal notranslate"><span class="pre">&#946;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&#947;</span></code>
-(entered as <code class="docutils literal notranslate"><span class="pre">\a</span></code>, <code class="docutils literal notranslate"><span class="pre">\b</span></code>, and <code class="docutils literal notranslate"><span class="pre">\g</span></code>)
-for arbitrary types.
-The library often uses letters like <code class="docutils literal notranslate"><span class="pre">R</span></code> and <code class="docutils literal notranslate"><span class="pre">G</span></code>
-for the carriers of algebraic structures like rings and groups,
-respectively,
-but in general Greek letters are used for types,
-especially when there is little or no structure
-associated with them.</p>
-<p>Associated to any partial order, <code class="docutils literal notranslate"><span class="pre">&#8804;</span></code>,
-there is also a <em>strict partial order</em>, <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>,
-which acts somewhat like <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> on the real numbers.
-Saying that <code class="docutils literal notranslate"><span class="pre">x</span></code> is less than <code class="docutils literal notranslate"><span class="pre">y</span></code> in this order
-is equivalent to saying that it is less-than-or-equal to <code class="docutils literal notranslate"><span class="pre">y</span></code>
-and not equal to <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
+<p>Mathlib &#20013;&#20064;&#24815;&#29992;&#24076;&#33098;&#23383;&#27597; <code class="docutils literal notranslate"><span class="pre">&#945;</span></code>&#12289; <code class="docutils literal notranslate"><span class="pre">&#946;</span></code> &#21644; <code class="docutils literal notranslate"><span class="pre">&#947;</span></code> &#65288;&#29992; <code class="docutils literal notranslate"><span class="pre">\a</span></code>&#12289;<code class="docutils literal notranslate"><span class="pre">\b</span></code> &#21644; <code class="docutils literal notranslate"><span class="pre">\g</span></code> &#36755;&#20837;&#65289;&#31561;&#31561;&#34920;&#31034;&#19968;&#33324;&#31867;&#22411;&#65292;&#20351;&#29992; <code class="docutils literal notranslate"><span class="pre">R</span></code> &#21644; <code class="docutils literal notranslate"><span class="pre">G</span></code> &#31561;&#26469;&#34920;&#31034;&#22914;&#29615;&#21644;&#32676;&#31561;&#29305;&#27530;&#30340;&#20195;&#25968;&#32467;&#26500;&#12290;</p>
+<p>&#23545;&#20110;&#20219;&#20309;&#20559;&#24207; <code class="docutils literal notranslate"><span class="pre">&#8804;</span></code>&#65292;&#36824;&#26377;&#19968;&#20010; <strong>&#20005;&#26684;&#20559;&#24207;</strong> <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>&#65292;&#31867;&#20284;&#23454;&#25968;&#19978;&#30340; <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> &#65292;&#26159;&#21435;&#25481;&#31561;&#20110;&#30340;&#23567;&#20110;&#31561;&#20110;&#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="k">#check</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">&lt;</span><span class="w"> </span><span class="n">y</span>
 <span class="k">#check</span><span class="w"> </span><span class="o">(</span><span class="n">lt_irrefl</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">&#172;</span><span class="w"> </span><span class="o">(</span><span class="n">x</span><span class="w"> </span><span class="bp">&lt;</span><span class="w"> </span><span class="n">x</span><span class="o">))</span>
 <span class="k">#check</span><span class="w"> </span><span class="o">(</span><span class="n">lt_trans</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">&lt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="bp">&#8594;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="bp">&lt;</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="bp">&#8594;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">&lt;</span><span class="w"> </span><span class="n">z</span><span class="o">)</span>
@@ -769,15 +746,11 @@ and not equal to <code class="docutils literal notranslate"><span class="pre">y<
 <span class="w">  </span><span class="n">lt_iff_le_and_ne</span>
 </pre></div>
 </div>
-<p>In this example, the symbol <code class="docutils literal notranslate"><span class="pre">&#8743;</span></code> stands for &#8220;and,&#8221;
-the symbol <code class="docutils literal notranslate"><span class="pre">&#172;</span></code> stands for &#8220;not,&#8221; and
-<code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&#8800;</span> <span class="pre">y</span></code> abbreviates <code class="docutils literal notranslate"><span class="pre">&#172;</span> <span class="pre">(x</span> <span class="pre">=</span> <span class="pre">y)</span></code>.
-In <a class="reference internal" href="C03_Logic.html#logic"><span class="std std-numref">Chapter 3</span></a>, you will learn how to use
-these logical connectives to <em>prove</em> that <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>
-has the properties indicated.</p>
-<p id="index-27">A <em>lattice</em> is a structure that extends a partial
-order with operations <code class="docutils literal notranslate"><span class="pre">&#8851;</span></code> and <code class="docutils literal notranslate"><span class="pre">&#8852;</span></code> that are
-analogous to <code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code> on the real numbers:</p>
+<dl class="simple">
+<dt>&#22312;&#36825;&#20010;&#20363;&#23376;&#20013;&#65292;&#31526;&#21495; <code class="docutils literal notranslate"><span class="pre">&#8743;</span></code> &#34920;&#31034; &#8220;&#19988;&#8221;&#65292;&#31526;&#21495; <code class="docutils literal notranslate"><span class="pre">&#172;</span></code> &#34920;&#31034; &#8220;&#38750;&#8221;&#65292;&#32780; <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&#8800;</span> <span class="pre">y</span></code> &#26159; <code class="docutils literal notranslate"><span class="pre">&#172;</span> <span class="pre">(x</span> <span class="pre">=</span> <span class="pre">y)</span></code> &#30340;&#32553;&#20889;&#12290;</dt><dd><p><a class="reference internal" href="C03_Logic.html#logic"><span class="std std-numref">&#31532; 3 &#31456;</span></a> &#20250;&#35762;&#21040;&#22914;&#20309;&#20351;&#29992;&#36825;&#20123;&#36923;&#36753;&#36830;&#25509;&#35789;&#26469; <strong>&#35777;&#26126;</strong> <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> &#20855;&#26377;&#25152;&#31034;&#30340;&#24615;&#36136;&#12290;</p>
+</dd>
+</dl>
+<p id="index-27">&#19968;&#20010; <strong>&#26684;</strong> &#26159;&#32473;&#20559;&#24207;&#28155;&#21152;&#36816;&#31639;&#31526; <code class="docutils literal notranslate"><span class="pre">&#8851;</span></code> &#21644; <code class="docutils literal notranslate"><span class="pre">&#8852;</span></code> &#30340;&#32467;&#26500;&#65292;&#36825;&#20123;&#36816;&#31639;&#31526;&#31867;&#20284;&#20110;&#23454;&#25968;&#19978;&#30340; <code class="docutils literal notranslate"><span class="pre">min</span></code> &#21644; <code class="docutils literal notranslate"><span class="pre">max</span></code>&#65292;&#31216;&#20026; <strong>&#26368;&#22823;&#19979;&#30028;</strong> &#21644; <strong>&#26368;&#23567;&#19978;&#30028;</strong> &#65288;greatest lower bound, least upper bound&#65289; &#65292;&#29992; <code class="docutils literal notranslate"><span class="pre">\glb</span></code> &#21644; <code class="docutils literal notranslate"><span class="pre">\lub</span></code> &#36755;&#20837;&#65306;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span><span class="w"> </span><span class="o">{</span><span class="n">&#945;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="bp">*</span><span class="o">}</span><span class="w"> </span><span class="o">[</span><span class="n">Lattice</span><span class="w"> </span><span class="n">&#945;</span><span class="o">]</span>
 <span class="kd">variable</span><span class="w"> </span><span class="o">(</span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">&#945;</span><span class="o">)</span>
 
@@ -791,58 +764,21 @@ analogous to <code class="docutils literal notranslate"><span class="pre">min</s
 <span class="k">#check</span><span class="w"> </span><span class="o">(</span><span class="n">sup_le</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">&#8804;</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="bp">&#8594;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="bp">&#8804;</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="bp">&#8594;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">&#8852;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="bp">&#8804;</span><span class="w"> </span><span class="n">z</span><span class="o">)</span>
 </pre></div>
 </div>
-<p>The characterizations of <code class="docutils literal notranslate"><span class="pre">&#8851;</span></code> and <code class="docutils literal notranslate"><span class="pre">&#8852;</span></code> justify calling them
-the <em>greatest lower bound</em> and <em>least upper bound</em>, respectively.
-You can type them in VS code using <code class="docutils literal notranslate"><span class="pre">\glb</span></code> and <code class="docutils literal notranslate"><span class="pre">\lub</span></code>.
-The symbols are also often called then <em>infimum</em> and
-the <em>supremum</em>,
-and Mathlib refers to them as <code class="docutils literal notranslate"><span class="pre">inf</span></code> and <code class="docutils literal notranslate"><span class="pre">sup</span></code> in
-theorem names.
-To further complicate matters,
-they are also often called <em>meet</em> and <em>join</em>.
-Therefore, if you work with lattices,
-you have to keep the following dictionary in mind:</p>
+<p>&#36825;&#20123;&#31526;&#21495;&#36890;&#24120;&#20063;&#31216;&#20026; <strong>&#19979;&#30830;&#30028;</strong> &#21644; <strong>&#19978;&#30830;&#30028;</strong> &#65292;&#22312; Mathlib &#30340;&#23450;&#29702;&#21517;&#31216;&#20013;&#34987;&#35760;&#20026; <code class="docutils literal notranslate"><span class="pre">inf</span></code> &#21644; <code class="docutils literal notranslate"><span class="pre">sup</span></code>&#12290;&#19982;&#27492;&#21516;&#26102;&#23427;&#20204;&#20063;&#32463;&#24120;&#34987;&#31216;&#20026; <em>meet</em> &#21644; <em>join</em>&#12290;&#22240;&#27492;&#65292;&#22914;&#26524;&#20320;&#20351;&#29992;&#26684;&#65292;&#38656;&#35201;&#35760;&#20303;&#20197;&#19979;&#26415;&#35821;&#65306;</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">&#8851;</span></code> is the <em>greatest lower bound</em>, <em>infimum</em>, or <em>meet</em>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&#8852;</span></code> is the <em>least upper bound</em>, <em>supremum</em>, or <em>join</em>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#8851;</span></code> &#26159; &#26368;&#22823;&#19979;&#30028;&#12289;&#19979;&#30830;&#30028; &#25110; meet &#12290;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#8852;</span></code> &#26159; &#26368;&#23567;&#19978;&#30028;&#12289;&#19978;&#30830;&#30028; &#25110; join &#12290;</p></li>
 </ul>
-<p>Some instances of lattices include:</p>
+<p>&#19968;&#20123;&#26684;&#30340;&#23454;&#20363;&#21253;&#25324;&#65306;</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code> on any total order, such as the integers or real numbers with <code class="docutils literal notranslate"><span class="pre">&#8804;</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&#8745;</span></code> and <code class="docutils literal notranslate"><span class="pre">&#8746;</span></code> on the collection of subsets of some domain, with the ordering <code class="docutils literal notranslate"><span class="pre">&#8838;</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&#8743;</span></code> and <code class="docutils literal notranslate"><span class="pre">&#8744;</span></code> on boolean truth values, with ordering <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&#8804;</span> <span class="pre">y</span></code> if either <code class="docutils literal notranslate"><span class="pre">x</span></code> is false or <code class="docutils literal notranslate"><span class="pre">y</span></code> is true</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">gcd</span></code> and <code class="docutils literal notranslate"><span class="pre">lcm</span></code> on the natural numbers (or positive natural numbers), with the divisibility ordering, <code class="docutils literal notranslate"><span class="pre">&#8739;</span></code></p></li>
-<li><p>the collection of linear subspaces of a vector space,
-where the greatest lower bound is given by the intersection,
-the least upper bound is given by the sum of the two spaces,
-and the ordering is inclusion</p></li>
-<li><p>the collection of topologies on a set (or, in Lean, a type),
-where the greatest lower bound of two topologies consists of
-the topology that is generated by their union,
-the least upper bound is their intersection,
-and the ordering is reverse inclusion</p></li>
+<li><p>&#20219;&#20309;&#20840;&#24207;&#19978;&#30340; <code class="docutils literal notranslate"><span class="pre">min</span></code> &#21644; <code class="docutils literal notranslate"><span class="pre">max</span></code>&#65292;&#20363;&#22914;&#24102;&#26377; <code class="docutils literal notranslate"><span class="pre">&#8804;</span></code> &#30340;&#25972;&#25968;&#25110;&#23454;&#25968;</p></li>
+<li><p>&#26576;&#20010;&#22495;&#30340;&#23376;&#38598;&#21512;&#30340; <code class="docutils literal notranslate"><span class="pre">&#8745;</span></code> ( <code class="docutils literal notranslate"><span class="pre">\cap</span></code> ) &#21644; <code class="docutils literal notranslate"><span class="pre">&#8746;</span></code> ( <code class="docutils literal notranslate"><span class="pre">\cup</span></code> )&#65292;&#20854;&#20013;&#30340;&#24207;&#26159; <code class="docutils literal notranslate"><span class="pre">&#8838;</span></code> ( <code class="docutils literal notranslate"><span class="pre">\subseteq</span></code> )</p></li>
+<li><p>&#24067;&#23572;&#30495;&#20540;&#30340; <code class="docutils literal notranslate"><span class="pre">&#8743;</span></code> &#21644; <code class="docutils literal notranslate"><span class="pre">&#8744;</span></code>&#65292;&#20854;&#20013;&#30340;&#24207;&#26159;&#22914;&#26524; <code class="docutils literal notranslate"><span class="pre">x</span></code> &#26159;&#20551;&#25110; <code class="docutils literal notranslate"><span class="pre">y</span></code> &#26159;&#30495;&#65292;&#21017; <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&#8804;</span> <span class="pre">y</span></code></p></li>
+<li><p>&#33258;&#28982;&#25968;&#65288;&#25110;&#27491;&#33258;&#28982;&#25968;&#65289;&#19978;&#30340; <code class="docutils literal notranslate"><span class="pre">gcd</span></code> &#21644; <code class="docutils literal notranslate"><span class="pre">lcm</span></code>&#65292;&#20854;&#20013;&#30340;&#24207;&#26159; <code class="docutils literal notranslate"><span class="pre">&#8739;</span></code></p></li>
+<li><p>&#21521;&#37327;&#31354;&#38388;&#30340;&#32447;&#24615;&#23376;&#31354;&#38388;&#30340;&#38598;&#21512;&#65292;&#20854;&#20013;&#26368;&#22823;&#19979;&#30028;&#30001;&#20132;&#38598;&#32473;&#20986;&#65292;&#26368;&#23567;&#19978;&#30028;&#30001;&#20004;&#20010;&#31354;&#38388;&#30340;&#21644;&#32473;&#20986;&#65292;&#24207;&#26159;&#21253;&#21547;&#20851;&#31995;</p></li>
+<li><p>&#19968;&#20010;&#38598;&#21512;&#65288;&#25110;&#22312; Lean &#20013;&#65292;&#19968;&#20010;&#31867;&#22411;&#65289;&#19978;&#30340;&#25299;&#25169;&#30340;&#38598;&#21512;&#65292;&#20854;&#20013;&#20004;&#20010;&#25299;&#25169;&#30340;&#26368;&#22823;&#19979;&#30028;&#30001;&#23427;&#20204;&#30340;&#24182;&#38598;&#29983;&#25104;&#30340;&#25299;&#25169;&#32473;&#20986;&#65292;&#26368;&#23567;&#19978;&#30028;&#26159;&#23427;&#20204;&#30340;&#20132;&#38598;&#65292;&#24182;&#19988;&#25490;&#24207;&#26159;&#36870;&#21253;&#21547;&#20851;&#31995;</p></li>
 </ul>
-<p>You can check that, as with <code class="docutils literal notranslate"><span class="pre">min</span></code> / <code class="docutils literal notranslate"><span class="pre">max</span></code> and <code class="docutils literal notranslate"><span class="pre">gcd</span></code> / <code class="docutils literal notranslate"><span class="pre">lcm</span></code>,
-you can prove the commutativity and associativity of the infimum and supremum
-using only their characterizing axioms,
-together with <code class="docutils literal notranslate"><span class="pre">le_refl</span></code> and <code class="docutils literal notranslate"><span class="pre">le_trans</span></code>.</p>
-<p id="index-28">Using <code class="docutils literal notranslate"><span class="pre">apply</span> <span class="pre">le_trans</span></code> when seeing a goal <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&#8804;</span> <span class="pre">z</span></code> is not a great idea.
-Indeed Lean has no way to guess which intermediate element <code class="docutils literal notranslate"><span class="pre">y</span></code> we
-want to use.
-So <code class="docutils literal notranslate"><span class="pre">apply</span> <span class="pre">le_trans</span></code> produces three goals that look like <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&#8804;</span> <span class="pre">?a</span></code>, <code class="docutils literal notranslate"><span class="pre">?a</span> <span class="pre">&#8804;</span> <span class="pre">z</span></code>
-and <code class="docutils literal notranslate"><span class="pre">&#945;</span></code> where <code class="docutils literal notranslate"><span class="pre">?a</span></code> (probably with a more complicated auto-generated name) stands
-for the mysterious <code class="docutils literal notranslate"><span class="pre">y</span></code>.
-The last goal, with type <code class="docutils literal notranslate"><span class="pre">&#945;</span></code>, is to provide the value of <code class="docutils literal notranslate"><span class="pre">y</span></code>.
-It comes lasts because Lean hopes to automatically infer it from the proof of
-the first goal <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&#8804;</span> <span class="pre">?a</span></code>.
-In order to avoid this unappealing situation, you can use the <code class="docutils literal notranslate"><span class="pre">calc</span></code> tactic
-to explicitly provide <code class="docutils literal notranslate"><span class="pre">y</span></code>.
-Alternatively, you can use the <code class="docutils literal notranslate"><span class="pre">trans</span></code> tactic
-which takes <code class="docutils literal notranslate"><span class="pre">y</span></code> as an argument and produces the expected goals <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&#8804;</span> <span class="pre">y</span></code> and
-<code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">&#8804;</span> <span class="pre">z</span></code>.
-Of course you can also avoid this issue by providing directly a full proof such as
-<code class="docutils literal notranslate"><span class="pre">exact</span> <span class="pre">le_trans</span> <span class="pre">inf_le_left</span> <span class="pre">inf_le_right</span></code>, but this requires a lot more
-planning.</p>
+<p>&#20320;&#21487;&#20197;&#39564;&#35777;&#65292;&#19982; <code class="docutils literal notranslate"><span class="pre">min</span></code> / <code class="docutils literal notranslate"><span class="pre">max</span></code> &#21644; <code class="docutils literal notranslate"><span class="pre">gcd</span></code> / <code class="docutils literal notranslate"><span class="pre">lcm</span></code> &#19968;&#26679;&#65292;&#20320;&#21487;&#20197;&#20165;&#20351;&#29992;&#21051;&#30011;&#23427;&#20204;&#30340;&#20844;&#29702;&#20197;&#21450; <code class="docutils literal notranslate"><span class="pre">le_refl</span></code> &#21644; <code class="docutils literal notranslate"><span class="pre">le_trans</span></code> &#26469;&#35777;&#26126;&#19979;&#30830;&#30028;&#21644;&#19978;&#30830;&#30028;&#30340;&#20132;&#25442;&#24459;&#21644;&#32467;&#21512;&#24459;&#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">example</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">&#8851;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="bp">&#8851;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="kd">by</span>
 <span class="w">  </span><span class="gr">sorry</span>
 
@@ -856,10 +792,8 @@ planning.</p>
 <span class="w">  </span><span class="gr">sorry</span>
 </pre></div>
 </div>
-<p>You can find these theorems in the Mathlib as <code class="docutils literal notranslate"><span class="pre">inf_comm</span></code>, <code class="docutils literal notranslate"><span class="pre">inf_assoc</span></code>,
-<code class="docutils literal notranslate"><span class="pre">sup_comm</span></code>, and <code class="docutils literal notranslate"><span class="pre">sup_assoc</span></code>, respectively.</p>
-<p>Another good exercise is to prove the <em>absorption laws</em>
-using only those axioms:</p>
+<p>&#22312; Mathlib &#20013;&#23427;&#20204;&#20998;&#21035;&#21483; <code class="docutils literal notranslate"><span class="pre">inf_comm</span></code> &#12289; <code class="docutils literal notranslate"><span class="pre">inf_assoc</span></code> &#12289; <code class="docutils literal notranslate"><span class="pre">sup_comm</span></code> &#21644; <code class="docutils literal notranslate"><span class="pre">sup_assoc</span></code> &#12290;</p>
+<p>&#21478;&#19968;&#20010;&#24456;&#22909;&#30340;&#32451;&#20064;&#26159;&#20165;&#20351;&#29992;&#36825;&#20123;&#20844;&#29702;&#35777;&#26126; <strong>&#21560;&#25910;&#24459;</strong>&#65306;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">theorem</span><span class="w"> </span><span class="n">absorb1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">&#8851;</span><span class="w"> </span><span class="o">(</span><span class="n">x</span><span class="w"> </span><span class="bp">&#8852;</span><span class="w"> </span><span class="n">y</span><span class="o">)</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="kd">by</span>
 <span class="w">  </span><span class="gr">sorry</span>
 
@@ -867,11 +801,8 @@ using only those axioms:</p>
 <span class="w">  </span><span class="gr">sorry</span>
 </pre></div>
 </div>
-<p>These can be found in Mathlib with the names <code class="docutils literal notranslate"><span class="pre">inf_sup_self</span></code> and <code class="docutils literal notranslate"><span class="pre">sup_inf_self</span></code>.</p>
-<p>A lattice that satisfies the additional identities
-<code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&#8851;</span> <span class="pre">(y</span> <span class="pre">&#8852;</span> <span class="pre">z)</span> <span class="pre">=</span> <span class="pre">(x</span> <span class="pre">&#8851;</span> <span class="pre">y)</span> <span class="pre">&#8852;</span> <span class="pre">(x</span> <span class="pre">&#8851;</span> <span class="pre">z)</span></code> and
-<code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&#8852;</span> <span class="pre">(y</span> <span class="pre">&#8851;</span> <span class="pre">z)</span> <span class="pre">=</span> <span class="pre">(x</span> <span class="pre">&#8852;</span> <span class="pre">y)</span> <span class="pre">&#8851;</span> <span class="pre">(x</span> <span class="pre">&#8852;</span> <span class="pre">z)</span></code>
-is called a <em>distributive lattice</em>. Lean knows about these too:</p>
+<p>&#22312; Mathlib &#20013;&#23427;&#20204;&#20998;&#21035;&#21483; <code class="docutils literal notranslate"><span class="pre">inf_sup_self</span></code> &#21644; <code class="docutils literal notranslate"><span class="pre">sup_inf_self</span></code>.</p>
+<p>&#26684;&#19978;&#38468;&#21152;&#26465;&#20214; <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&#8851;</span> <span class="pre">(y</span> <span class="pre">&#8852;</span> <span class="pre">z)</span> <span class="pre">=</span> <span class="pre">(x</span> <span class="pre">&#8851;</span> <span class="pre">y)</span> <span class="pre">&#8852;</span> <span class="pre">(x</span> <span class="pre">&#8851;</span> <span class="pre">z)</span></code> &#21644; <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&#8852;</span> <span class="pre">(y</span> <span class="pre">&#8851;</span> <span class="pre">z)</span> <span class="pre">=</span> <span class="pre">(x</span> <span class="pre">&#8852;</span> <span class="pre">y)</span> <span class="pre">&#8851;</span> <span class="pre">(x</span> <span class="pre">&#8852;</span> <span class="pre">z)</span></code> &#31216;&#20026; <strong>&#20998;&#37197;&#26684;</strong> &#65288;distributive lattice&#65289;&#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span><span class="w"> </span><span class="o">{</span><span class="n">&#945;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="bp">*</span><span class="o">}</span><span class="w"> </span><span class="o">[</span><span class="n">DistribLattice</span><span class="w"> </span><span class="n">&#945;</span><span class="o">]</span>
 <span class="kd">variable</span><span class="w"> </span><span class="o">(</span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">&#945;</span><span class="o">)</span>
 
@@ -881,14 +812,7 @@ is called a <em>distributive lattice</em>. Lean knows about these too:</p>
 <span class="k">#check</span><span class="w"> </span><span class="o">(</span><span class="n">sup_inf_right</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">&#8851;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="bp">&#8852;</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="o">(</span><span class="n">x</span><span class="w"> </span><span class="bp">&#8852;</span><span class="w"> </span><span class="n">z</span><span class="o">)</span><span class="w"> </span><span class="bp">&#8851;</span><span class="w"> </span><span class="o">(</span><span class="n">y</span><span class="w"> </span><span class="bp">&#8852;</span><span class="w"> </span><span class="n">z</span><span class="o">))</span>
 </pre></div>
 </div>
-<p>The left and right versions are easily shown to be
-equivalent, given the commutativity of <code class="docutils literal notranslate"><span class="pre">&#8851;</span></code> and <code class="docutils literal notranslate"><span class="pre">&#8852;</span></code>.
-It is a good exercise to show that not every lattice
-is distributive
-by providing an explicit description of a
-nondistributive lattice with finitely many elements.
-It is also a good exercise to show that in any lattice,
-either distributivity law implies the other:</p>
+<p>&#20351;&#29992; <code class="docutils literal notranslate"><span class="pre">&#8851;</span></code> &#21644; <code class="docutils literal notranslate"><span class="pre">&#8852;</span></code> &#30340;&#20132;&#25442;&#24459;&#26131;&#35777;&#24038;&#21491;&#20004;&#20010;&#29256;&#26412;&#31561;&#20215;&#12290;&#26377;&#20852;&#36259;&#30340;&#35805;&#20320;&#21487;&#20197;&#26500;&#36896;&#19968;&#20010;&#19981;&#20998;&#37197;&#30340;&#26684;&#12290;&#29616;&#22312;&#30340;&#30446;&#26631;&#26159;&#23581;&#35797;&#35777;&#26126;&#22312;&#20219;&#20309;&#26684;&#20013;&#65292;&#19968;&#20010;&#20998;&#37197;&#24459;&#21487;&#20197;&#25512;&#23548;&#20986;&#21478;&#19968;&#20010;&#20998;&#37197;&#24459;&#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span><span class="w"> </span><span class="o">{</span><span class="n">&#945;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="bp">*</span><span class="o">}</span><span class="w"> </span><span class="o">[</span><span class="n">Lattice</span><span class="w"> </span><span class="n">&#945;</span><span class="o">]</span>
 <span class="kd">variable</span><span class="w"> </span><span class="o">(</span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">&#945;</span><span class="o">)</span>
 
@@ -899,11 +823,7 @@ either distributivity law implies the other:</p>
 <span class="w">  </span><span class="gr">sorry</span>
 </pre></div>
 </div>
-<p>It is possible to combine axiomatic structures into larger ones.
-For example, a <em>strict ordered ring</em> consists of a commutative ring together
-with a partial order on the carrier
-satisfying additional axioms that say that the ring operations
-are compatible with the order:</p>
+<p>&#21487;&#20197;&#23558;&#32467;&#26500;&#20844;&#29702;&#32452;&#21512;&#25104;&#26356;&#22823;&#30340;&#32467;&#26500;&#12290;&#20363;&#22914;&#65292;<strong>&#20005;&#26684;&#26377;&#24207;&#29615;</strong> &#26159;&#19968;&#20010;&#20132;&#25442;&#29615;&#19978;&#38468;&#21152;&#20559;&#24207;&#65292;&#19988;&#28385;&#36275;&#29615;&#36816;&#31639;&#19982;&#24207;&#26159;&#20860;&#23481;&#30340;&#65306;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span><span class="w"> </span><span class="o">{</span><span class="n">R</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="bp">*</span><span class="o">}</span><span class="w"> </span><span class="o">[</span><span class="n">StrictOrderedRing</span><span class="w"> </span><span class="n">R</span><span class="o">]</span>
 <span class="kd">variable</span><span class="w"> </span><span class="o">(</span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">R</span><span class="o">)</span>
 
@@ -911,17 +831,11 @@ are compatible with the order:</p>
 <span class="k">#check</span><span class="w"> </span><span class="o">(</span><span class="n">mul_pos</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="bp">&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="bp">&#8594;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="bp">&lt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="bp">&#8594;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="bp">&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="bp">*</span><span class="w"> </span><span class="n">b</span><span class="o">)</span>
 </pre></div>
 </div>
-<p><a class="reference internal" href="C03_Logic.html#logic"><span class="std std-numref">Chapter 3</span></a> will provide the means to derive the following from <code class="docutils literal notranslate"><span class="pre">mul_pos</span></code>
-and the definition of <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>:</p>
+<p><a class="reference internal" href="C03_Logic.html#logic"><span class="std std-numref">&#31532; 3 &#31456;</span></a> &#23558;&#20174; <code class="docutils literal notranslate"><span class="pre">mul_pos</span></code> &#21644; <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> &#30340;&#23450;&#20041;&#20013;&#24471;&#20986;&#20197;&#19979;&#23450;&#29702;&#65306;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="k">#check</span><span class="w"> </span><span class="o">(</span><span class="n">mul_nonneg</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="bp">&#8804;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="bp">&#8594;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="bp">&#8804;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="bp">&#8594;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="bp">&#8804;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="bp">*</span><span class="w"> </span><span class="n">b</span><span class="o">)</span>
 </pre></div>
 </div>
-<p>It is then an extended exercise to show that many common facts
-used to reason about arithmetic and the ordering on the real
-numbers hold generically for any ordered ring.
-Here are a couple of examples you can try,
-using only properties of rings, partial orders, and the facts
-enumerated in the last two examples:</p>
+<p>&#19979;&#38754;&#26159;&#19968;&#20010;&#25299;&#23637;&#32451;&#20064;&#65292;&#23637;&#31034;&#20102;&#20219;&#20309;&#26377;&#24207;&#29615;&#19978;&#30340;&#31639;&#26415;&#21644;&#24207;&#30340;&#24120;&#35265;&#24341;&#29702;&#12290;&#24076;&#26395;&#20320;&#20165;&#20351;&#29992;&#29615;&#12289;&#20559;&#24207;&#20197;&#21450;&#19978;&#38754;&#20004;&#20010;&#31034;&#20363;&#20013;&#21015;&#20030;&#30340;&#20107;&#23454;&#26469;&#35777;&#26126;&#23427;&#20204;&#65306;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">example</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="bp">&#8804;</span><span class="w"> </span><span class="n">b</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="bp">&#8804;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="bp">-</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="kd">by</span>
 <span class="w">  </span><span class="gr">sorry</span>
 
@@ -932,11 +846,7 @@ enumerated in the last two examples:</p>
 <span class="w">  </span><span class="gr">sorry</span>
 </pre></div>
 </div>
-<p id="index-29">Finally, here is one last example.
-A <em>metric space</em> consists of a set equipped with a notion of
-distance, <code class="docutils literal notranslate"><span class="pre">dist</span> <span class="pre">x</span> <span class="pre">y</span></code>,
-mapping any pair of elements to a real number.
-The distance function is assumed to satisfy the following axioms:</p>
+<p id="index-28">&#26368;&#21518;&#65292;<strong>&#24230;&#37327;&#31354;&#38388;</strong> &#26159;&#37197;&#22791;&#20102;&#36317;&#31163; <code class="docutils literal notranslate"><span class="pre">dist</span> <span class="pre">x</span> <span class="pre">y</span></code> &#30340;&#38598;&#21512;&#65292;&#36317;&#31163;&#23558;&#20219;&#20309;&#19968;&#23545;&#20803;&#32032;&#26144;&#23556;&#21040;&#19968;&#20010;&#23454;&#25968;&#65292;&#28385;&#36275;&#20197;&#19979;&#20844;&#29702;&#65306;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span><span class="w"> </span><span class="o">{</span><span class="n">X</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="bp">*</span><span class="o">}</span><span class="w"> </span><span class="o">[</span><span class="n">MetricSpace</span><span class="w"> </span><span class="n">X</span><span class="o">]</span>
 <span class="kd">variable</span><span class="w"> </span><span class="o">(</span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">X</span><span class="o">)</span>
 
@@ -945,15 +855,11 @@ The distance function is assumed to satisfy the following axioms:</p>
 <span class="k">#check</span><span class="w"> </span><span class="o">(</span><span class="n">dist_triangle</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">dist</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="bp">&#8804;</span><span class="w"> </span><span class="n">dist</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="bp">+</span><span class="w"> </span><span class="n">dist</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">z</span><span class="o">)</span>
 </pre></div>
 </div>
-<p>Having mastered this section,
-you can show that it follows from these axioms that distances are
-always nonnegative:</p>
+<p>&#35777;&#26126;&#36317;&#31163;&#22987;&#32456;&#26159;&#38750;&#36127;&#30340;&#12290;&#20320;&#21487;&#33021;&#20250;&#29992;&#21040; <code class="docutils literal notranslate"><span class="pre">nonneg_of_mul_nonneg_left</span></code> &#12290;&#22312; Mathlib &#20013;&#36825;&#20010;&#23450;&#29702;&#34987;&#31216;&#20026; <code class="docutils literal notranslate"><span class="pre">dist_nonneg</span></code> &#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">example</span><span class="w"> </span><span class="o">(</span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">X</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="bp">&#8804;</span><span class="w"> </span><span class="n">dist</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="kd">by</span>
 <span class="w">  </span><span class="gr">sorry</span>
 </pre></div>
 </div>
-<p>We recommend making use of the theorem <code class="docutils literal notranslate"><span class="pre">nonneg_of_mul_nonneg_left</span></code>.
-As you may have guessed, this theorem is called <code class="docutils literal notranslate"><span class="pre">dist_nonneg</span></code> in Mathlib.</p>
 </section>
 </section>
 
