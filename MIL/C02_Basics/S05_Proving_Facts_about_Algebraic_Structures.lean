@@ -10,7 +10,7 @@ import Mathlib.Topology.MetricSpace.Basic
 
 .. index:: order relation, partial order
 
-在:numref:`proving_identities_in_algebraic_structures` 中，我们看到许多关于实数的常见恒等式适用于更一般的代数结构类，比如交换环。我们还有其他代数结构，例如，**偏序** 是一个具有二元关系的集合，该关系是自反的、传递的和反对称的，就像实数上的 ``≤`` 。
+在 :numref:`proving_identities_in_algebraic_structures` 中，我们看到许多关于实数的常见恒等式适用于更一般的代数结构类，比如交换环。我们还有其他代数结构，例如，**偏序** 是一个具有二元关系的集合，该关系是自反的、传递的和反对称的，就像实数上的 ``≤`` 。
 TEXT. -/
 section
 -- QUOTE:
@@ -44,8 +44,7 @@ example : x < y ↔ x ≤ y ∧ x ≠ y :=
 end
 
 /- TEXT:
-在这个例子中，符号 ``∧`` 表示 “且”，符号 ``¬`` 表示 “非”，而 ``x ≠ y`` 是 ``¬ (x = y)`` 的缩写。
- :numref:`第 %s 章 <logic>` 会讲到如何使用这些逻辑连接词来 **证明** ``<`` 具有所示的性质。
+在这个例子中，符号 ``∧`` 表示 “且”，符号 ``¬`` 表示 “非”，而 ``x ≠ y`` 是 ``¬ (x = y)`` 的缩写。 :numref:`第 %s 章 <logic>` 会讲到如何使用这些逻辑连接词来 **证明** ``<`` 具有所示的性质。
 
 .. index:: lattice
 
