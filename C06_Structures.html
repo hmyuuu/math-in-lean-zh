@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>6. Structures &mdash; Mathematics in Lean 0.1 documentation</title>
+  <title>6. &#32467;&#26500;&#20307;&#65288;Structures&#65289; &mdash; Mathematics in Lean 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=0731ccc3" />
@@ -49,16 +49,16 @@
 <li class="toctree-l1"><a class="reference internal" href="C01_Introduction.html">1. &#24341;&#35328;</a></li>
 <li class="toctree-l1"><a class="reference internal" href="C02_Basics.html">2. &#22522;&#30784;</a></li>
 <li class="toctree-l1"><a class="reference internal" href="C03_Logic.html">3. &#36923;&#36753;</a></li>
-<li class="toctree-l1"><a class="reference internal" href="C04_Sets_and_Functions.html">4. Sets and Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="C04_Sets_and_Functions.html">4. &#38598;&#21512;&#21644;&#20989;&#25968;</a></li>
 <li class="toctree-l1"><a class="reference internal" href="C05_Elementary_Number_Theory.html">5. Elementary Number Theory</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">6. Structures</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#defining-structures">6.1. Defining structures</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#algebraic-structures">6.2. Algebraic Structures</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">6. &#32467;&#26500;&#20307;&#65288;Structures&#65289;</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#section-structures">6.1. &#23450;&#20041;&#32467;&#26500;&#20307;</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#section-algebraic-structures">6.2. &#20195;&#25968;&#32467;&#26500;</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#building-the-gaussian-integers">6.3. Building the Gaussian Integers</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="C07_Hierarchies.html">7. Hierarchies</a></li>
-<li class="toctree-l1"><a class="reference internal" href="C08_Groups_and_Rings.html">8. Groups and Rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="C08_Groups_and_Rings.html">8. &#32676;&#19982;&#29615;</a></li>
 <li class="toctree-l1"><a class="reference internal" href="C09_Linear_Algebra.html">9. Linear algebra</a></li>
 <li class="toctree-l1"><a class="reference internal" href="C10_Topology.html">10. Topology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="C11_Differential_Calculus.html">11. Differential Calculus</a></li>
@@ -82,7 +82,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">6. </span>Structures</li>
+      <li class="breadcrumb-item active"><span class="section-number">6. </span>&#32467;&#26500;&#20307;&#65288;Structures&#65289;</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/C06_Structures.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -93,33 +93,20 @@
            <div itemprop="articleBody">
              
   <section id="structures">
-<span id="id1"></span><h1><span class="section-number">6. </span>Structures<a class="headerlink" href="#structures" title="Link to this heading">&#61633;</a></h1>
-<p>Modern mathematics makes essential use of algebraic
-structures,
-which encapsulate patterns that can be instantiated in
-multiple settings.
-The subject provides various ways of defining such structures and
-constructing particular instances.</p>
-<p>Lean therefore provides corresponding ways of
-defining structures formally and working with them.
-You have already seen examples of algebraic structures in Lean,
-such as rings and lattices, which were discussed in
-<a class="reference internal" href="C02_Basics.html#basics"><span class="std std-numref">Chapter 2</span></a>.
-This chapter will explain the mysterious square bracket annotations
-that you saw there,
-<code class="docutils literal notranslate"><span class="pre">[Ring</span> <span class="pre">&#945;]</span></code> and <code class="docutils literal notranslate"><span class="pre">[Lattice</span> <span class="pre">&#945;]</span></code>.
-It will also show you how to define and use
-algebraic structures on your own.</p>
-<p>For more technical detail, you can consult <a class="reference external" href="https://leanprover.github.io/theorem_proving_in_lean/">Theorem Proving in Lean</a>,
-and a paper by Anne Baanen, <a class="reference external" href="https://arxiv.org/abs/2202.01629">Use and abuse of instance parameters in the Lean mathematical library</a>.</p>
-<section id="defining-structures">
-<span id="section-structures"></span><h2><span class="section-number">6.1. </span>Defining structures<a class="headerlink" href="#defining-structures" title="Link to this heading">&#61633;</a></h2>
-<p>In the broadest sense of the term, a <em>structure</em> is a specification
-of a collection of data, possibly with constraints that the
-data is required to satisfy.
-An <em>instance</em> of the structure is a particular bundle of data satisfying
-the constraints. For example, we can specify that a point is
-a tuple of three real numbers:</p>
+<span id="id1"></span><h1><span class="section-number">6. </span>&#32467;&#26500;&#20307;&#65288;Structures&#65289;<a class="headerlink" href="#structures" title="Link to this heading">&#61633;</a></h1>
+<p>&#29616;&#20195;&#25968;&#23398;&#24191;&#27867;&#20351;&#29992;&#20102;&#20195;&#25968;&#32467;&#26500;&#65292;&#36825;&#20123;&#20195;&#25968;&#32467;&#26500;&#23553;&#35013;&#20102;&#21487;&#22312;&#19981;&#21516;&#29615;&#22659;&#20013;&#23454;&#20363;&#21270;&#30340;&#27169;&#24335;&#65292;&#32780;&#19988;&#24448;&#24448;&#26377;&#22810;&#31181;&#26041;&#27861;&#26469;&#23545;&#23427;&#20204;&#36827;&#34892;&#23450;&#20041;&#21644;&#23454;&#20363;&#21270;&#12290;</p>
+<p>&#22240;&#27492;&#65292;Lean &#25552;&#20379;&#20102;&#30456;&#24212;&#30340;&#26041;&#27861;&#26469;&#24418;&#24335;&#21270;&#23450;&#20041;&#36825;&#20123;&#32467;&#26500;&#24182;&#23545;&#20854;&#36827;&#34892;&#25805;&#20316;&#12290;
+&#27492;&#21069;&#20320;&#24050;&#32463;&#25509;&#35302;&#36807;&#19968;&#20123;&#20195;&#25968;&#32467;&#26500;&#30340;&#31034;&#20363;&#65292;&#27604;&#22914;&#22312;
+<a class="reference internal" href="C02_Basics.html#basics"><span class="std std-numref">Chapter 2</span></a>
+&#20013;&#30340;&#29615;&#65288;rings&#65289;&#21644;&#26684;&#65288;lattices&#65289;&#12290;
+&#26412;&#31456;&#23558;&#35299;&#37322;&#20043;&#21069;&#20986;&#29616;&#36807;&#30340;&#26041;&#25324;&#21495;&#35821;&#27861;&#65292;&#27604;&#22914; <code class="docutils literal notranslate"><span class="pre">[Ring</span> <span class="pre">&#945;]</span></code>&#12289; <code class="docutils literal notranslate"><span class="pre">[Lattice</span> <span class="pre">&#945;]</span></code>&#65292;&#24182;&#20171;&#32461;&#22914;&#20309;&#21019;&#24314;&#21644;&#20351;&#29992;&#33258;&#23450;&#20041;&#30340;&#20195;&#25968;&#32467;&#26500;&#12290;</p>
+<p>&#22914;&#38656;&#20102;&#35299;&#26356;&#22810;&#25216;&#26415;&#32454;&#33410;&#65292;&#21487;&#20197;&#21442;&#32771;
+<a class="reference external" href="https://leanprover.github.io/theorem_proving_in_lean/">Theorem Proving in Lean</a>&#65292;
+&#20197;&#21450; Anne Baanen &#30340;&#36825;&#31687;&#35770;&#25991; <a class="reference external" href="https://arxiv.org/abs/2202.01629">Use and abuse of instance parameters in the Lean mathematical library</a>&#12290;</p>
+<section id="section-structures">
+<span id="id2"></span><h2><span class="section-number">6.1. </span>&#23450;&#20041;&#32467;&#26500;&#20307;<a class="headerlink" href="#section-structures" title="Link to this heading">&#61633;</a></h2>
+<p>&#24191;&#20041;&#19978;&#26469;&#35828;&#65292;&#32467;&#26500;&#20307;&#26159;&#23545;&#29305;&#23450;&#24418;&#24335;&#25968;&#25454;&#38598;&#21512;&#30340;&#32422;&#23450;&#65292;&#21253;&#25324;&#21253;&#21547;&#25968;&#25454;&#30340;&#24418;&#24335;&#20197;&#21450;&#36825;&#20123;&#25968;&#25454;&#35201;&#28385;&#36275;&#30340;&#19968;&#20123;&#32422;&#26463;&#26465;&#20214;&#12290;
+&#32780;&#32467;&#26500;&#20307;&#30340;&#23454;&#20363;&#21017;&#26159;&#26576;&#19968;&#32452;&#28385;&#36275;&#32422;&#26463;&#30340;&#20855;&#20307;&#25968;&#25454;&#12290;&#20363;&#22914;&#65292;&#25105;&#20204;&#21487;&#20197;&#35268;&#23450;&#19968;&#20010;&#28857;&#26159;&#30001;&#19977;&#20010;&#23454;&#25968;&#32452;&#25104;&#30340;&#19977;&#20803;&#32452;&#65306;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">@[</span><span class="n">ext</span><span class="kd">]</span>
 <span class="kd">structure</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="n">where</span>
 <span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">&#8477;</span>
@@ -127,9 +114,7 @@ a tuple of three real numbers:</p>
 <span class="w">  </span><span class="n">z</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">&#8477;</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">&#64;[ext]</span></code> annotation tells Lean to automatically generate theorems
-that can be used to prove that two instances of a structure are equal
-when their components are equal, a property known as <em>extensionality</em>.</p>
+<p>&#19978;&#38754;&#29992;&#21040;&#30340; <code class="docutils literal notranslate"><span class="pre">&#64;[ext]</span></code> &#27880;&#35299;&#35753; Lean &#33258;&#21160;&#29983;&#25104;&#19968;&#20010;&#23450;&#29702;&#65292;&#20869;&#23481;&#26159;&#24403;&#35813;&#32467;&#26500;&#20307;&#30340;&#20004;&#20010;&#23454;&#20363;&#21508;&#32452;&#25104;&#37096;&#20998;&#23545;&#24212;&#30456;&#21516;&#26102;&#65292;&#36825;&#20004;&#20010;&#23454;&#20363;&#30456;&#31561;&#12290;&#35813;&#23646;&#24615;&#20063;&#31216;&#20026;&#22806;&#24310;&#24615;&#65288;extensionality&#65289;&#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="k">#check</span><span class="w"> </span><span class="n">Point.ext</span>
 
 <span class="kd">example</span><span class="w"> </span><span class="o">(</span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Point</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">hx</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">a.x</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">b.x</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">hy</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">a.y</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">b.y</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">hz</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">a.z</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">b.z</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="kd">by</span>
@@ -137,8 +122,8 @@ when their components are equal, a property known as <em>extensionality</em>.</p
 <span class="w">  </span><span class="n">repeat&#39;</span><span class="w"> </span><span class="n">assumption</span>
 </pre></div>
 </div>
-<p>We can then define particular instances of the <code class="docutils literal notranslate"><span class="pre">Point</span></code> structure.
-Lean provides multiple ways of doing that.</p>
+<p>&#25509;&#30528;&#25105;&#20204;&#23450;&#20041;&#19968;&#20010; <code class="docutils literal notranslate"><span class="pre">Point</span></code> &#32467;&#26500;&#20307;&#30340;&#23454;&#20363;&#12290;
+Lean &#25552;&#20379;&#22810;&#31181;&#23454;&#20363;&#21270;&#26041;&#24335;&#26469;&#36798;&#25104;&#30446;&#30340;&#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">def</span><span class="w"> </span><span class="n">myPoint1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="n">where</span>
 <span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">2</span>
 <span class="w">  </span><span class="n">y</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="bp">-</span><span class="mi">1</span>
@@ -151,12 +136,9 @@ Lean provides multiple ways of doing that.</p>
 <span class="w">  </span><span class="n">Point.mk</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">(</span><span class="bp">-</span><span class="mi">1</span><span class="o">)</span><span class="w"> </span><span class="mi">4</span>
 </pre></div>
 </div>
-<p>In the first example, the fields of the structure are named
-explicitly.
-The function <code class="docutils literal notranslate"><span class="pre">Point.mk</span></code> referred to in the definition of <code class="docutils literal notranslate"><span class="pre">myPoint3</span></code>
-is known as the <em>constructor</em> for the <code class="docutils literal notranslate"><span class="pre">Point</span></code> structure, because
-it serves to construct elements.
-You can specify a different name if you want, like <code class="docutils literal notranslate"><span class="pre">build</span></code>.</p>
+<p>&#31532;&#19968;&#20010;&#20363;&#23376;&#20013;&#65292;&#25105;&#20204;&#26126;&#30830;&#22320;&#25351;&#26126;&#20102;&#32467;&#26500;&#20307;&#30340;&#21508;&#20010;&#23383;&#27573;&#12290;
+&#22312;&#23450;&#20041; <code class="docutils literal notranslate"><span class="pre">myPoint3</span></code> &#26102;&#29992;&#21040;&#30340;&#20989;&#25968; <code class="docutils literal notranslate"><span class="pre">Point.mk</span></code> &#21483;&#20570; <code class="docutils literal notranslate"><span class="pre">Point</span></code> &#32467;&#26500;&#20307;&#30340;&#26500;&#36896;&#20989;&#25968;&#65288;constructor&#65289;&#65292;&#29992;&#20110;&#26500;&#36896;&#32467;&#26500;&#20307;&#25104;&#21592;&#12290;
+&#20320;&#20063;&#21487;&#20197;&#20026;&#26500;&#36896;&#20989;&#25968;&#25351;&#23450;&#19968;&#20010;&#19981;&#21516;&#30340;&#21517;&#23383;&#65292;&#27604;&#22914; <code class="docutils literal notranslate"><span class="pre">build</span></code>&#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">structure</span><span class="w"> </span><span class="n">Point&#39;</span><span class="w"> </span><span class="n">where</span><span class="w"> </span><span class="n">build</span><span class="w"> </span><span class="o">::</span>
 <span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">&#8477;</span>
 <span class="w">  </span><span class="n">y</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">&#8477;</span>
@@ -165,21 +147,14 @@ You can specify a different name if you want, like <code class="docutils literal
 <span class="k">#check</span><span class="w"> </span><span class="n">Point&#39;.build</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">(</span><span class="bp">-</span><span class="mi">1</span><span class="o">)</span><span class="w"> </span><span class="mi">4</span>
 </pre></div>
 </div>
-<p>The next two examples show how to define functions on structures.
-Whereas the second example makes the <code class="docutils literal notranslate"><span class="pre">Point.mk</span></code>
-constructor explicit, the first example uses an anonymous constructor
-for brevity.
-Lean can infer the relevant constructor from the indicated type of
-<code class="docutils literal notranslate"><span class="pre">add</span></code>.
-It is conventional to put definitions and theorems associated
-with a structure like <code class="docutils literal notranslate"><span class="pre">Point</span></code> in a namespace with the same name.
-In the example below, because we have opened the <code class="docutils literal notranslate"><span class="pre">Point</span></code>
-namespace, the full name of <code class="docutils literal notranslate"><span class="pre">add</span></code> is <code class="docutils literal notranslate"><span class="pre">Point.add</span></code>.
-When the namespace is not open, we have to use the full name.
-But remember that it is often convenient to use
-anonymous projection notation,
-which allows us to write <code class="docutils literal notranslate"><span class="pre">a.add</span> <span class="pre">b</span></code> instead of <code class="docutils literal notranslate"><span class="pre">Point.add</span> <span class="pre">a</span> <span class="pre">b</span></code>.
-Lean interprets the former as the latter because <code class="docutils literal notranslate"><span class="pre">a</span></code> has type <code class="docutils literal notranslate"><span class="pre">Point</span></code>.</p>
+<p>&#25509;&#19979;&#26469;&#30340;&#20004;&#20010;&#20363;&#23376;&#23637;&#31034;&#20102;&#22914;&#20309;&#23450;&#20041;&#32467;&#26500;&#20307;&#30340;&#20989;&#25968;&#12290;
+&#31532;&#20108;&#20010;&#20363;&#23376;&#20013;&#26126;&#30830;&#25351;&#20986;&#20102;&#26500;&#36896;&#20989;&#25968; <code class="docutils literal notranslate"><span class="pre">Point.mk</span></code> &#20013;&#30340;&#23383;&#27573;&#21517;&#65292;&#32780;&#31532;&#19968;&#20010;&#20363;&#23376;&#21017;&#20351;&#29992;&#26356;&#20026;&#31616;&#27905;&#30340;&#21311;&#21517;&#26500;&#36896;&#20989;&#25968;&#12290;
+Lean &#33021;&#26681;&#25454; <code class="docutils literal notranslate"><span class="pre">add</span></code> &#30340;&#30446;&#26631;&#31867;&#22411;&#25512;&#26029;&#20986;&#25152;&#38656;&#30340;&#26500;&#36896;&#20989;&#25968;&#12290;
+&#36890;&#24120;&#65292;&#25105;&#20204;&#20250;&#23558;&#19982;&#32467;&#26500;&#20307;&#65288;&#20363;&#22914;&#36825;&#37324;&#30340; <code class="docutils literal notranslate"><span class="pre">Point</span></code>&#65289;&#30456;&#20851;&#30340;&#23450;&#20041;&#21644;&#23450;&#29702;&#25918;&#22312;&#19968;&#20010;&#21516;&#21517;&#30340;&#21629;&#21517;&#31354;&#38388;&#65288;namespace&#65289;&#20013;&#12290;
+&#22312;&#19979;&#38754;&#30340;&#31034;&#20363;&#20013;&#65292;&#30001;&#20110;&#25105;&#20204;&#21551;&#29992;&#20102; <code class="docutils literal notranslate"><span class="pre">Point</span></code> &#21629;&#21517;&#31354;&#38388;&#65292;&#25152;&#20197; <code class="docutils literal notranslate"><span class="pre">add</span></code> &#30340;&#23436;&#25972;&#21517;&#31216;&#23454;&#38469;&#26159; <code class="docutils literal notranslate"><span class="pre">Point.add</span></code>&#12290;
+&#24403;&#21629;&#21517;&#31354;&#38388;&#27809;&#34987;&#21551;&#29992;&#26102;&#65292;&#23601;&#24471;&#20351;&#29992;&#23436;&#25972;&#21517;&#31216;&#12290;
+&#19981;&#36807;&#36825;&#26102;&#20063;&#21487;&#20197;&#20351;&#29992;&#21311;&#21517;&#25237;&#24433;&#35760;&#21495;&#65288;anonymous projection notation&#65289;&#65292;&#23427;&#20801;&#35768;&#25105;&#20204;&#29992; <code class="docutils literal notranslate"><span class="pre">a.add</span> <span class="pre">b</span></code> &#20195;&#26367; <code class="docutils literal notranslate"><span class="pre">Point.add</span> <span class="pre">a</span> <span class="pre">b</span></code>&#12290;
+&#22240;&#20026; a &#30340;&#31867;&#22411;&#26159; <code class="docutils literal notranslate"><span class="pre">Point</span></code>&#65292;Lean &#33021;&#22312;&#27809;&#26377;&#24320;&#21551;&#23545;&#24212;&#21629;&#21517;&#31354;&#38388;&#30340;&#26102;&#20505;&#23558; <code class="docutils literal notranslate"><span class="pre">a.add</span> <span class="pre">b</span></code> &#25512;&#26029;&#20026; <code class="docutils literal notranslate"><span class="pre">Point.add</span> <span class="pre">a</span> <span class="pre">b</span></code>&#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kn">namespace</span><span class="w"> </span><span class="n">Point</span>
 
 <span class="kd">def</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="o">(</span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Point</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="o">:=</span>
@@ -199,16 +174,10 @@ Lean interprets the former as the latter because <code class="docutils literal n
 <span class="k">#check</span><span class="w"> </span><span class="n">myPoint1.add</span><span class="w"> </span><span class="n">myPoint2</span>
 </pre></div>
 </div>
-<p>Below we will continue to put definitions in the relevant
-namespace, but we will leave the namespacing commands out of the quoted
-snippets. To prove properties of the addition function,
-we can use <code class="docutils literal notranslate"><span class="pre">rw</span></code> to expand the definition and <code class="docutils literal notranslate"><span class="pre">ext</span></code> to
-reduce an equation between two elements of the structure to equations
-between the components.
-Below we use the <code class="docutils literal notranslate"><span class="pre">protected</span></code> keyword so that the name of the
-theorem is <code class="docutils literal notranslate"><span class="pre">Point.add_comm</span></code>, even when the namespace is open.
-This is helpful when we want to avoid ambiguity with a generic
-theorem like <code class="docutils literal notranslate"><span class="pre">add_comm</span></code>.</p>
+<p>&#25509;&#19979;&#26469;&#25105;&#20204;&#32487;&#32493;&#22312;&#30456;&#20851;&#21629;&#21517;&#31354;&#38388;&#20013;&#28155;&#21152;&#23450;&#20041;&#65292;&#20294;&#22312;&#24341;&#29992;&#30340;&#20195;&#30721;&#29255;&#27573;&#20013;&#20250;&#30465;&#30053;&#24320;&#20851;&#21629;&#21517;&#31354;&#38388;&#30456;&#20851;&#30340;&#25351;&#20196;&#12290;
+&#22312;&#35777;&#26126;&#21152;&#27861;&#20989;&#25968;&#24615;&#36136;&#26102;&#65292;&#21487;&#20351;&#29992; <code class="docutils literal notranslate"><span class="pre">rw</span></code> &#26469;&#23637;&#24320;&#23450;&#20041;&#65292;&#24182;&#29992; <code class="docutils literal notranslate"><span class="pre">ext</span></code> &#23558;&#32467;&#26500;&#20307;&#20004;&#20010;&#23454;&#20363;&#20043;&#38388;&#30340;&#31561;&#21495;&#36716;&#21270;&#20026;&#23427;&#20204;&#21508;&#20010;&#32452;&#25104;&#37096;&#20998;&#20043;&#38388;&#30340;&#31561;&#21495;&#12290;
+&#19979;&#38754;&#30340;&#20195;&#30721;&#20351;&#29992; <code class="docutils literal notranslate"><span class="pre">protected</span></code> &#20851;&#38190;&#23383;&#65292;&#20351;&#24471;&#22312;&#21629;&#21517;&#31354;&#38388;&#25171;&#24320;&#30340;&#24773;&#20917;&#19979;&#23450;&#29702;&#30340;&#21517;&#23383;&#20381;&#28982;&#26159; <code class="docutils literal notranslate"><span class="pre">Point.add_comm</span></code>&#12290;
+&#24403;&#25105;&#20204;&#24076;&#26395;&#36991;&#20813;&#19982;&#27867;&#22411;&#23450;&#29702;&#22914; <code class="docutils literal notranslate"><span class="pre">add_comm</span></code> &#20135;&#29983;&#27495;&#20041;&#26102;&#65292;&#36825;&#26679;&#20570;&#26159;&#26377;&#24110;&#21161;&#30340;&#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kn">protected</span><span class="w"> </span><span class="kd">theorem</span><span class="w"> </span><span class="n">add_comm</span><span class="w"> </span><span class="o">(</span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Point</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="kd">by</span>
 <span class="w">  </span><span class="n">rw</span><span class="w"> </span><span class="o">[</span><span class="n">add</span><span class="o">,</span><span class="w"> </span><span class="n">add</span><span class="o">]</span>
 <span class="w">  </span><span class="n">ext</span><span class="w"> </span><span class="bp">&lt;;&gt;</span><span class="w"> </span><span class="n">dsimp</span>
@@ -217,22 +186,16 @@ theorem like <code class="docutils literal notranslate"><span class="pre">add_co
 <span class="kd">example</span><span class="w"> </span><span class="o">(</span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Point</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="kd">by</span><span class="w"> </span><span class="n">simp</span><span class="w"> </span><span class="o">[</span><span class="n">add</span><span class="o">,</span><span class="w"> </span><span class="n">add_comm</span><span class="o">]</span>
 </pre></div>
 </div>
-<p>Because Lean can unfold definitions and simplify projections
-internally, sometimes the equations we want hold definitionally.</p>
+<p>&#22240;&#20026; Lean &#33021;&#22312;&#20869;&#37096;&#33258;&#21160;&#23637;&#24320;&#23450;&#20041;&#24182;&#31616;&#21270;&#25237;&#24433;&#65292;&#25152;&#20197;&#26377;&#26102;&#25105;&#20204;&#38656;&#35201;&#30340;&#31561;&#24335;&#22312;&#23450;&#20041;&#19978;&#23601;&#33258;&#21160;&#25104;&#31435;&#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">theorem</span><span class="w"> </span><span class="n">add_x</span><span class="w"> </span><span class="o">(</span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Point</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">(</span><span class="n">a.add</span><span class="w"> </span><span class="n">b</span><span class="o">)</span><span class="bp">.</span><span class="n">x</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">a.x</span><span class="w"> </span><span class="bp">+</span><span class="w"> </span><span class="n">b.x</span><span class="w"> </span><span class="o">:=</span>
 <span class="w">  </span><span class="n">rfl</span>
 </pre></div>
 </div>
-<p>It is also possible to define functions on structures using
-pattern matching,
-in a manner similar to the way we defined recursive functions in
-<a class="reference internal" href="C05_Elementary_Number_Theory.html#section-induction-and-recursion"><span class="std std-numref">Section 5.2</span></a>.
-The definitions <code class="docutils literal notranslate"><span class="pre">addAlt</span></code> and <code class="docutils literal notranslate"><span class="pre">addAlt'</span></code> below are essentially the
-same; the only difference is that we use anonymous constructor notation
-in the second.
-Although it is sometimes convenient to define functions this way, and structural eta-reduction makes
-this alternative definitionally equivalent, it can make things less convenient in later proofs.
-In particular, <cite>rw [addAlt]</cite> leaves us with a messier goal view containing a <cite>match</cite> statement.</p>
+<p>&#19982;&#22312;
+<a class="reference internal" href="C05_Elementary_Number_Theory.html#section-induction-and-recursion"><span class="std std-numref">Section 5.2</span></a>
+&#20013;&#23450;&#20041;&#36882;&#24402;&#20989;&#25968;&#31867;&#20284;&#65292;&#25105;&#20204;&#23450;&#20041;&#20989;&#25968;&#26102;&#20063;&#21487;&#20197;&#20351;&#29992;&#27169;&#24335;&#21305;&#37197;&#12290;
+&#19979;&#38754;&#23450;&#20041;&#30340; <code class="docutils literal notranslate"><span class="pre">addAlt</span></code> &#21644; <code class="docutils literal notranslate"><span class="pre">addAlt'</span></code> &#26412;&#36136;&#19978;&#26159;&#30456;&#21516;&#30340;&#65292;&#24418;&#24335;&#19978;&#30340;&#30340;&#21306;&#21035;&#22312;&#20110;&#25105;&#20204;&#22312;&#21518;&#32773;&#30340;&#23450;&#20041;&#20013;&#20351;&#29992;&#20102;&#21311;&#21517;&#26500;&#36896;&#20989;&#25968;&#12290;
+&#34429;&#28982;&#20197;&#27492;&#26041;&#24335;&#23450;&#20041;&#20989;&#25968;&#26377;&#26102;&#20250;&#26174;&#24471;&#26356;&#21152;&#31616;&#27905;&#65292;&#24182;&#19988;&#32467;&#26500;&#21270; &#951;-&#35268;&#32422;&#65288;structural eta-reduction&#65289;&#20063;&#30830;&#20445;&#20102;&#36825;&#31181;&#31616;&#20889;&#22312;&#23450;&#20041;&#19978;&#30340;&#31561;&#20215;&#24615;&#65292;&#20294;&#36825;&#20040;&#20570;&#21487;&#33021;&#20250;&#20026;&#21518;&#32493;&#30340;&#35777;&#26126;&#24102;&#26469;&#19981;&#20415;&#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">def</span><span class="w"> </span><span class="n">addAlt</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="bp">&#8594;</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="bp">&#8594;</span><span class="w"> </span><span class="n">Point</span>
 <span class="w">  </span><span class="bp">|</span><span class="w"> </span><span class="n">Point.mk</span><span class="w"> </span><span class="n">x&#8321;</span><span class="w"> </span><span class="n">y&#8321;</span><span class="w"> </span><span class="n">z&#8321;</span><span class="o">,</span><span class="w"> </span><span class="n">Point.mk</span><span class="w"> </span><span class="n">x&#8322;</span><span class="w"> </span><span class="n">y&#8322;</span><span class="w"> </span><span class="n">z&#8322;</span><span class="w"> </span><span class="bp">=&gt;</span><span class="w"> </span><span class="o">&#10216;</span><span class="n">x&#8321;</span><span class="w"> </span><span class="bp">+</span><span class="w"> </span><span class="n">x&#8322;</span><span class="o">,</span><span class="w"> </span><span class="n">y&#8321;</span><span class="w"> </span><span class="bp">+</span><span class="w"> </span><span class="n">y&#8322;</span><span class="o">,</span><span class="w"> </span><span class="n">z&#8321;</span><span class="w"> </span><span class="bp">+</span><span class="w"> </span><span class="n">z&#8322;</span><span class="o">&#10217;</span>
 
@@ -249,13 +212,10 @@ In particular, <cite>rw [addAlt]</cite> leaves us with a messier goal view conta
 <span class="w">  </span><span class="n">repeat&#39;</span><span class="w"> </span><span class="n">apply</span><span class="w"> </span><span class="n">add_comm</span>
 </pre></div>
 </div>
-<p>Mathematical constructions often involve taking apart bundled information and
-putting it together again in different ways.
-It therefore makes sense that Lean and Mathlib offer so many ways
-of doing this efficiently.
-As an exercise, try proving that <code class="docutils literal notranslate"><span class="pre">Point.add</span></code> is associative.
-Then define scalar multiplication for a point and show that it
-distributes over addition.</p>
+<p>&#25968;&#23398;&#26500;&#36896;&#36890;&#24120;&#28041;&#21450;&#23558;&#25414;&#32465;&#30340;&#20449;&#24687;&#25286;&#20998;&#24320;&#26469;&#65292;&#24182;&#20197;&#19981;&#21516;&#30340;&#26041;&#24335;&#37325;&#26032;&#32452;&#21512;&#12290;
+&#36825;&#20063;&#26159; Lean &#21644; Mathlib &#25552;&#20379;&#22914;&#27492;&#22810;&#26041;&#27861;&#26469;&#39640;&#25928;&#22788;&#29702;&#36825;&#20123;&#25805;&#20316;&#30340;&#21407;&#22240;&#12290;
+&#20316;&#20026;&#32451;&#20064;&#65292;&#35831;&#23581;&#35797;&#35777;&#26126; <code class="docutils literal notranslate"><span class="pre">Point.add</span></code> &#26159;&#28385;&#36275;&#32467;&#21512;&#24459;&#30340;&#12290;
+&#28982;&#21518;&#35831;&#23450;&#20041;&#28857;&#30340;&#26631;&#37327;&#20056;&#27861;&#24182;&#35777;&#26126;&#20854;&#28385;&#36275;&#23545;&#21152;&#27861;&#30340;&#20998;&#37197;&#24459;&#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kn">protected</span><span class="w"> </span><span class="kd">theorem</span><span class="w"> </span><span class="n">add_assoc</span><span class="w"> </span><span class="o">(</span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Point</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">(</span><span class="n">a.add</span><span class="w"> </span><span class="n">b</span><span class="o">)</span><span class="bp">.</span><span class="n">add</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">a.add</span><span class="w"> </span><span class="o">(</span><span class="n">b.add</span><span class="w"> </span><span class="n">c</span><span class="o">)</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="kd">by</span>
 <span class="w">  </span><span class="gr">sorry</span>
 
@@ -267,27 +227,16 @@ distributes over addition.</p>
 <span class="w">  </span><span class="gr">sorry</span>
 </pre></div>
 </div>
-<p>Using structures is only the first step on the road to
-algebraic abstraction.
-We don&#8217;t yet have a way to link <code class="docutils literal notranslate"><span class="pre">Point.add</span></code> to the generic <code class="docutils literal notranslate"><span class="pre">+</span></code> symbol,
-or to connect <code class="docutils literal notranslate"><span class="pre">Point.add_comm</span></code> and <code class="docutils literal notranslate"><span class="pre">Point.add_assoc</span></code> to
-the generic <code class="docutils literal notranslate"><span class="pre">add_comm</span></code> and <code class="docutils literal notranslate"><span class="pre">add_assoc</span></code> theorems.
-These tasks belong to the <em>algebraic</em> aspect of using structures,
-and we will explain how to carry them out in the next section.
-For now, just think of a structure as a way of bundling together objects
-and information.</p>
-<p>It is especially useful that a structure can specify not only
-data types but also constraints that the data must satisfy.
-In Lean, the latter are represented as fields of type <code class="docutils literal notranslate"><span class="pre">Prop</span></code>.
-For example, the <em>standard 2-simplex</em> is defined to be the set of
-points <span class="math notranslate nohighlight">\((x, y, z)\)</span> satisfying <span class="math notranslate nohighlight">\(x &#8805; 0\)</span>, <span class="math notranslate nohighlight">\(y &#8805; 0\)</span>, <span class="math notranslate nohighlight">\(z &#8805; 0\)</span>,
-and <span class="math notranslate nohighlight">\(x + y + z = 1\)</span>.
-If you are not familiar with the notion, you should draw a picture,
-and convince yourself that this set is
-the equilateral triangle in three-space with vertices
-<span class="math notranslate nohighlight">\((1, 0, 0)\)</span>, <span class="math notranslate nohighlight">\((0, 1, 0)\)</span>, and <span class="math notranslate nohighlight">\((0, 0, 1)\)</span>,
-together with its interior.
-We can represent it in Lean as follows:</p>
+<p>&#20351;&#29992;&#32467;&#26500;&#20307;&#26159;&#36208;&#21521;&#20195;&#25968;&#25277;&#35937;&#30340;&#31532;&#19968;&#27493;&#12290;
+&#25105;&#20204;&#30446;&#21069;&#36824;&#27809;&#26377;&#26041;&#27861;&#23558; <code class="docutils literal notranslate"><span class="pre">Point.add</span></code> &#19982;&#27867;&#22411;&#30340; <code class="docutils literal notranslate"><span class="pre">+</span></code> &#31526;&#21495;&#32852;&#31995;&#36215;&#26469;&#65292;
+&#25233;&#25110;&#26159;&#23558; <code class="docutils literal notranslate"><span class="pre">Point.add_comm</span></code>&#12289;<code class="docutils literal notranslate"><span class="pre">Point.add_assoc</span></code> &#19982;&#27867;&#22411;&#30340; <code class="docutils literal notranslate"><span class="pre">add_comm</span></code>&#12289;<code class="docutils literal notranslate"><span class="pre">add_assoc</span></code> &#23450;&#29702;&#32852;&#31995;&#36215;&#26469;&#12290;
+&#36825;&#20123;&#20219;&#21153;&#23646;&#20110;&#32467;&#26500;&#20307;&#22312;&#20195;&#25968;&#23618;&#38754;&#30340;&#24212;&#29992;&#65292;&#25105;&#20204;&#23558;&#22312;&#19979;&#19968;&#33410;&#20171;&#32461;&#22914;&#20309;&#20855;&#20307;&#23454;&#29616;&#12290;
+&#23545;&#29616;&#22312;&#26469;&#35828;&#65292;&#25105;&#20204;&#21482;&#38656;&#35201;&#25226;&#32467;&#26500;&#20307;&#35270;&#20316;&#19968;&#31181;&#25414;&#32465;&#23545;&#35937;&#21644;&#20449;&#24687;&#30340;&#26041;&#27861;&#12290;</p>
+<p>&#22312;&#32467;&#26500;&#20307;&#20013;&#25105;&#20204;&#19981;&#20165;&#21487;&#20197;&#25351;&#23450;&#25968;&#25454;&#31867;&#22411;&#65292;&#36824;&#21487;&#20197;&#25351;&#23450;&#25968;&#25454;&#38656;&#35201;&#28385;&#36275;&#30340;&#32422;&#26463;&#12290;
+&#22312; Lean &#20013;&#65292;&#21518;&#32773;&#34987;&#34920;&#31034;&#20026;&#31867;&#22411; <code class="docutils literal notranslate"><span class="pre">Prop</span></code> &#30340;&#23383;&#27573;&#12290;
+&#20363;&#22914;&#65292;&#26631;&#20934;2-&#21333;&#32431;&#24418;&#65288;standard 2-simplex&#65289;&#23450;&#20041;&#20026;&#28385;&#36275; <span class="math notranslate nohighlight">\(x &#8805; 0\)</span>&#65292;<span class="math notranslate nohighlight">\(y &#8805; 0\)</span>&#65292;<span class="math notranslate nohighlight">\(z &#8805; 0\)</span>&#65292;<span class="math notranslate nohighlight">\(x + y + z = 1\)</span> &#30340;&#28857; <span class="math notranslate nohighlight">\((x, y, z)\)</span> &#30340;&#38598;&#21512;&#12290;
+&#22914;&#26524;&#20320;&#19981;&#29087;&#24713;&#36825;&#20010;&#27010;&#24565;&#65292;&#21487;&#20197;&#30011;&#20010;&#22270;&#65292;&#20854;&#23454;&#36825;&#20010;&#38598;&#21512;&#23601;&#26159;&#19977;&#32500;&#31354;&#38388;&#20013;&#20197; <span class="math notranslate nohighlight">\((1, 0, 0)\)</span>&#65292;<span class="math notranslate nohighlight">\((0, 1, 0)\)</span>&#65292;&#21644; <span class="math notranslate nohighlight">\((0, 0, 1)\)</span> &#20026;&#39030;&#28857;&#30340;&#31561;&#36793;&#19977;&#35282;&#24418;&#20197;&#21450;&#20854;&#20869;&#37096;&#12290;
+&#22312; Lean &#20013;&#21487;&#20197;&#36825;&#26679;&#24418;&#24335;&#21270;&#34920;&#31034;&#65306;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">structure</span><span class="w"> </span><span class="n">StandardTwoSimplex</span><span class="w"> </span><span class="n">where</span>
 <span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">&#8477;</span>
 <span class="w">  </span><span class="n">y</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">&#8477;</span>
@@ -298,9 +247,8 @@ We can represent it in Lean as follows:</p>
 <span class="w">  </span><span class="n">sum_eq</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">+</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="bp">+</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="mi">1</span>
 </pre></div>
 </div>
-<p>Notice that the last four fields refer to <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>, and <code class="docutils literal notranslate"><span class="pre">z</span></code>,
-that is, the first three fields.
-We can define a map from the two-simplex to itself that swaps <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>:</p>
+<p>&#35831;&#27880;&#24847;&#65292;&#26368;&#21518;&#22235;&#20010;&#23383;&#27573;&#29992;&#21040;&#30340; <code class="docutils literal notranslate"><span class="pre">x</span></code>&#65292;<code class="docutils literal notranslate"><span class="pre">y</span></code>&#65292;<code class="docutils literal notranslate"><span class="pre">z</span></code> &#25351;&#30340;&#23601;&#26159;&#21069;&#19977;&#20010;&#23383;&#27573;&#12290;
+&#25105;&#20204;&#21487;&#20197;&#23450;&#20041;&#19968;&#20010;&#20174;2-&#21333;&#32431;&#24418;&#21040;&#20854;&#33258;&#36523;&#30340;&#26144;&#23556;&#65292;&#35813;&#26144;&#23556;&#20132;&#25442; <code class="docutils literal notranslate"><span class="pre">x</span></code> &#21644; <code class="docutils literal notranslate"><span class="pre">y</span></code>&#65306;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">def</span><span class="w"> </span><span class="n">swapXy</span><span class="w"> </span><span class="o">(</span><span class="n">a</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">StandardTwoSimplex</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">StandardTwoSimplex</span>
 <span class="w">    </span><span class="n">where</span>
 <span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">a.y</span>
@@ -312,9 +260,8 @@ We can define a map from the two-simplex to itself that swaps <code class="docut
 <span class="w">  </span><span class="n">sum_eq</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="kd">by</span><span class="w"> </span><span class="n">rw</span><span class="w"> </span><span class="o">[</span><span class="n">add_comm</span><span class="w"> </span><span class="n">a.y</span><span class="w"> </span><span class="n">a.x</span><span class="o">,</span><span class="w"> </span><span class="n">a.sum_eq</span><span class="o">]</span>
 </pre></div>
 </div>
-<p>More interestingly, we can compute the midpoint of two points on
-the simplex. We have added the phrase <code class="docutils literal notranslate"><span class="pre">noncomputable</span> <span class="pre">section</span></code>
-at the beginning of this file in order to use division on the real numbers.</p>
+<p>&#26377;&#36259;&#30340;&#26469;&#20102;&#65292;&#25105;&#20204;&#21487;&#20197;&#35745;&#31639;&#21333;&#32431;&#24418;&#20869;&#20004;&#20010;&#28857;&#30340;&#20013;&#28857;&#12290;
+&#20026;&#27492;&#38656;&#35201;&#20808;&#22312;&#25991;&#20214;&#24320;&#22836;&#21152;&#19978; <code class="docutils literal notranslate"><span class="pre">noncomputable</span> <span class="pre">section</span></code> &#35821;&#21477;&#20197;&#20415;&#20351;&#29992;&#23454;&#25968;&#19978;&#30340;&#38500;&#27861;&#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">noncomputable</span><span class="w"> </span><span class="kn">section</span>
 
 <span class="kd">def</span><span class="w"> </span><span class="n">midpoint</span><span class="w"> </span><span class="o">(</span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">StandardTwoSimplex</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">StandardTwoSimplex</span>
@@ -328,25 +275,19 @@ at the beginning of this file in order to use division on the real numbers.</p>
 <span class="w">  </span><span class="n">sum_eq</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="kd">by</span><span class="w"> </span><span class="n">field_simp</span><span class="bp">;</span><span class="w"> </span><span class="n">linarith</span><span class="w"> </span><span class="o">[</span><span class="n">a.sum_eq</span><span class="o">,</span><span class="w"> </span><span class="n">b.sum_eq</span><span class="o">]</span>
 </pre></div>
 </div>
-<p>Here we have established <code class="docutils literal notranslate"><span class="pre">x_nonneg</span></code>, <code class="docutils literal notranslate"><span class="pre">y_nonneg</span></code>, and <code class="docutils literal notranslate"><span class="pre">z_nonneg</span></code>
-with concise proof terms, but establish <code class="docutils literal notranslate"><span class="pre">sum_eq</span></code> in tactic mode,
-using <code class="docutils literal notranslate"><span class="pre">by</span></code>.</p>
-<p>Given a parameter <span class="math notranslate nohighlight">\(\lambda\)</span> satisfying <span class="math notranslate nohighlight">\(0 \le \lambda \le 1\)</span>,
-we can take the weighted average <span class="math notranslate nohighlight">\(\lambda a + (1 - \lambda) b\)</span>
-of two points <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> in the standard 2-simplex.
-We challenge you to define that function, in analogy to the <code class="docutils literal notranslate"><span class="pre">midpoint</span></code>
-function above.</p>
+<p>&#19978;&#38754;&#30340;&#20195;&#30721;&#20013;&#65292;&#23545;&#20110; <code class="docutils literal notranslate"><span class="pre">x_nonneg</span></code>&#65292;<code class="docutils literal notranslate"><span class="pre">y_nonneg</span></code>&#65292;<code class="docutils literal notranslate"><span class="pre">z_nonneg</span></code>&#65292;&#25105;&#20204;&#29992;&#31616;&#27905;&#30340;&#35777;&#26126;&#39033;&#21363;&#21487;&#24314;&#31435;&#12290;
+&#32780;&#23545;&#20110; <code class="docutils literal notranslate"><span class="pre">sum_eq</span></code> &#65292;&#25105;&#20204;&#36873;&#25321;&#20351;&#29992; <code class="docutils literal notranslate"><span class="pre">by</span></code> &#22312;&#31574;&#30053;&#27169;&#24335;&#19979;&#36827;&#34892;&#35777;&#26126;&#12290;</p>
+<p>&#32473;&#23450;&#21442;&#25968; <span class="math notranslate nohighlight">\(\lambda\)</span> &#28385;&#36275; <span class="math notranslate nohighlight">\(0 \le \lambda \le 1\)</span>&#65292;
+&#21487;&#23450;&#20041;&#26631;&#20934;2-&#21333;&#32431;&#24418;&#20013; <span class="math notranslate nohighlight">\(a\)</span> &#21644; <span class="math notranslate nohighlight">\(b\)</span> &#20004;&#28857;&#30340;&#21152;&#26435;&#24179;&#22343;&#20026; <span class="math notranslate nohighlight">\(\lambda a + (1 - \lambda) b\)</span>&#12290;
+&#35831;&#23581;&#35797;&#21442;&#32771;&#21069;&#38754;&#30340; <code class="docutils literal notranslate"><span class="pre">midpoint</span></code> &#24418;&#24335;&#21270;&#23450;&#20041;&#35813;&#21152;&#26435;&#24179;&#22343;&#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">def</span><span class="w"> </span><span class="n">weightedAverage</span><span class="w"> </span><span class="o">(</span><span class="n">lambda</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Real</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">lambda_nonneg</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="bp">&#8804;</span><span class="w"> </span><span class="n">lambda</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">lambda_le</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">lambda</span><span class="w"> </span><span class="bp">&#8804;</span><span class="w"> </span><span class="mi">1</span><span class="o">)</span>
 <span class="w">    </span><span class="o">(</span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">StandardTwoSimplex</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">StandardTwoSimplex</span><span class="w"> </span><span class="o">:=</span>
 <span class="w">  </span><span class="gr">sorry</span>
 </pre></div>
 </div>
-<p>Structures can depend on parameters.
-For example, we can generalize the standard 2-simplex to the standard
-<span class="math notranslate nohighlight">\(n\)</span>-simplex for any <span class="math notranslate nohighlight">\(n\)</span>.
-At this stage, you don&#8217;t have to know anything about the type <code class="docutils literal notranslate"><span class="pre">Fin</span> <span class="pre">n</span></code>
-except that it has <span class="math notranslate nohighlight">\(n\)</span> elements, and that Lean knows
-how to sum over it.</p>
+<p>&#32467;&#26500;&#20307;&#36824;&#21487;&#20197;&#20381;&#36182;&#20110;&#21442;&#25968;&#12290;
+&#20363;&#22914;&#65292;&#21487;&#20197;&#23558;&#26631;&#20934;2-&#21333;&#32431;&#24418;&#25512;&#24191;&#21040;&#20219;&#24847;&#32500;&#25968; <span class="math notranslate nohighlight">\(n\)</span> &#19979;&#30340; <span class="math notranslate nohighlight">\(n\)</span> -&#21333;&#32431;&#24418;&#12290;
+&#30446;&#21069;&#38454;&#27573;&#65292;&#20320;&#19981;&#38656;&#35201;&#23545; <code class="docutils literal notranslate"><span class="pre">Fin</span> <span class="pre">n</span></code> &#20102;&#35299;&#22826;&#22810;&#65292;&#21482;&#38656;&#30693;&#36947;&#23427;&#26377; <span class="math notranslate nohighlight">\(n\)</span> &#20010;&#20803;&#32032;&#65292;&#24182;&#19988; Lean &#30452;&#21040;&#22914;&#20309;&#22312;&#20854;&#19978;&#36827;&#34892;&#23601;&#21644;&#25805;&#20316;&#21363;&#21487;&#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kn">open</span><span class="w"> </span><span class="n">BigOperators</span>
 
 <span class="kd">structure</span><span class="w"> </span><span class="n">StandardSimplex</span><span class="w"> </span><span class="o">(</span><span class="n">n</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">&#8469;</span><span class="o">)</span><span class="w"> </span><span class="n">where</span>
@@ -372,16 +313,11 @@ how to sum over it.</p>
 <span class="kd">end</span><span class="w"> </span><span class="n">StandardSimplex</span>
 </pre></div>
 </div>
-<p>As an exercise, see if you can define the weighted average of
-two points in the standard <span class="math notranslate nohighlight">\(n\)</span>-simplex.
-You can use <code class="docutils literal notranslate"><span class="pre">Finset.sum_add_distrib</span></code>
-and <code class="docutils literal notranslate"><span class="pre">Finset.mul_sum</span></code> to manipulate the relevant sums.
-We have seen that structures can be used to bundle together data
-and properties.
-Interestingly, they can also be used to bundle together properties
-without the data.
-For example, the next structure, <code class="docutils literal notranslate"><span class="pre">IsLinear</span></code>, bundles together
-the two components of linearity.</p>
+<p>&#20316;&#20026;&#39069;&#22806;&#32451;&#20064;&#65292;&#35831;&#23581;&#35797;&#23450;&#20041;&#19968;&#19979;&#26631;&#20934; :math`n` -&#21333;&#32431;&#24418;&#20013;&#20004;&#28857;&#30340;&#21152;&#26435;&#24179;&#22343;&#12290;
+&#21487;&#20197;&#20351;&#29992; <code class="docutils literal notranslate"><span class="pre">Finset.sum_add_distrib</span></code> &#21644; <code class="docutils literal notranslate"><span class="pre">Finset.mul_sum</span></code> &#26469;&#23454;&#29616;&#30456;&#20851;&#30340;&#27714;&#21644;&#25805;&#20316;&#12290;</p>
+<p>&#21069;&#38754;&#25105;&#20204;&#24050;&#32463;&#20102;&#35299;&#21040;&#32467;&#26500;&#20307;&#21487;&#20197;&#29992;&#26469;&#23558;&#25968;&#25454;&#21644;&#23646;&#24615;&#25171;&#21253;&#22312;&#19968;&#36215;&#12290;
+&#26377;&#36259;&#30340;&#26159;&#65292;&#32467;&#26500;&#20307;&#20063;&#21487;&#20197;&#29992;&#26469;&#25171;&#21253;&#33073;&#31163;&#20855;&#20307;&#25968;&#25454;&#30340;&#25277;&#35937;&#23646;&#24615;&#12290;
+&#20363;&#22914;&#65292;&#19979;&#38754;&#30340;&#32467;&#26500;&#20307; <code class="docutils literal notranslate"><span class="pre">IsLinear</span></code>&#65292;&#23558;&#32447;&#24615;&#24615;&#65288;linearity&#65289;&#30340;&#20004;&#20010;&#20027;&#35201;&#32452;&#25104;&#37096;&#20998;&#25171;&#21253;&#22312;&#20102;&#19968;&#36215;&#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">structure</span><span class="w"> </span><span class="n">IsLinear</span><span class="w"> </span><span class="o">(</span><span class="n">f</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">&#8477;</span><span class="w"> </span><span class="bp">&#8594;</span><span class="w"> </span><span class="n">&#8477;</span><span class="o">)</span><span class="w"> </span><span class="n">where</span>
 <span class="w">  </span><span class="n">is_additive</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">&#8704;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="o">,</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">(</span><span class="n">x</span><span class="w"> </span><span class="bp">+</span><span class="w"> </span><span class="n">y</span><span class="o">)</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">+</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="n">y</span>
 <span class="w">  </span><span class="n">preserves_mul</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">&#8704;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">c</span><span class="o">,</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">(</span><span class="n">c</span><span class="w"> </span><span class="bp">*</span><span class="w"> </span><span class="n">x</span><span class="o">)</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="bp">*</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="n">x</span>
@@ -395,10 +331,8 @@ the two components of linearity.</p>
 <span class="kd">end</span>
 </pre></div>
 </div>
-<p>It is worth pointing out that structures are not the only way to bundle
-together data.
-The <code class="docutils literal notranslate"><span class="pre">Point</span></code> data structure can be defined using the generic type product,
-and <code class="docutils literal notranslate"><span class="pre">IsLinear</span></code> can be defined with a simple <code class="docutils literal notranslate"><span class="pre">and</span></code>.</p>
+<p>&#20540;&#24471;&#19968;&#25552;&#30340;&#26159;&#65292;&#32467;&#26500;&#20307;&#24182;&#19981;&#26159;&#25171;&#21253;&#25968;&#25454;&#30340;&#21807;&#19968;&#26041;&#27861;&#12290;
+&#21069;&#38754;&#25552;&#21040;&#30340; <code class="docutils literal notranslate"><span class="pre">Point</span></code> &#25968;&#25454;&#32467;&#26500;&#20063;&#21487;&#20197;&#29992;&#27867;&#22411;&#20056;&#31215;&#31867;&#22411;&#26469;&#23450;&#20041;&#65292;&#32780; <code class="docutils literal notranslate"><span class="pre">IsLinear</span></code> &#21487;&#20197;&#20351;&#29992;&#31616;&#21333;&#30340; <code class="docutils literal notranslate"><span class="pre">and</span></code> &#26469;&#23450;&#20041;&#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">def</span><span class="w"> </span><span class="n">Point&#39;&#39;</span><span class="w"> </span><span class="o">:=</span>
 <span class="w">  </span><span class="n">&#8477;</span><span class="w"> </span><span class="bp">&#215;</span><span class="w"> </span><span class="n">&#8477;</span><span class="w"> </span><span class="bp">&#215;</span><span class="w"> </span><span class="n">&#8477;</span>
 
@@ -406,16 +340,11 @@ and <code class="docutils literal notranslate"><span class="pre">IsLinear</span>
 <span class="w">  </span><span class="o">(</span><span class="bp">&#8704;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="o">,</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">(</span><span class="n">x</span><span class="w"> </span><span class="bp">+</span><span class="w"> </span><span class="n">y</span><span class="o">)</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">+</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="n">y</span><span class="o">)</span><span class="w"> </span><span class="bp">&#8743;</span><span class="w"> </span><span class="bp">&#8704;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">c</span><span class="o">,</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">(</span><span class="n">c</span><span class="w"> </span><span class="bp">*</span><span class="w"> </span><span class="n">x</span><span class="o">)</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="bp">*</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="n">x</span>
 </pre></div>
 </div>
-<p>Generic type constructions can even be used in place of structures
-with dependencies between their components.
-For example, the <em>subtype</em> construction combines a piece of data with
-a property.
-You can think of the type <code class="docutils literal notranslate"><span class="pre">PReal</span></code> in the next example as being
-the type of positive real numbers.
-Any <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">:</span> <span class="pre">PReal</span></code> has two components: the value, and the property of being
-positive.
-You can access these components as <code class="docutils literal notranslate"><span class="pre">x.val</span></code>, which has type <code class="docutils literal notranslate"><span class="pre">&#8477;</span></code>,
-and <code class="docutils literal notranslate"><span class="pre">x.property</span></code>, which represents the fact <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;</span> <span class="pre">x.val</span></code>.</p>
+<p>&#27867;&#22411;&#31867;&#22411;&#26500;&#36896;&#29978;&#33267;&#21487;&#20197;&#26367;&#20195;&#21253;&#21547;&#20381;&#36182;&#20851;&#31995;&#30340;&#32467;&#26500;&#20307;&#12290;
+&#20363;&#22914;&#65292;&#23376;&#31867;&#22411;&#65288;subtype&#65289;&#26500;&#36896;&#32467;&#21512;&#20102;&#19968;&#27573;&#25968;&#25454;&#20197;&#21450;&#19968;&#26465;&#23646;&#24615;&#12290;
+&#20320;&#21487;&#20197;&#23558;&#19979;&#38754;&#20363;&#23376;&#20013;&#30340; <code class="docutils literal notranslate"><span class="pre">PReal</span></code> &#30475;&#20316;&#27491;&#23454;&#25968;&#31867;&#22411;&#12290;
+&#27599;&#20010; <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">:</span> <span class="pre">PReal</span></code> &#37117;&#26377;&#20004;&#20010;&#20998;&#37327;&#65306;&#23427;&#30340;&#20540;&#65292;&#20197;&#21450;&#8220;&#23427;&#26159;&#27491;&#30340;&#8221;&#36825;&#19968;&#23646;&#24615;&#12290;
+&#20320;&#21487;&#20197;&#20998;&#21035;&#29992; <code class="docutils literal notranslate"><span class="pre">x.val</span></code> &#19982; <code class="docutils literal notranslate"><span class="pre">x.property</span></code> &#26469;&#35775;&#38382;&#36825;&#20004;&#20010;&#20998;&#37327;&#65292;&#20854;&#20013;&#21069;&#32773;&#30340;&#31867;&#22411;&#20026; <code class="docutils literal notranslate"><span class="pre">&#8477;</span></code>&#65292;&#21518;&#32773;&#26159;&#19968;&#20010;&#23646;&#24615; <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;</span> <span class="pre">x.val</span></code>&#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">def</span><span class="w"> </span><span class="n">PReal</span><span class="w"> </span><span class="o">:=</span>
 <span class="w">  </span><span class="o">{</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">&#8477;</span><span class="w"> </span><span class="bp">//</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="bp">&lt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">}</span>
 
@@ -430,8 +359,7 @@ and <code class="docutils literal notranslate"><span class="pre">x.property</spa
 <span class="kd">end</span>
 </pre></div>
 </div>
-<p>We could have used subtypes to define the standard 2-simplex,
-as well as the standard <span class="math notranslate nohighlight">\(n\)</span>-simplex for an arbitrary <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>&#25105;&#20204;&#20063;&#21487;&#20197;&#29992;&#23376;&#31867;&#22411;&#26469;&#23450;&#20041;&#21069;&#38754;&#30340;&#26631;&#20934;2-&#21333;&#32431;&#24418;&#65292;&#20197;&#21450;&#20219;&#24847;&#32500;&#25968; <span class="math notranslate nohighlight">\(n\)</span> &#19979;&#30340;&#26631;&#20934; <span class="math notranslate nohighlight">\(n\)</span> -&#21333;&#32431;&#24418;&#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">def</span><span class="w"> </span><span class="n">StandardTwoSimplex&#39;</span><span class="w"> </span><span class="o">:=</span>
 <span class="w">  </span><span class="o">{</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">&#8477;</span><span class="w"> </span><span class="bp">&#215;</span><span class="w"> </span><span class="n">&#8477;</span><span class="w"> </span><span class="bp">&#215;</span><span class="w"> </span><span class="n">&#8477;</span><span class="w"> </span><span class="bp">//</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="bp">&#8804;</span><span class="w"> </span><span class="n">p</span><span class="bp">.</span><span class="mi">1</span><span class="w"> </span><span class="bp">&#8743;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="bp">&#8804;</span><span class="w"> </span><span class="n">p</span><span class="bp">.</span><span class="mi">2</span><span class="bp">.</span><span class="mi">1</span><span class="w"> </span><span class="bp">&#8743;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="bp">&#8804;</span><span class="w"> </span><span class="n">p</span><span class="bp">.</span><span class="mi">2</span><span class="bp">.</span><span class="mi">2</span><span class="w"> </span><span class="bp">&#8743;</span><span class="w"> </span><span class="n">p</span><span class="bp">.</span><span class="mi">1</span><span class="w"> </span><span class="bp">+</span><span class="w"> </span><span class="n">p</span><span class="bp">.</span><span class="mi">2</span><span class="bp">.</span><span class="mi">1</span><span class="w"> </span><span class="bp">+</span><span class="w"> </span><span class="n">p</span><span class="bp">.</span><span class="mi">2</span><span class="bp">.</span><span class="mi">2</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">}</span>
 
@@ -439,9 +367,7 @@ as well as the standard <span class="math notranslate nohighlight">\(n\)</span>-
 <span class="w">  </span><span class="o">{</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Fin</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="bp">&#8594;</span><span class="w"> </span><span class="n">&#8477;</span><span class="w"> </span><span class="bp">//</span><span class="w"> </span><span class="o">(</span><span class="bp">&#8704;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Fin</span><span class="w"> </span><span class="n">n</span><span class="o">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="bp">&#8804;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">i</span><span class="o">)</span><span class="w"> </span><span class="bp">&#8743;</span><span class="w"> </span><span class="o">(</span><span class="bp">&#8721;</span><span class="w"> </span><span class="n">i</span><span class="o">,</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">i</span><span class="o">)</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">}</span>
 </pre></div>
 </div>
-<p>Similarly, <em>Sigma types</em> are generalizations of ordered pairs,
-whereby the type of the second component depends on the type of
-the first.</p>
+<p>&#31867;&#20284;&#22320;&#65292;Sigma &#31867;&#22411;&#26159;&#26377;&#24207;&#23545;&#30340;&#25512;&#24191;&#65292;&#20854;&#20013;&#31532;&#20108;&#20010;&#20998;&#37327;&#30340;&#31867;&#22411;&#20381;&#36182;&#20110;&#31532;&#19968;&#20010;&#20998;&#37327;&#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">def</span><span class="w"> </span><span class="n">StdSimplex</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="bp">&#931;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">&#8469;</span><span class="o">,</span><span class="w"> </span><span class="n">StandardSimplex</span><span class="w"> </span><span class="n">n</span>
 
 <span class="kn">section</span>
@@ -456,25 +382,16 @@ the first.</p>
 <span class="kd">end</span>
 </pre></div>
 </div>
-<p>Given <code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">:</span> <span class="pre">StdSimplex</span></code>, the first component <code class="docutils literal notranslate"><span class="pre">s.fst</span></code> is a natural
-number, and the second component is an element of the corresponding
-simplex <code class="docutils literal notranslate"><span class="pre">StandardSimplex</span> <span class="pre">s.fst</span></code>.
-The difference between a Sigma type and a subtype is that
-the second component of a Sigma type is data rather than a proposition.</p>
-<p>But even though we can use products, subtypes, and Sigma types
-instead of structures, using structures has a number of advantages.
-Defining a structure abstracts away the underlying representation
-and provides custom names for the functions that access the components.
-This makes proofs more robust:
-proofs that rely only on the interface to a structure
-will generally continue to work when we change the definition,
-as long as we redefine the old accessors in terms of the new definition.
-Moreover, as we are about to see, Lean provides support for
-weaving structures together into a rich, interconnected hierarchy,
-and for managing the interactions between them.</p>
+<p>&#32473;&#23450; <code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">:</span> <span class="pre">StdSimplex</span></code>&#65292;&#23427;&#30340;&#31532;&#19968;&#20010;&#20998;&#37327; <code class="docutils literal notranslate"><span class="pre">s.fst</span></code> &#26159;&#20010;&#33258;&#28982;&#25968;&#65292;&#31532;&#20108;&#20010;&#20998;&#37327;&#26159;&#23545;&#24212;&#32500;&#25968;&#19979;&#26631;&#20934;&#21333;&#32431;&#24418;&#20013;&#30340;&#19968;&#20010;&#20803;&#32032; <code class="docutils literal notranslate"><span class="pre">StandardSimplex</span> <span class="pre">s.fst</span></code>&#12290;
+Sigma &#31867;&#22411;&#19982;&#23376;&#31867;&#22411;&#30340;&#21306;&#21035;&#22312;&#20110; Sigma &#31867;&#22411;&#30340;&#31532;&#20108;&#20010;&#20998;&#37327;&#26159;&#25968;&#25454;&#32780;&#38750;&#23646;&#24615;&#12290;</p>
+<p>&#23613;&#31649;&#21487;&#20197;&#20351;&#29992;&#20056;&#31215;&#31867;&#22411;&#12289;&#23376;&#31867;&#22411;&#12289; Sigma &#31867;&#22411;&#31561;&#26367;&#20195;&#32467;&#26500;&#20307;&#65292;&#20294;&#20351;&#29992;&#32467;&#26500;&#20307;&#20854;&#23454;&#26377;&#35768;&#22810;&#22909;&#22788;&#12290;
+&#23450;&#20041;&#32467;&#26500;&#20307;&#21487;&#20197;&#25277;&#35937;&#20986;&#24213;&#23618;&#30340;&#34920;&#36798;&#65292;&#19988;&#33021;&#20026;&#25104;&#21592;&#25552;&#20379;&#33258;&#23450;&#20041;&#30340;&#21517;&#31216;&#20197;&#20379;&#35775;&#38382;&#12290;
+&#36825;&#20351;&#24471;&#35777;&#26126;&#26356;&#21152;&#20581;&#22766;&#65306;
+&#23545;&#20110;&#37027;&#20123;&#20165;&#20381;&#36182;&#32467;&#26500;&#20307;&#25509;&#21475;&#30340;&#35777;&#26126;&#65292;&#36890;&#24120;&#21482;&#38656;&#29992;&#26032;&#25509;&#21475;&#26367;&#25442;&#26087;&#25509;&#21475;&#65292;&#23601;&#33021;&#35753;&#35777;&#26126;&#20195;&#30721;&#22312;&#32467;&#26500;&#20307;&#23450;&#20041;&#21464;&#26356;&#21518;&#20381;&#28982;&#26377;&#25928;&#12290;
+&#27492;&#22806;&#65292;&#27491;&#22914;&#25105;&#20204;&#21363;&#23558;&#30475;&#21040;&#30340;&#65292;Lean &#25903;&#25345;&#23558;&#21508;&#31181;&#32467;&#26500;&#20307;&#32534;&#32455;&#25104;&#19968;&#20010;&#20016;&#23500;&#30340;&#12289;&#30456;&#20114;&#20851;&#32852;&#30340;&#23618;&#27425;&#20307;&#31995;&#65292;&#20197;&#31649;&#29702;&#23427;&#20204;&#20043;&#38388;&#30340;&#20132;&#20114;&#20851;&#31995;&#12290;</p>
 </section>
-<section id="algebraic-structures">
-<span id="section-algebraic-structures"></span><h2><span class="section-number">6.2. </span>Algebraic Structures<a class="headerlink" href="#algebraic-structures" title="Link to this heading">&#61633;</a></h2>
+<section id="section-algebraic-structures">
+<span id="id3"></span><h2><span class="section-number">6.2. </span>&#20195;&#25968;&#32467;&#26500;<a class="headerlink" href="#section-algebraic-structures" title="Link to this heading">&#61633;</a></h2>
 <p>To clarify what we mean by the phrase <em>algebraic structure</em>,
 it will help to consider some examples.</p>
 <ol class="arabic simple">
