@@ -8,15 +8,11 @@ noncomputable section
 /- TEXT:
 .. _section_structures:
 
-Defining structures
+定义结构体
 -------------------
 
-In the broadest sense of the term, a *structure* is a specification
-of a collection of data, possibly with constraints that the
-data is required to satisfy.
-An *instance* of the structure is a particular bundle of data satisfying
-the constraints. For example, we can specify that a point is
-a tuple of three real numbers:
+广义上来说，结构体是对特定形式数据集合的约定，包括包含数据的形式以及这些数据要满足的一些约束条件。
+而结构体的实例则是某一组满足约束的具体数据。例如，我们可以规定一个点是由三个实数组成的三元组：
 BOTH: -/
 -- QUOTE:
 @[ext]
@@ -27,9 +23,7 @@ structure Point where
 -- QUOTE.
 
 /- TEXT:
-The ``@[ext]`` annotation tells Lean to automatically generate theorems
-that can be used to prove that two instances of a structure are equal
-when their components are equal, a property known as *extensionality*.
+上面用到的 ``@[ext]`` 注解让 Lean 自动生成一个定理，内容是当该结构体的两个实例各组成部分对应相同时，这两个实例相等。该属性也称为外延性（extensionality）。
 EXAMPLES: -/
 -- QUOTE:
 #check Point.ext
@@ -40,8 +34,8 @@ example (a b : Point) (hx : a.x = b.x) (hy : a.y = b.y) (hz : a.z = b.z) : a = b
 -- QUOTE.
 
 /- TEXT:
-We can then define particular instances of the ``Point`` structure.
-Lean provides multiple ways of doing that.
+接着我们定义一个 ``Point`` 结构体的实例。
+Lean 提供多种实例化方式来达成目的。
 EXAMPLES: -/
 -- QUOTE:
 def myPoint1 : Point where
@@ -65,12 +59,9 @@ def myPoint3 :=
   give you the option of inserting a template definition
   with the field names listed for you.
 
-In the first example, the fields of the structure are named
-explicitly.
-The function ``Point.mk`` referred to in the definition of ``myPoint3``
-is known as the *constructor* for the ``Point`` structure, because
-it serves to construct elements.
-You can specify a different name if you want, like ``build``.
+第一个例子中，我们明确地指明了结构体的各个字段。
+在定义 ``myPoint3`` 时用到的函数 ``Point.mk`` 叫做 ``Point`` 结构体的构造函数（constructor），用于构造结构体成员。
+你也可以为构造函数指定一个不同的名字，比如 ``build``。
 EXAMPLES: -/
 -- QUOTE:
 structure Point' where build ::
@@ -82,21 +73,14 @@ structure Point' where build ::
 -- QUOTE.
 
 /- TEXT:
-The next two examples show how to define functions on structures.
-Whereas the second example makes the ``Point.mk``
-constructor explicit, the first example uses an anonymous constructor
-for brevity.
-Lean can infer the relevant constructor from the indicated type of
-``add``.
-It is conventional to put definitions and theorems associated
-with a structure like ``Point`` in a namespace with the same name.
-In the example below, because we have opened the ``Point``
-namespace, the full name of ``add`` is ``Point.add``.
-When the namespace is not open, we have to use the full name.
-But remember that it is often convenient to use
-anonymous projection notation,
-which allows us to write ``a.add b`` instead of ``Point.add a b``.
-Lean interprets the former as the latter because ``a`` has type ``Point``.
+接下来的两个例子展示了如何定义结构体的函数。
+第二个例子中明确指出了构造函数 ``Point.mk`` 中的字段名，而第一个例子则使用更为简洁的匿名构造函数。
+Lean 能根据 ``add`` 的目标类型推断出所需的构造函数。
+通常，我们会将与结构体（例如这里的 ``Point``）相关的定义和定理放在一个同名的命名空间（namespace）中。
+在下面的示例中，由于我们启用了 ``Point`` 命名空间，所以 ``add`` 的完整名称实际是 ``Point.add``。
+当命名空间没被启用时，就得使用完整名称。
+不过这时也可以使用匿名投影记号（anonymous projection notation），它允许我们用 ``a.add b`` 代替 ``Point.add a b``。
+因为 a 的类型是 ``Point``，Lean 能在没有开启对应命名空间的时候将 ``a.add b`` 推断为 ``Point.add a b``。
 BOTH: -/
 -- QUOTE:
 namespace Point
@@ -120,16 +104,10 @@ end Point
 -- QUOTE.
 
 /- TEXT:
-Below we will continue to put definitions in the relevant
-namespace, but we will leave the namespacing commands out of the quoted
-snippets. To prove properties of the addition function,
-we can use ``rw`` to expand the definition and ``ext`` to
-reduce an equation between two elements of the structure to equations
-between the components.
-Below we use the ``protected`` keyword so that the name of the
-theorem is ``Point.add_comm``, even when the namespace is open.
-This is helpful when we want to avoid ambiguity with a generic
-theorem like ``add_comm``.
+接下来我们继续在相关命名空间中添加定义，但在引用的代码片段中会省略开关命名空间相关的指令。
+在证明加法函数性质时，可使用 ``rw`` 来展开定义，并用 ``ext`` 将结构体两个实例之间的等号转化为它们各个组成部分之间的等号。
+下面的代码使用 ``protected`` 关键字，使得在命名空间打开的情况下定理的名字依然是 ``Point.add_comm``。
+当我们希望避免与泛型定理如 ``add_comm`` 产生歧义时，这样做是有帮助的。
 EXAMPLES: -/
 namespace Point
 
@@ -143,8 +121,7 @@ example (a b : Point) : add a b = add b a := by simp [add, add_comm]
 -- QUOTE.
 
 /- TEXT:
-Because Lean can unfold definitions and simplify projections
-internally, sometimes the equations we want hold definitionally.
+因为 Lean 能在内部自动展开定义并简化投影，所以有时我们需要的等式在定义上就自动成立。
 EXAMPLES: -/
 -- QUOTE:
 theorem add_x (a b : Point) : (a.add b).x = a.x + b.x :=
@@ -152,16 +129,11 @@ theorem add_x (a b : Point) : (a.add b).x = a.x + b.x :=
 -- QUOTE.
 
 /- TEXT:
-It is also possible to define functions on structures using
-pattern matching,
-in a manner similar to the way we defined recursive functions in
-:numref:`section_induction_and_recursion`.
-The definitions ``addAlt`` and ``addAlt'`` below are essentially the
-same; the only difference is that we use anonymous constructor notation
-in the second.
-Although it is sometimes convenient to define functions this way, and structural eta-reduction makes
-this alternative definitionally equivalent, it can make things less convenient in later proofs.
-In particular, `rw [addAlt]` leaves us with a messier goal view containing a `match` statement.
+与在
+:numref:`section_induction_and_recursion`
+中定义递归函数类似，我们定义函数时也可以使用模式匹配。
+下面定义的 ``addAlt`` 和 ``addAlt'`` 本质上是相同的，形式上的的区别在于我们在后者的定义中使用了匿名构造函数。
+虽然以此方式定义函数有时会显得更加简洁，并且结构化 η-规约（structural eta-reduction）也确保了这种简写在定义上的等价性，但这么做可能会为后续的证明带来不便。
 EXAMPLES: -/
 -- QUOTE:
 def addAlt : Point → Point → Point
@@ -181,13 +153,10 @@ theorem addAlt_comm (a b : Point) : addAlt a b = addAlt b a := by
 -- QUOTE.
 
 /- TEXT:
-Mathematical constructions often involve taking apart bundled information and
-putting it together again in different ways.
-It therefore makes sense that Lean and Mathlib offer so many ways
-of doing this efficiently.
-As an exercise, try proving that ``Point.add`` is associative.
-Then define scalar multiplication for a point and show that it
-distributes over addition.
+数学构造通常涉及将捆绑的信息拆分开来，并以不同的方式重新组合。
+这也是 Lean 和 Mathlib 提供如此多方法来高效处理这些操作的原因。
+作为练习，请尝试证明 ``Point.add`` 是满足结合律的。
+然后请定义点的标量乘法并证明其满足对加法的分配律。
 BOTH: -/
 -- QUOTE:
 protected theorem add_assoc (a b c : Point) : (a.add b).add c = a.add (b.add c) := by
@@ -216,28 +185,17 @@ SOLUTIONS: -/
 end Point
 
 /- TEXT:
-Using structures is only the first step on the road to
-algebraic abstraction.
-We don't yet have a way to link ``Point.add`` to the generic ``+`` symbol,
-or to connect ``Point.add_comm`` and ``Point.add_assoc`` to
-the generic ``add_comm`` and ``add_assoc`` theorems.
-These tasks belong to the *algebraic* aspect of using structures,
-and we will explain how to carry them out in the next section.
-For now, just think of a structure as a way of bundling together objects
-and information.
+使用结构体是走向代数抽象的第一步。
+我们目前还没有方法将 ``Point.add`` 与泛型的 ``+`` 符号联系起来，
+抑或是将 ``Point.add_comm``、``Point.add_assoc`` 与泛型的 ``add_comm``、``add_assoc`` 定理联系起来。
+这些任务属于结构体在代数层面的应用，我们将在下一节介绍如何具体实现。
+对现在来说，我们只需要把结构体视作一种捆绑对象和信息的方法。
 
-It is especially useful that a structure can specify not only
-data types but also constraints that the data must satisfy.
-In Lean, the latter are represented as fields of type ``Prop``.
-For example, the *standard 2-simplex* is defined to be the set of
-points :math:`(x, y, z)` satisfying :math:`x ≥ 0`, :math:`y ≥ 0`, :math:`z ≥ 0`,
-and :math:`x + y + z = 1`.
-If you are not familiar with the notion, you should draw a picture,
-and convince yourself that this set is
-the equilateral triangle in three-space with vertices
-:math:`(1, 0, 0)`, :math:`(0, 1, 0)`, and :math:`(0, 0, 1)`,
-together with its interior.
-We can represent it in Lean as follows:
+在结构体中我们不仅可以指定数据类型，还可以指定数据需要满足的约束。
+在 Lean 中，后者被表示为类型 ``Prop`` 的字段。
+例如，标准2-单纯形（standard 2-simplex）定义为满足 :math:`x ≥ 0`，:math:`y ≥ 0`，:math:`z ≥ 0`，:math:`x + y + z = 1` 的点 :math:`(x, y, z)` 的集合。
+如果你不熟悉这个概念，可以画个图，其实这个集合就是三维空间中以 :math:`(1, 0, 0)`，:math:`(0, 1, 0)`，和 :math:`(0, 0, 1)` 为顶点的等边三角形以及其内部。
+在 Lean 中可以这样形式化表示：
 BOTH: -/
 -- QUOTE:
 structure StandardTwoSimplex where
@@ -251,9 +209,8 @@ structure StandardTwoSimplex where
 -- QUOTE.
 
 /- TEXT:
-Notice that the last four fields refer to ``x``, ``y``, and ``z``,
-that is, the first three fields.
-We can define a map from the two-simplex to itself that swaps ``x`` and ``y``:
+请注意，最后四个字段用到的 ``x``，``y``，``z`` 指的就是前三个字段。
+我们可以定义一个从2-单纯形到其自身的映射，该映射交换 ``x`` 和 ``y``：
 BOTH: -/
 namespace StandardTwoSimplex
 
@@ -272,9 +229,8 @@ def swapXy (a : StandardTwoSimplex) : StandardTwoSimplex
 
 -- OMIT: (TODO) add a link when we have a good explanation of noncomputable section.
 /- TEXT:
-More interestingly, we can compute the midpoint of two points on
-the simplex. We have added the phrase ``noncomputable section``
-at the beginning of this file in order to use division on the real numbers.
+有趣的来了，我们可以计算单纯形内两个点的中点。
+为此需要先在文件开头加上 ``noncomputable section`` 语句以便使用实数上的除法。
 BOTH: -/
 -- QUOTE:
 noncomputable section
@@ -292,15 +248,12 @@ def midpoint (a b : StandardTwoSimplex) : StandardTwoSimplex
 -- QUOTE.
 
 /- TEXT:
-Here we have established ``x_nonneg``, ``y_nonneg``, and ``z_nonneg``
-with concise proof terms, but establish ``sum_eq`` in tactic mode,
-using ``by``.
+上面的代码中，对于 ``x_nonneg``，``y_nonneg``，``z_nonneg``，我们用简洁的证明项即可建立。
+而对于 ``sum_eq`` ，我们选择使用 ``by`` 在策略模式下进行证明。
 
-Given a parameter :math:`\lambda` satisfying :math:`0 \le \lambda \le 1`,
-we can take the weighted average :math:`\lambda a + (1 - \lambda) b`
-of two points :math:`a` and :math:`b` in the standard 2-simplex.
-We challenge you to define that function, in analogy to the ``midpoint``
-function above.
+给定参数 :math:`\lambda` 满足 :math:`0 \le \lambda \le 1`，
+可定义标准2-单纯形中 :math:`a` 和 :math:`b` 两点的加权平均为 :math:`\lambda a + (1 - \lambda) b`。
+请尝试参考前面的 ``midpoint`` 形式化定义该加权平均。
 BOTH: -/
 -- QUOTE:
 def weightedAverage (lambda : Real) (lambda_nonneg : 0 ≤ lambda) (lambda_le : lambda ≤ 1)
@@ -328,12 +281,9 @@ end
 end StandardTwoSimplex
 
 /- TEXT:
-Structures can depend on parameters.
-For example, we can generalize the standard 2-simplex to the standard
-:math:`n`-simplex for any :math:`n`.
-At this stage, you don't have to know anything about the type ``Fin n``
-except that it has :math:`n` elements, and that Lean knows
-how to sum over it.
+结构体还可以依赖于参数。
+例如，可以将标准2-单纯形推广到任意维数 :math:`n` 下的 :math:`n` -单纯形。
+目前阶段，你不需要对 ``Fin n`` 了解太多，只需知道它有 :math:`n` 个元素，并且 Lean 直到如何在其上进行就和操作即可。
 BOTH: -/
 -- QUOTE:
 open BigOperators
@@ -362,10 +312,9 @@ end StandardSimplex
 -- QUOTE.
 
 /- TEXT:
-As an exercise, see if you can define the weighted average of
-two points in the standard :math:`n`-simplex.
-You can use ``Finset.sum_add_distrib``
-and ``Finset.mul_sum`` to manipulate the relevant sums.
+作为额外练习，请尝试定义一下标准 :math`n` -单纯形中两点的加权平均。
+可以使用 ``Finset.sum_add_distrib`` 和 ``Finset.mul_sum`` 来实现相关的求和操作。
+
 SOLUTIONS: -/
 namespace StandardSimplex
 
@@ -383,12 +332,9 @@ def weightedAverage {n : ℕ} (lambda : Real) (lambda_nonneg : 0 ≤ lambda) (la
 end StandardSimplex
 
 /- TEXT:
-We have seen that structures can be used to bundle together data
-and properties.
-Interestingly, they can also be used to bundle together properties
-without the data.
-For example, the next structure, ``IsLinear``, bundles together
-the two components of linearity.
+前面我们已经了解到结构体可以用来将数据和属性打包在一起。
+有趣的是，结构体也可以用来打包脱离具体数据的抽象属性。
+例如，下面的结构体 ``IsLinear``，将线性性（linearity）的两个主要组成部分打包在了一起。
 EXAMPLES: -/
 -- QUOTE:
 structure IsLinear (f : ℝ → ℝ) where
@@ -405,10 +351,8 @@ end
 -- QUOTE.
 
 /- TEXT:
-It is worth pointing out that structures are not the only way to bundle
-together data.
-The ``Point`` data structure can be defined using the generic type product,
-and ``IsLinear`` can be defined with a simple ``and``.
+值得一提的是，结构体并不是打包数据的唯一方法。
+前面提到的 ``Point`` 数据结构也可以用泛型乘积类型来定义，而 ``IsLinear`` 可以使用简单的 ``and`` 来定义。
 EXAMPLES: -/
 -- QUOTE:
 def Point'' :=
@@ -419,16 +363,11 @@ def IsLinear' (f : ℝ → ℝ) :=
 -- QUOTE.
 
 /- TEXT:
-Generic type constructions can even be used in place of structures
-with dependencies between their components.
-For example, the *subtype* construction combines a piece of data with
-a property.
-You can think of the type ``PReal`` in the next example as being
-the type of positive real numbers.
-Any ``x : PReal`` has two components: the value, and the property of being
-positive.
-You can access these components as ``x.val``, which has type ``ℝ``,
-and ``x.property``, which represents the fact ``0 < x.val``.
+泛型类型构造甚至可以替代包含依赖关系的结构体。
+例如，子类型（subtype）构造结合了一段数据以及一条属性。
+你可以将下面例子中的 ``PReal`` 看作正实数类型。
+每个 ``x : PReal`` 都有两个分量：它的值，以及“它是正的”这一属性。
+你可以分别用 ``x.val`` 与 ``x.property`` 来访问这两个分量，其中前者的类型为 ``ℝ``，后者是一个属性 ``0 < x.val``。
 EXAMPLES: -/
 -- QUOTE:
 def PReal :=
@@ -446,8 +385,7 @@ end
 -- QUOTE.
 
 /- TEXT:
-We could have used subtypes to define the standard 2-simplex,
-as well as the standard :math:`n`-simplex for an arbitrary :math:`n`.
+我们也可以用子类型来定义前面的标准2-单纯形，以及任意维数 :math:`n` 下的标准 :math:`n` -单纯形。
 EXAMPLES: -/
 -- QUOTE:
 def StandardTwoSimplex' :=
@@ -458,9 +396,7 @@ def StandardSimplex' (n : ℕ) :=
 -- QUOTE.
 
 /- TEXT:
-Similarly, *Sigma types* are generalizations of ordered pairs,
-whereby the type of the second component depends on the type of
-the first.
+类似地，Sigma 类型是有序对的推广，其中第二个分量的类型依赖于第一个分量。
 EXAMPLES: -/
 -- QUOTE:
 def StdSimplex := Σ n : ℕ, StandardSimplex n
@@ -478,23 +414,14 @@ end
 -- QUOTE.
 
 /- TEXT:
-Given ``s : StdSimplex``, the first component ``s.fst`` is a natural
-number, and the second component is an element of the corresponding
-simplex ``StandardSimplex s.fst``.
-The difference between a Sigma type and a subtype is that
-the second component of a Sigma type is data rather than a proposition.
+给定 ``s : StdSimplex``，它的第一个分量 ``s.fst`` 是个自然数，第二个分量是对应维数下标准单纯形中的一个元素 ``StandardSimplex s.fst``。
+Sigma 类型与子类型的区别在于 Sigma 类型的第二个分量是数据而非属性。
 
-But even though we can use products, subtypes, and Sigma types
-instead of structures, using structures has a number of advantages.
-Defining a structure abstracts away the underlying representation
-and provides custom names for the functions that access the components.
-This makes proofs more robust:
-proofs that rely only on the interface to a structure
-will generally continue to work when we change the definition,
-as long as we redefine the old accessors in terms of the new definition.
-Moreover, as we are about to see, Lean provides support for
-weaving structures together into a rich, interconnected hierarchy,
-and for managing the interactions between them.
+尽管可以使用乘积类型、子类型、 Sigma 类型等替代结构体，但使用结构体其实有许多好处。
+定义结构体可以抽象出底层的表达，且能为成员提供自定义的名称以供访问。
+这使得证明更加健壮：
+对于那些仅依赖结构体接口的证明，通常只需用新接口替换旧接口，就能让证明代码在结构体定义变更后依然有效。
+此外，正如我们即将看到的，Lean 支持将各种结构体编织成一个丰富的、相互关联的层次体系，以管理它们之间的交互关系。
 TEXT. -/
 /- OMIT: (TODO)
 Comments from Patrick:

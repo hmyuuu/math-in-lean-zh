@@ -1,0 +1,10 @@
+structure		结构体
+ring		环
+lattice		格
+annotation	注解
+extensionality	外延性
+anonymous projection notation	匿名投影记号
+structural eta-reduction
+standard 2-simplex		标准 2-单纯形
+proof terms
+generic type product
