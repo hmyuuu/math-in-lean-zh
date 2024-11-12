@@ -246,8 +246,7 @@ example : GaloisInsertion (Submodule.span K) ((↑) : Submodule K V → Set V) :
 When those are not enough, one can use the relevant induction principle
 ``Submodule.span_induction`` which ensures a property holds for every element of the
 span of ``s`` as long as it holds on ``zero`` and elements of ``s`` and is stable under
-sum and scalar multiplication. As usual with such lemmas, Lean sometimes needs help
-to figure out the predicate we are interested in.
+sum and scalar multiplication.
 
 As an exercise, let us reprove one implication of ``Submodule.mem_sup``.
 Remember that you can use the `module` tactic to close goals that follow from
@@ -256,54 +255,38 @@ EXAMPLES: -/
 -- QUOTE:
 
 
-variable {R M S : Type*}
-variable [Semiring R] [AddCommMonoid M] [Module R M]
-variable {x : M} (p : Submodule R M)
-variable {s t : Set M}
-
-theorem span_ind {p : M → Prop}
-    (h : x ∈ Submodule.span R s)
-    (mem : ∀ x ∈ s, p x)
-    (zero : p 0)
-    (add : ∀ x y, p x → p y → p (x + y))
-    (smul : ∀ (a : R) (x), p x → p (a • x)) : p x := by sorry
-
-theorem span_induction {p : (x : M) → x ∈ Submodule.span R s → Prop}
-    (mem : ∀ (x) (h : x ∈ s), p x (Submodule.subset_span h))
-    (zero : p 0 (Submodule.zero_mem _))
-    (add : ∀ x y hx hy, p x hx → p y hy → p (x + y) (Submodule.add_mem _ ‹_› ‹_›))
-    (smul : ∀ (a : R) (x hx), p x hx → p (a • x) (Submodule.smul_mem _ _ ‹_›)) {x}
-    (hx : x ∈ Submodule.span R s) : p x hx := by sorry
-
-
-variable {S T : Submodule K V} {x : V} (h : x ∈ Submodule.span K (↑S ∪ ↑T)) (p : (x : V) → x ∈ Submodule.span K (↑S ∪ ↑T) → Prop)
-#check p x h
-
-#check fun (g : String → Bool) (f : Nat → String) (x : Nat) => g (f x)
--- (String → Bool) → (Nat → String) → Nat → Bool
-
-
 example {S T : Submodule K V} {x : V} (h : x ∈ S ⊔ T) :
-    ∃ s ∈ S, ∃ t ∈ T, x = s + t  := by sorry
+    ∃ s ∈ S, ∃ t ∈ T, x = s + t  := by
+  rw [← S.span_eq, ← T.span_eq, ← Submodule.span_union] at h
+  induction h using Submodule.span_induction with
 /- EXAMPLES:
-  · sorry
-  · sorry
-  · sorry
-  · sorry
+  | mem y h =>
+      sorry
+  | zero =>
+      sorry
+  | add x y hx hy hx' hy' =>
+      sorry
+  | smul a x hx hx' =>
+      sorry
 SOLUTIONS: -/
-  -- · rintro x (hx|hx)
-  --   · use x, hx, 0, T.zero_mem
-  --     module
-  --   · use 0, S.zero_mem, x, hx
-  --     module
-  -- · use 0, S.zero_mem, 0, T.zero_mem
-  --   module
-  -- · rintro - - ⟨s, hs, t, ht, rfl⟩ ⟨s', hs', t', ht', rfl⟩
-  --   use s + s', S.add_mem hs hs', t + t', T.add_mem ht ht'
-  --   module
-  -- · rintro a - ⟨s, hs, t, ht, rfl⟩
-  --   use a • s, S.smul_mem a hs, a • t, T.smul_mem a ht
-  --   module
+  | mem x h =>
+      rcases h with (hx|hx)
+      · use x, hx, 0, T.zero_mem
+        module
+      · use 0, S.zero_mem, x, hx
+        module
+  | zero =>
+      use 0, S.zero_mem, 0, T.zero_mem
+      module
+  | add x y hx hy hx' hy' =>
+      rcases hx' with ⟨s, hs, t, ht, rfl⟩
+      rcases hy' with ⟨s', hs', t', ht', rfl⟩
+      use s + s', S.add_mem hs hs', t + t', T.add_mem ht ht'
+      module
+  | smul a x hx hx' =>
+      rcases hx' with ⟨s, hs, t, ht, rfl⟩
+      use a • s, S.smul_mem a hs, a • t, T.smul_mem a ht
+      module
 
 -- QUOTE.
 /- TEXT:

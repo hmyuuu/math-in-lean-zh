@@ -10,41 +10,23 @@ namespace C03S01
 蕴含和全称量词
 ----------------------------------------
 
-Consider the statement after the ``#check``:
+考察 ``#check`` 后面的语句：
 TEXT. -/
 -- QUOTE:
 #check ∀ x : ℝ, 0 ≤ x → |x| = x
 -- QUOTE.
 
 /- TEXT:
-In words, we would say "for every real number ``x``, if ``0 ≤ x`` then
-the absolute value of ``x`` equals ``x``".
-We can also have more complicated statements like:
+自然语言表述为 “对于每个实数 ``x`` ，若 ``0 ≤ x`` ，则 ``x`` 的绝对值等于 ``x`` ”。我们还可以有更复杂的语句，例如：
 TEXT. -/
 -- QUOTE:
 #check ∀ x y ε : ℝ, 0 < ε → ε ≤ 1 → |x| < ε → |y| < ε → |x * y| < ε
 -- QUOTE.
 
 /- TEXT:
-In words, we would say "for every ``x``, ``y``, and ``ε``,
-if ``0 < ε ≤ 1``, the absolute value of ``x`` is less than ``ε``,
-and the absolute value of ``y`` is less than ``ε``,
-then the absolute value of ``x * y`` is less than ``ε``."
-In Lean, in a sequence of implications there are
-implicit parentheses grouped to the right.
-So the expression above means
-"if ``0 < ε`` then if ``ε ≤ 1`` then if ``|x| < ε`` ..."
-As a result, the expression says that all the
-assumptions together imply the conclusion.
+自然语言表述为 "对于任意的 ``x``, ``y``, 以及 ``ε`` ，若 ``0 < ε ≤ 1``, ``x`` 的绝对值小于 ``ε``, 且 ``y`` 的绝对值小于 ``ε``, 则 ``x * y`` 的绝对值小于 ``ε``." 在 Lean 中，蕴含是右结合的。所以上述表达式的意思是 "若 ``0 < ε``, 则若 ``ε ≤ 1``, 则若 ``|x| < ε`` ..." 因此，表达式表示所有假设组合在一起导出结论。
 
-You have already seen that even though the universal quantifier
-in this statement
-ranges over objects and the implication arrows introduce hypotheses,
-Lean treats the two in very similar ways.
-In particular, if you have proved a theorem of that form,
-you can apply it to objects and hypotheses in the same way.
-We will use as an example the following statement that we will help you to prove a
-bit later:
+尽管这个语句中全称量词的取值范围是对象，而蕴涵箭头引入的是假设，但 Lean 处理这两者的方式非常相似。如果你已经证明了这种形式的定理，你就可以用同样的方法把它应用于对象和假设。让我们以它为例，稍后会证明这个例子。
 TEXT. -/
 -- QUOTE:
 theorem my_lemma : ∀ x y ε : ℝ, 0 < ε → ε ≤ 1 → |x| < ε → |y| < ε → |x * y| < ε :=
@@ -63,11 +45,7 @@ end
 -- QUOTE.
 
 /- TEXT:
-You have also already seen that it is common in Lean
-to use curly brackets to make quantified variables implicit
-when they can be inferred from subsequent hypotheses.
-When we do that, we can just apply a lemma to the hypotheses without
-mentioning the objects.
+Lean 中，当被量词限定的变量可以从后面的假设中推断出来时，常常使用花括号将其设为隐式，这样一来我们就可以直接将引理应用到假设中，而无需提及对象。
 TEXT. -/
 -- QUOTE:
 theorem my_lemma2 : ∀ {x y ε : ℝ}, 0 < ε → ε ≤ 1 → |x| < ε → |y| < ε → |x * y| < ε :=
@@ -84,16 +62,11 @@ end
 -- QUOTE.
 
 /- TEXT:
-At this stage, you also know that if you use
-the ``apply`` tactic to apply ``my_lemma``
-to a goal of the form ``|a * b| < δ``,
-you are left with new goals that require you to  prove
-each of the hypotheses.
+如果使用 ``apply`` 策略将 ``my_lemma`` 应用于形如 ``|a * b| < δ`` 的目标，就会把引理的每个假设作为新的目标。
 
 .. index:: intro, tactics; intro
 
-To prove a statement like this, use the ``intro`` tactic.
-Take a look at what it does in this example:
+要证明引理，需使用 ``intro`` 策略。
 TEXT. -/
 -- QUOTE:
 theorem my_lemma3 :
@@ -103,22 +76,9 @@ theorem my_lemma3 :
 -- QUOTE.
 
 /- TEXT:
-We can use any names we want for the universally quantified variables;
-they do not have to be ``x``, ``y``, and ``ε``.
-Notice that we have to introduce the variables
-even though they are marked implicit:
-making them implicit means that we leave them out when
-we write an expression *using* ``my_lemma``,
-but they are still an essential part of the statement
-that we are proving.
-After the ``intro`` command,
-the goal is what it would have been at the start if we
-listed all the variables and hypotheses *before* the colon,
-as we did in the last section.
-In a moment, we will see why it is sometimes necessary to
-introduce variables and hypotheses after the proof begins.
+引入被全称量词限定的变量时可以使用任何名字，并非一定要是 ``x``, ``y`` 和 ``ε`` 。隐式变量也必须被引入，因为隐式变量的意思是，当我们 **使用** ``my_lemma`` 时可以不写它们，但证明时还得写，因为它组成了待证命题。下面将看到为什么有时候有必要在证明开始之后引入变量和假设。
 
-To help you prove the lemma, we will start you off:
+你来证明后边的部分。提示：可能会用到 ``abs_mul``, ``mul_le_mul``, ``abs_nonneg``, ``mul_lt_mul_right`` 和 ``one_mul`` 。另外回忆知识点：你可以使用 ``.mp`` 和 ``.mpr`` 或者 ``.1`` 和 ``.2`` 来提取一个当且仅当语句的两个方向。
 TEXT. -/
 -- QUOTE:
 -- BOTH:
@@ -141,14 +101,7 @@ SOLUTIONS: -/
 -- QUOTE.
 
 /- TEXT:
-Finish the proof using the theorems
-``abs_mul``, ``mul_le_mul``, ``abs_nonneg``,
-``mul_lt_mul_right``, and ``one_mul``.
-Remember that you can find theorems like these using
-Ctrl-space completion (or Cmd-space completion on a Mac).
-Remember also that you can use ``.mp`` and ``.mpr``
-or ``.1`` and ``.2`` to extract the two directions
-of an if-and-only-if statement.
+全称量词通常隐藏在定义中，Lean 会在必要时展开定义以暴露它们。例如，让我们定义两个谓词，``FnUb f a`` 和 ``FnLb f a``, 其中 ``f`` 是一个从实数到实数的函数，而 ``a`` 是一个实数。第一个谓词是说 ``a`` 是 ``f`` 的值的一个上界，而第二个是说 ``a`` 是 ``f`` 的值的一个下界。
 
 Universal quantifiers are often hidden in definitions,
 and Lean will unfold definitions to expose them when necessary.
