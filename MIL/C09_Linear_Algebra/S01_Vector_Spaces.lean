@@ -20,9 +20,14 @@ However you can find information about matrices in
 :numref:`Section %s <matrices>` which does not logically depend on this abstract theory.
 Mathlib actually deals with a more general version of linear algebra involving the word module,
 but for now we will pretend this is only an eccentric spelling habit.
+我们将直接开始抽象线性代数，它发生在任何域上的向量空间中。然而，您可以在
+:numref:`Section %s <matrices>` 中找到关于矩阵的信息，这并不依赖于这个抽象理论。Mathlib实际上处
+理的是涉及模的更一般的线性代数版本，但现在我们将假装这只是一种古怪的拼写习惯。
 
 The way to say “let :math:`K` be a field and let :math:`V` be a vector space over :math:`K`”
 (and make them implicit arguments to later results) is:
+表述“设 :math:`K` 是一个域，并且设 :math:`V` 是 :math:`K` 上的一个向量空间”（并将它们作为后来的
+结果的隐式参数）的方法是：
 
 EXAMPLES: -/
 
@@ -42,6 +47,13 @@ group structure on a type :math:`V`, it would go hunting for vector space
 structures using a *completely unspecified* field :math:`K` that cannot be inferred
 from :math:`V`.
 This would be very bad for the type class synthesis system.
+我们在 :numref:`Chapter %s <hierarchies>` 中解释了为什么我们需要两个单独的类型类
+``[AddCommGroup V] [Module K V]``。更简短的版本如下。从数学上我们想要说，拥有一个 :math:`K`-向
+量空间结构隐含了我们在:numref:`Chapter %s <hierarchies>` 中解释了为什么我们需要两个独立的类型类
+``[AddCommGroup V] [Module K V]``。简而言之，数学上我们希望表示拥有一个 :math:`K`-向量空间结构
+意味着拥有一个可交换加法群结构。我们可以将这一点告诉 Lean。但是，如果这样做，那么每当 Lean 需要
+在某个类型 :math:`V` 上找到一个群结构时，它将会开始寻找向量空间结构，但使用的是一个完全不确定的
+字段:math:`K`，而这个字段无法从 :math:`V` 中推导出来。这对类型类综合系统而言会非常糟糕。
 
 The multiplication of a vector `v` by a scalar `a` is denoted by
 `a • v`. We list a couple of algebraic rules about the interaction of this
@@ -51,7 +63,10 @@ following from the axioms of vector spaces and fields, in the same way the
 `ring` tactic is used in commutative rings or the `group` tactic is used in
 groups. But it is still useful to remember that scalar
 multiplication is abbreviated `smul` in lemma names.
-
+向量 v 与标量 a 的乘积记为`a • v`。我们在以下示例中列出了一些关于此运算与加法交互的代数规则。
+当然，`simp` 或 `apply?` 可以找到这些证明。还有一个 `module` 策略，可以解决基于向量空间和域公理
+的目标，就像`ring` 策略用于交换环、`group` 策略用于群一样。但仍然有必要记住，在引理名称中，标量
+乘法简写为 `smul`。
 
 EXAMPLES: -/
 
@@ -70,9 +85,13 @@ example (a b : K) (u : V) : a • b • u = b • a • u :=
 As a quick note for more advanced readers, let us point out that, as suggested by
 terminology, Mathlib’s linear algebra also covers modules over (not necessarily commutative)
 rings.
+给进阶读者的一个简要提示，正如术语所暗示的那样，Mathlib 的线性代数还涵盖了（不一定交换的）环上
+的模。
 In fact it even covers semi-modules over semi-rings. If you think you do not need
 this level of generality, you can meditate the following example that nicely captures
 a lot of algebraic rules about ideals acting on submodules:
+实际上，它甚至涵盖了半环上的半模。如果你认为不需要这种层次的普遍性，可以思考下面的例子，它很好
+地捕捉了理想作用于子模的许多代数规则：
 EXAMPLES: -/
 -- QUOTE:
 example {R M : Type*} [CommSemiring R] [AddCommMonoid M] [Module R M] :
@@ -91,6 +110,9 @@ Next we need linear maps. Like group morphisms, linear maps in Mathlib are bundl
 made of a map and proofs of its linearity properties.
 Those bundled maps are converted to ordinary functions when applied.
 See :numref:`Chapter %s <hierarchies>` for more information about this design.
+接下来我们需要线性映射。与群同态类似，Mathlib 中的线性映射是捆绑映射，即由一个映射及其线性性质
+的证明组成的包。当应用这些捆绑映射时，它们会被转换为普通函数。有关此设计的更多信息，请参见
+:numref:Chapter %s <hierarchies>。
 
 The type of linear maps between two ``K``-vector spaces
 ``V`` and ``W`` is denoted by ``V →ₗ[K] W``. The subscript `l` stands for linear.
@@ -99,6 +121,10 @@ But this is crucial when several fields come into play.
 For instance real-linear maps from :math:`ℂ` to :math:`ℂ` are every map :math:`z ↦ az + b\bar{z}`
 while only the maps :math:`z ↦ az` are complex linear, and this difference is crucial in
 complex analysis.
+两个 ``K``-向量空间 ``V`` 和 ``W`` 之间的线性映射类型记为 ``V →ₗ[K] W``。下标 `l` 表示线性。
+起初在此符号中指定 ``K`` 可能会感觉有些奇怪，但当涉及多个字段时，这一点至关重要。例如，从
+:math:`ℂ` 到 :math:`ℂ` 的实线性映射是每个形如 :math:`z ↦ az + b\bar{z}` 的映射，而仅有形如
+:math:`z ↦ az` 的映射是复线性的，这一区别在复分析中至关重要。
 
 EXAMPLES: -/
 -- QUOTE:
@@ -118,7 +144,9 @@ example (v w : V) : φ (v + w) = φ v + φ w :=
 /- TEXT:
 Note that ``V →ₗ[K] W`` itself carries interesting algebraic structures (this
 is part of the motivation for bundling those maps).
+注意，``V →ₗ[K] W`` 本身带有有趣的代数结构（这也是将这些映射捆绑在一起的动机之一）。
 It is a ``K``-vector space so we can add linear maps and multiply them by scalars.
+它是一个 ``K``-向量空间，因此我们可以对线性映射进行加法运算，并用标量对其进行乘法运算。
 
 EXAMPLES: -/
 -- QUOTE:
@@ -131,6 +159,7 @@ variable (ψ : V →ₗ[K] W)
 /- TEXT:
 One downside of using bundled maps is that we cannot use ordinary function composition.
 We need to use ``LinearMap.comp`` or the notation ``∘ₗ``.
+使用捆绑映射的一个缺点是我们无法使用普通的函数复合。我们需要使用 ``LinearMap.comp`` 或符号 ``∘ₗ``。
 
 EXAMPLES: -/
 -- QUOTE:
@@ -146,6 +175,9 @@ First we can build the structure by providing the function and the linearity pro
 As usual, this is facilitated by the structure code action: you can type
 ``example : V →ₗ[K] V := _`` and use the code action “Generate a skeleton” attached to the
 underscore.
+构造线性映射主要有两种方法。首先，我们可以通过提供函数和线性性的证明来构建该结构。
+通常，这可以通过结构代码操作来实现：你可以输入 ``example : V →ₗ[K] V := _``，然后使用附加在
+下划线上的代码操作“生成骨架”。
 EXAMPLES: -/
 -- QUOTE:
 
@@ -161,12 +193,20 @@ You may wonder why the proof fields of ``LinearMap`` have names ending with a pr
 This is because they are defined before the coercion to functions is defined, hence they are
 phrased in terms of ``LinearMap.toFun``. Then they are restated as ``LinearMap.map_add``
 and ``LinearMap.map_smul`` in terms of the coercion to function.
+你可能会好奇为什么 ``LinearMap`` 的证明字段名称以撇号结尾。这是因为这些字段是在定义为函数的
+强制转换之前定义的，因此它们是基于 ``LinearMap.toFun`` 表述的。然后它们在转换为函数后重新表
+述为 ``LinearMap.map_add`` 和 ``LinearMap.map_smul``。
 This is not yet the end of the story. One also wants a version of ``map_add`` that applies to
 any (bundled) map preserving addition, such as additive group morphisms, linear maps, continuous
 linear maps, ``K``-algebra maps etc… This one is ``map_add`` (in the root namespace).
 The intermediate version, ``LinearMap.map_add`` is a bit redundant but allows to use dot notation, which
 can be nice sometimes. A similar story exists for ``map_smul``, and the general framework
 is explained in :numref:`Chapter %s <hierarchies>`.
+这还不是故事的结尾。我们还希望有一个适用于任何保持加法的（捆绑）映射的 ``map_add`` 版本，
+比如加法群同态、线性映射、连续线性映射、``K``-代数映射等。这一版本是根命名空间中的 ``map_add``。
+中间版本 ``LinearMap.map_add`` 有点冗余，但允许使用点表示法，有时会很方便。类似的情况也适用于
+``map_smul``，整体框架在 :numref:`Chapter %s <hierarchies>` 中有详细说明。
+
 EXAMPLES: -/
 -- QUOTE:
 
