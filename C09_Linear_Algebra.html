@@ -55,10 +55,10 @@
 <li class="toctree-l1"><a class="reference internal" href="C07_Hierarchies.html">7. Hierarchies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="C08_Groups_and_Rings.html">8. &#32676;&#19982;&#29615;</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">9. &#32447;&#24615;&#20195;&#25968;</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#vector-spaces-and-linear-maps">9.1. Vector spaces and linear maps</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#vector-spaces">9.1.1. Vector spaces</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#linear-maps">9.1.2. Linear maps</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">9.1.3. &#21521;&#37327;&#31354;&#38388;&#30340;&#21644;&#19982;&#31215;</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">9.1. &#21521;&#37327;&#31354;&#38388;&#21644;&#32447;&#24615;&#26144;&#23556;</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">9.1.1. &#21521;&#37327;&#31354;&#38388;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">9.1.2. &#32447;&#24615;&#26144;&#23556;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">9.1.3. &#21521;&#37327;&#31354;&#38388;&#30340;&#21644;&#19982;&#31215;</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#subspaces-and-quotients">9.2. Subspaces and quotients</a><ul>
@@ -112,10 +112,10 @@
              
   <section id="linear-algebra">
 <span id="id1"></span><h1><span class="section-number">9. </span>&#32447;&#24615;&#20195;&#25968;<a class="headerlink" href="#linear-algebra" title="Link to this heading">&#61633;</a></h1>
-<section id="vector-spaces-and-linear-maps">
-<h2><span class="section-number">9.1. </span>Vector spaces and linear maps<a class="headerlink" href="#vector-spaces-and-linear-maps" title="Link to this heading">&#61633;</a></h2>
-<section id="vector-spaces">
-<h3><span class="section-number">9.1.1. </span>Vector spaces<a class="headerlink" href="#vector-spaces" title="Link to this heading">&#61633;</a></h3>
+<section id="id2">
+<h2><span class="section-number">9.1. </span>&#21521;&#37327;&#31354;&#38388;&#21644;&#32447;&#24615;&#26144;&#23556;<a class="headerlink" href="#id2" title="Link to this heading">&#61633;</a></h2>
+<section id="id3">
+<h3><span class="section-number">9.1.1. </span>&#21521;&#37327;&#31354;&#38388;<a class="headerlink" href="#id3" title="Link to this heading">&#61633;</a></h3>
 <p id="index-0">We will start directly abstract linear algebra, taking place in a vector space over any field.
 However you can find information about matrices in
 <a class="reference internal" href="#matrices"><span class="std std-numref">Section 9.4.1</span></a> which does not logically depend on this abstract theory.
@@ -186,8 +186,8 @@ a lot of algebraic rules about ideals acting on submodules:</p>
 </pre></div>
 </div>
 </section>
-<section id="linear-maps">
-<h3><span class="section-number">9.1.2. </span>Linear maps<a class="headerlink" href="#linear-maps" title="Link to this heading">&#61633;</a></h3>
+<section id="id4">
+<h3><span class="section-number">9.1.2. </span>&#32447;&#24615;&#26144;&#23556;<a class="headerlink" href="#id4" title="Link to this heading">&#61633;</a></h3>
 <p id="index-1">Next we need linear maps. Like group morphisms, linear maps in Mathlib are bundled maps, i.e. packages
 made of a map and proofs of its linearity properties.
 Those bundled maps are converted to ordinary functions when applied.
@@ -314,8 +314,8 @@ refers to <code class="docutils literal notranslate"><span class="pre">LinearEqu
 <p>&#35831;&#27880;&#24847;&#65292;&#22312;&#19978;&#36848;&#31034;&#20363;&#20013;&#65292;Lean &#20351;&#29992;&#24050;&#22768;&#26126;&#30340;&#31867;&#22411;&#26469;&#29702;&#35299; <code class="docutils literal notranslate"><span class="pre">.ofBijective</span></code> &#25351;&#30340;&#26159; <code class="docutils literal notranslate"><span class="pre">LinearEquiv.ofBijective</span></code>
 &#65288;&#26080;&#38656;&#25171;&#24320;&#20219;&#20309;&#21629;&#21517;&#31354;&#38388;&#65289;&#12290;</p>
 </section>
-<section id="id2">
-<h3><span class="section-number">9.1.3. </span>&#21521;&#37327;&#31354;&#38388;&#30340;&#21644;&#19982;&#31215;<a class="headerlink" href="#id2" title="Link to this heading">&#61633;</a></h3>
+<section id="id5">
+<h3><span class="section-number">9.1.3. </span>&#21521;&#37327;&#31354;&#38388;&#30340;&#21644;&#19982;&#31215;<a class="headerlink" href="#id5" title="Link to this heading">&#61633;</a></h3>
 <p>We can build new vector spaces out of old ones using direct sums and direct
 products.
 Let us start with two vectors spaces. In this case there is no difference between sum and product,
@@ -791,7 +791,7 @@ predicate is <code class="docutils literal notranslate"><span class="pre">End.Ha
 <section id="matrices-bases-and-dimension">
 <span id="matrices-bases-dimension"></span><h2><span class="section-number">9.4. </span>Matrices, bases and dimension<a class="headerlink" href="#matrices-bases-and-dimension" title="Link to this heading">&#61633;</a></h2>
 <section id="matrices">
-<span id="id3"></span><h3><span class="section-number">9.4.1. </span>Matrices<a class="headerlink" href="#matrices" title="Link to this heading">&#61633;</a></h3>
+<span id="id6"></span><h3><span class="section-number">9.4.1. </span>Matrices<a class="headerlink" href="#matrices" title="Link to this heading">&#61633;</a></h3>
 <p id="index-3">Before introducing bases for abstract vector spaces, we go back to the much more elementary setup
 of linear algebra in <span class="math notranslate nohighlight">\(K^n\)</span> for some field <span class="math notranslate nohighlight">\(K\)</span>.
 Here the main objects are vectors and matrices.
