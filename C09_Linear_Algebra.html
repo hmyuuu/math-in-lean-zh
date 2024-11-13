@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>9. Linear algebra &mdash; Mathematics in Lean 0.1 documentation</title>
+  <title>9. &#32447;&#24615;&#20195;&#25968; &mdash; Mathematics in Lean 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=0731ccc3" />
@@ -54,11 +54,11 @@
 <li class="toctree-l1"><a class="reference internal" href="C06_Structures.html">6. &#32467;&#26500;&#20307;&#65288;Structures&#65289;</a></li>
 <li class="toctree-l1"><a class="reference internal" href="C07_Hierarchies.html">7. Hierarchies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="C08_Groups_and_Rings.html">8. &#32676;&#19982;&#29615;</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">9. Linear algebra</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">9. &#32447;&#24615;&#20195;&#25968;</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#vector-spaces-and-linear-maps">9.1. Vector spaces and linear maps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#vector-spaces">9.1.1. Vector spaces</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#linear-maps">9.1.2. Linear maps</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sums-and-products-of-vector-spaces">9.1.3. Sums and products of vector spaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">9.1.3. &#21521;&#37327;&#31354;&#38388;&#30340;&#21644;&#19982;&#31215;</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#subspaces-and-quotients">9.2. Subspaces and quotients</a><ul>
@@ -100,7 +100,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">9. </span>Linear algebra</li>
+      <li class="breadcrumb-item active"><span class="section-number">9. </span>&#32447;&#24615;&#20195;&#25968;</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/C09_Linear_Algebra.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -111,7 +111,7 @@
            <div itemprop="articleBody">
              
   <section id="linear-algebra">
-<span id="id1"></span><h1><span class="section-number">9. </span>Linear algebra<a class="headerlink" href="#linear-algebra" title="Link to this heading">&#61633;</a></h1>
+<span id="id1"></span><h1><span class="section-number">9. </span>&#32447;&#24615;&#20195;&#25968;<a class="headerlink" href="#linear-algebra" title="Link to this heading">&#61633;</a></h1>
 <section id="vector-spaces-and-linear-maps">
 <h2><span class="section-number">9.1. </span>Vector spaces and linear maps<a class="headerlink" href="#vector-spaces-and-linear-maps" title="Link to this heading">&#61633;</a></h2>
 <section id="vector-spaces">
@@ -281,6 +281,11 @@ for Lean to infer <code class="docutils literal notranslate"><span class="pre">V
 But also <code class="docutils literal notranslate"><span class="pre">LinearMap.lsmul</span> <span class="pre">K</span> <span class="pre">V</span></code> is an interesting object by itself: it has type
 <code class="docutils literal notranslate"><span class="pre">K</span> <span class="pre">&#8594;&#8343;[K]</span> <span class="pre">V</span> <span class="pre">&#8594;&#8343;[K]</span> <span class="pre">V</span></code>, meaning it is a <code class="docutils literal notranslate"><span class="pre">K</span></code>-linear map from <code class="docutils literal notranslate"><span class="pre">K</span></code>
 &#8212;seen as a vector space over itself&#8212; to the space of <code class="docutils literal notranslate"><span class="pre">K</span></code>-linear maps from <code class="docutils literal notranslate"><span class="pre">V</span></code> to <code class="docutils literal notranslate"><span class="pre">V</span></code>.</p>
+<p>&#36824;&#21487;&#20197;&#36890;&#36807;&#21508;&#31181;&#32452;&#21512;&#22120;&#65292;&#20174; Mathlib &#20013;&#24050;&#23450;&#20041;&#30340;&#32447;&#24615;&#26144;&#23556;&#26500;&#36896;&#26032;&#30340;&#32447;&#24615;&#26144;&#23556;&#12290;&#20363;&#22914;&#65292;&#19978;&#36848;&#31034;&#20363;&#24050;&#34987;&#31216;&#20026;
+<code class="docutils literal notranslate"><span class="pre">LinearMap.lsmul</span> <span class="pre">K</span> <span class="pre">V</span> <span class="pre">3</span></code>&#12290;&#36825;&#37324;&#23558; <code class="docutils literal notranslate"><span class="pre">K</span></code> &#21644; <code class="docutils literal notranslate"><span class="pre">V</span></code> &#20316;&#20026;&#26174;&#24335;&#21442;&#25968;&#26377;&#20960;&#20010;&#21407;&#22240;&#12290;&#26368;&#20027;&#35201;&#30340;&#21407;&#22240;&#26159;&#65292;&#22914;&#26524;&#21482;&#26377;
+<code class="docutils literal notranslate"><span class="pre">LinearMap.lsmul</span> <span class="pre">3</span></code>&#65292;Lean &#23558;&#26080;&#27861;&#25512;&#26029;&#20986; <code class="docutils literal notranslate"><span class="pre">V</span></code> &#25110;&#29978;&#33267; <code class="docutils literal notranslate"><span class="pre">K</span></code>&#12290;&#21478;&#22806;&#65292;<code class="docutils literal notranslate"><span class="pre">LinearMap.lsmul</span> <span class="pre">K</span> <span class="pre">V</span></code> &#26412;&#36523;&#20063;
+&#26159;&#19968;&#20010;&#26377;&#36259;&#30340;&#23545;&#35937;&#65306;&#23427;&#30340;&#31867;&#22411;&#20026; <code class="docutils literal notranslate"><span class="pre">K</span> <span class="pre">&#8594;&#8343;[K]</span> <span class="pre">V</span> <span class="pre">&#8594;&#8343;[K]</span> <span class="pre">V</span></code>&#65292;&#36825;&#24847;&#21619;&#30528;&#23427;&#26159;&#19968;&#20010;&#20174; <code class="docutils literal notranslate"><span class="pre">K``&#65288;&#35270;&#20026;&#20854;&#33258;&#36523;&#19978;&#30340;&#21521;&#37327;&#31354;&#38388;&#65289;</span>
+<span class="pre">&#21040;</span> <span class="pre">``K</span></code> &#32447;&#24615;&#26144;&#23556;&#31354;&#38388; <code class="docutils literal notranslate"><span class="pre">V</span></code> &#21040; <code class="docutils literal notranslate"><span class="pre">V</span></code> &#30340; <code class="docutils literal notranslate"><span class="pre">K</span></code>-&#32447;&#24615;&#26144;&#23556;&#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="k">#check</span><span class="w"> </span><span class="o">(</span><span class="n">LinearMap.lsmul</span><span class="w"> </span><span class="n">K</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="bp">&#8594;&#8343;</span><span class="o">[</span><span class="n">K</span><span class="o">]</span><span class="w"> </span><span class="n">V</span><span class="o">)</span>
 <span class="k">#check</span><span class="w"> </span><span class="o">(</span><span class="n">LinearMap.lsmul</span><span class="w"> </span><span class="n">K</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">K</span><span class="w"> </span><span class="bp">&#8594;&#8343;</span><span class="o">[</span><span class="n">K</span><span class="o">]</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="bp">&#8594;&#8343;</span><span class="o">[</span><span class="n">K</span><span class="o">]</span><span class="w"> </span><span class="n">V</span><span class="o">)</span>
 </pre></div>
@@ -290,21 +295,27 @@ The inverse of <code class="docutils literal notranslate"><span class="pre">f</s
 composition of <code class="docutils literal notranslate"><span class="pre">f</span></code> and <code class="docutils literal notranslate"><span class="pre">g</span></code> is <code class="docutils literal notranslate"><span class="pre">f.trans</span> <span class="pre">g</span></code> also denoted by <code class="docutils literal notranslate"><span class="pre">f</span> <span class="pre">&#8810;&#8811;&#8343;</span> <span class="pre">g</span></code>, and
 the identity isomorphism of <code class="docutils literal notranslate"><span class="pre">V</span></code> is <code class="docutils literal notranslate"><span class="pre">LinearEquiv.refl</span> <span class="pre">K</span> <span class="pre">V</span></code>.
 Elements of this type are automatically coerced to morphisms and functions when necessary.</p>
+<p>&#36824;&#26377;&#19968;&#20010;&#34920;&#31034;&#32447;&#24615;&#21516;&#26500;&#30340;&#31867;&#22411; <code class="docutils literal notranslate"><span class="pre">LinearEquiv</span></code>&#65292;&#35760;&#20316; <code class="docutils literal notranslate"><span class="pre">V</span> <span class="pre">&#8771;&#8343;[K]</span> <span class="pre">W</span></code>&#12290;&#23545;&#20110; <code class="docutils literal notranslate"><span class="pre">f</span> <span class="pre">:</span> <span class="pre">V</span> <span class="pre">&#8771;&#8343;[K]</span> <span class="pre">W</span></code>&#65292;&#20854;&#36870;&#26144;&#23556;&#20026;
+<code class="docutils literal notranslate"><span class="pre">f.symm</span> <span class="pre">:</span> <span class="pre">W</span> <span class="pre">&#8771;&#8343;[K]</span> <span class="pre">V</span></code>&#65292;<code class="docutils literal notranslate"><span class="pre">f</span></code> &#21644; <code class="docutils literal notranslate"><span class="pre">g</span></code> &#30340;&#22797;&#21512;&#20026; <code class="docutils literal notranslate"><span class="pre">f.trans</span> <span class="pre">g</span></code>&#65292;&#20063;&#21487;&#20197;&#35760;&#20316; <code class="docutils literal notranslate"><span class="pre">f</span> <span class="pre">&#8810;&#8811;&#8343;</span> <span class="pre">g</span></code>&#65292;<code class="docutils literal notranslate"><span class="pre">V</span></code> &#30340;&#24658;&#31561;
+&#21516;&#26500;&#20026; <code class="docutils literal notranslate"><span class="pre">LinearEquiv.refl</span> <span class="pre">K</span> <span class="pre">V</span></code>&#12290;&#35813;&#31867;&#22411;&#30340;&#20803;&#32032;&#22312;&#24517;&#35201;&#26102;&#20250;&#33258;&#21160;&#36716;&#25442;&#20026;&#24577;&#23556;&#21644;&#20989;&#25968;&#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">example</span><span class="w"> </span><span class="o">(</span><span class="n">f</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="bp">&#8771;&#8343;</span><span class="o">[</span><span class="n">K</span><span class="o">]</span><span class="w"> </span><span class="n">W</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="bp">&#8810;&#8811;&#8343;</span><span class="w"> </span><span class="n">f.symm</span><span class="w"> </span><span class="bp">=</span><span class="w"> </span><span class="n">LinearEquiv.refl</span><span class="w"> </span><span class="n">K</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="o">:=</span>
 <span class="w">  </span><span class="n">f.self_trans_symm</span>
 </pre></div>
 </div>
 <p>One can use <code class="docutils literal notranslate"><span class="pre">LinearEquiv.ofBijective</span></code> to build an isomorphism from a bijective morphism.
 Doing so makes the inverse function noncomputable.</p>
+<p>&#21487;&#20197;&#20351;&#29992; <code class="docutils literal notranslate"><span class="pre">LinearEquiv.ofBijective</span></code> &#20174;&#21452;&#23556;&#24577;&#23556;&#26500;&#24314;&#21516;&#26500;&#12290;&#36825;&#26679;&#20570;&#20250;&#20351;&#36870;&#20989;&#25968;&#21464;&#20026;&#19981;&#21487;&#35745;&#31639;&#30340;&#65288;noncomputable&#65289;&#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">noncomputable</span><span class="w"> </span><span class="kd">example</span><span class="w"> </span><span class="o">(</span><span class="n">f</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="bp">&#8594;&#8343;</span><span class="o">[</span><span class="n">K</span><span class="o">]</span><span class="w"> </span><span class="n">W</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Function.Bijective</span><span class="w"> </span><span class="n">f</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="bp">&#8771;&#8343;</span><span class="o">[</span><span class="n">K</span><span class="o">]</span><span class="w"> </span><span class="n">W</span><span class="w"> </span><span class="o">:=</span>
 <span class="w">  </span><span class="bp">.</span><span class="n">ofBijective</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="n">h</span>
 </pre></div>
 </div>
 <p>Note that in the above example, Lean uses the announced type to understand that <code class="docutils literal notranslate"><span class="pre">.ofBijective</span></code>
 refers to <code class="docutils literal notranslate"><span class="pre">LinearEquiv.ofBijective</span></code> (without needing to open any namespace).</p>
+<p>&#35831;&#27880;&#24847;&#65292;&#22312;&#19978;&#36848;&#31034;&#20363;&#20013;&#65292;Lean &#20351;&#29992;&#24050;&#22768;&#26126;&#30340;&#31867;&#22411;&#26469;&#29702;&#35299; <code class="docutils literal notranslate"><span class="pre">.ofBijective</span></code> &#25351;&#30340;&#26159; <code class="docutils literal notranslate"><span class="pre">LinearEquiv.ofBijective</span></code>
+&#65288;&#26080;&#38656;&#25171;&#24320;&#20219;&#20309;&#21629;&#21517;&#31354;&#38388;&#65289;&#12290;</p>
 </section>
-<section id="sums-and-products-of-vector-spaces">
-<h3><span class="section-number">9.1.3. </span>Sums and products of vector spaces<a class="headerlink" href="#sums-and-products-of-vector-spaces" title="Link to this heading">&#61633;</a></h3>
+<section id="id2">
+<h3><span class="section-number">9.1.3. </span>&#21521;&#37327;&#31354;&#38388;&#30340;&#21644;&#19982;&#31215;<a class="headerlink" href="#id2" title="Link to this heading">&#61633;</a></h3>
 <p>We can build new vector spaces out of old ones using direct sums and direct
 products.
 Let us start with two vectors spaces. In this case there is no difference between sum and product,
@@ -314,6 +325,10 @@ and projections) as linear maps, as well as the universal properties constructin
 into products and out of sums (if you are not familiar with the category-theoretic distinction
 between sums and products, you can simply ignore the universal property vocabulary and focus
 on the types of the following examples).</p>
+<p>&#25105;&#20204;&#21487;&#20197;&#36890;&#36807;&#30452;&#21644;&#19982;&#30452;&#31215;&#20174;&#24050;&#26377;&#30340;&#21521;&#37327;&#31354;&#38388;&#26500;&#24314;&#26032;&#30340;&#21521;&#37327;&#31354;&#38388;&#12290;&#35753;&#25105;&#20204;&#20174;&#20004;&#20010;&#21521;&#37327;&#31354;&#38388;&#24320;&#22987;&#12290;&#22312;&#36825;&#31181;&#24773;&#20917;&#19979;&#65292;
+&#21644;&#19982;&#31215;&#27809;&#26377;&#21306;&#21035;&#65292;&#25105;&#20204;&#21487;&#20197;&#30452;&#25509;&#20351;&#29992;&#20056;&#31215;&#31867;&#22411;&#12290;&#22312;&#20197;&#19979;&#20195;&#30721;&#29255;&#27573;&#20013;&#65292;&#25105;&#20204;&#23637;&#31034;&#20102;&#22914;&#20309;&#33719;&#24471;&#25152;&#26377;&#32467;&#26500;&#26144;&#23556;&#65288;&#21253;&#21547;&#26144;&#23556;
+&#21644;&#25237;&#24433;&#65289;&#20316;&#20026;&#32447;&#24615;&#26144;&#23556;&#65292;&#20197;&#21450;&#22914;&#20309;&#36890;&#36807;&#36890;&#29992;&#24615;&#36136;&#26500;&#36896;&#21040;&#20056;&#31215;&#30340;&#32447;&#24615;&#26144;&#23556;&#21644;&#20174;&#21644;&#20986;&#30340;&#32447;&#24615;&#26144;&#23556;&#65288;&#22914;&#26524;&#20320;&#19981;&#29087;&#24713;&#33539;&#30068;&#35770;
+&#20013;&#21644;&#19982;&#31215;&#30340;&#21306;&#21035;&#65292;&#21487;&#20197;&#31616;&#21333;&#24573;&#30053;&#36890;&#29992;&#24615;&#36136;&#30340;&#26415;&#35821;&#65292;&#19987;&#27880;&#20110;&#20197;&#19979;&#31034;&#20363;&#30340;&#31867;&#22411;&#65289;&#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kn">section</span><span class="w"> </span><span class="n">binary_product</span>
 
 <span class="kd">variable</span><span class="w"> </span><span class="o">{</span><span class="n">W</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="bp">*</span><span class="o">}</span><span class="w"> </span><span class="o">[</span><span class="n">AddCommGroup</span><span class="w"> </span><span class="n">W</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">Module</span><span class="w"> </span><span class="n">K</span><span class="w"> </span><span class="n">W</span><span class="o">]</span>
@@ -373,6 +388,9 @@ properties of sums and products.
 Note that the direct sum notation is scoped to the <code class="docutils literal notranslate"><span class="pre">DirectSum</span></code> namespace, and
 that the universal property of direct sums requires decidable equality on the
 indexing type (this is somehow an implementation accident).</p>
+<p>&#29616;&#22312;&#35753;&#25105;&#20204;&#36716;&#21521;&#20219;&#24847;&#21521;&#37327;&#31354;&#38388;&#26063;&#30340;&#21644;&#19982;&#31215;&#12290;&#22312;&#36825;&#37324;&#65292;&#25105;&#20204;&#23558;&#31616;&#21333;&#20102;&#35299;&#22914;&#20309;&#23450;&#20041;&#21521;&#37327;&#31354;&#38388;&#26063;&#65292;&#24182;&#35775;&#38382;&#21644;&#19982;&#31215;&#30340;&#36890;&#29992;&#24615;&#36136;&#12290;
+&#35831;&#27880;&#24847;&#65292;&#30452;&#21644;&#31526;&#21495;&#38480;&#23450;&#22312; <code class="docutils literal notranslate"><span class="pre">DirectSum</span></code> &#21629;&#21517;&#31354;&#38388;&#20013;&#65292;&#19988;&#30452;&#21644;&#30340;&#36890;&#29992;&#24615;&#36136;&#38656;&#35201;&#32034;&#24341;&#31867;&#22411;&#20855;&#26377;&#21487;&#21028;&#23450;&#30340;&#30456;&#31561;&#24615;&#65288;&#36825;&#22312;&#26576;
+&#31181;&#31243;&#24230;&#19978;&#26159;&#23454;&#29616;&#19978;&#30340;&#20598;&#28982;&#24773;&#20917;&#65289;&#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kn">section</span><span class="w"> </span><span class="n">families</span>
 <span class="kn">open</span><span class="w"> </span><span class="n">DirectSum</span>
 
@@ -773,7 +791,7 @@ predicate is <code class="docutils literal notranslate"><span class="pre">End.Ha
 <section id="matrices-bases-and-dimension">
 <span id="matrices-bases-dimension"></span><h2><span class="section-number">9.4. </span>Matrices, bases and dimension<a class="headerlink" href="#matrices-bases-and-dimension" title="Link to this heading">&#61633;</a></h2>
 <section id="matrices">
-<span id="id2"></span><h3><span class="section-number">9.4.1. </span>Matrices<a class="headerlink" href="#matrices" title="Link to this heading">&#61633;</a></h3>
+<span id="id3"></span><h3><span class="section-number">9.4.1. </span>Matrices<a class="headerlink" href="#matrices" title="Link to this heading">&#61633;</a></h3>
 <p id="index-3">Before introducing bases for abstract vector spaces, we go back to the much more elementary setup
 of linear algebra in <span class="math notranslate nohighlight">\(K^n\)</span> for some field <span class="math notranslate nohighlight">\(K\)</span>.
 Here the main objects are vectors and matrices.
