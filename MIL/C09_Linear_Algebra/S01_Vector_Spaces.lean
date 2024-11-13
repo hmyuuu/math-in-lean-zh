@@ -243,6 +243,12 @@ for Lean to infer ``V`` or even ``K``.
 But also ``LinearMap.lsmul K V`` is an interesting object by itself: it has type
 ``K →ₗ[K] V →ₗ[K] V``, meaning it is a ``K``-linear map from ``K``
 —seen as a vector space over itself— to the space of ``K``-linear maps from ``V`` to ``V``.
+
+还可以通过各种组合器，从 Mathlib 中已定义的线性映射构造新的线性映射。例如，上述示例已被称为
+``LinearMap.lsmul K V 3``。这里将 ``K`` 和 ``V`` 作为显式参数有几个原因。最主要的原因是，如果只有
+``LinearMap.lsmul 3``，Lean 将无法推断出 ``V`` 或甚至 ``K``。另外，``LinearMap.lsmul K V`` 本身也
+是一个有趣的对象：它的类型为 ``K →ₗ[K] V →ₗ[K] V``，这意味着它是一个从 ``K``（视为其自身上的向量空间）
+到 ``K`` 线性映射空间 ``V`` 到 ``V`` 的 ``K``-线性映射。
 EXAMPLES: -/
 -- QUOTE:
 
@@ -257,6 +263,10 @@ The inverse of ``f : V ≃ₗ[K] W`` is ``f.symm : W ≃ₗ[K] V``,
 composition of ``f`` and ``g`` is ``f.trans g`` also denoted by ``f ≪≫ₗ g``, and
 the identity isomorphism of ``V`` is ``LinearEquiv.refl K V``.
 Elements of this type are automatically coerced to morphisms and functions when necessary.
+
+还有一个表示线性同构的类型 ``LinearEquiv``，记作 ``V ≃ₗ[K] W``。对于 ``f : V ≃ₗ[K] W``，其逆映射为 
+``f.symm : W ≃ₗ[K] V``，``f`` 和 ``g`` 的复合为 ``f.trans g``，也可以记作 ``f ≪≫ₗ g``，``V`` 的恒等
+同构为 ``LinearEquiv.refl K V``。该类型的元素在必要时会自动转换为态射和函数。
 EXAMPLES: -/
 -- QUOTE:
 example (f : V ≃ₗ[K] W) : f ≪≫ₗ f.symm = LinearEquiv.refl K V :=
@@ -266,6 +276,8 @@ example (f : V ≃ₗ[K] W) : f ≪≫ₗ f.symm = LinearEquiv.refl K V :=
 /- TEXT:
 One can use ``LinearEquiv.ofBijective`` to build an isomorphism from a bijective morphism.
 Doing so makes the inverse function noncomputable.
+
+可以使用 ``LinearEquiv.ofBijective`` 从双射态射构建同构。这样做会使逆函数变为不可计算的（noncomputable）。
 EXAMPLES: -/
 -- QUOTE:
 noncomputable example (f : V →ₗ[K] W) (h : Function.Bijective f) : V ≃ₗ[K] W :=
@@ -276,7 +288,10 @@ noncomputable example (f : V →ₗ[K] W) (h : Function.Bijective f) : V ≃ₗ[
 Note that in the above example, Lean uses the announced type to understand that ``.ofBijective``
 refers to ``LinearEquiv.ofBijective`` (without needing to open any namespace).
 
-Sums and products of vector spaces
+请注意，在上述示例中，Lean 使用已声明的类型来理解 ``.ofBijective`` 指的是 ``LinearEquiv.ofBijective``
+（无需打开任何命名空间）。
+
+向量空间的和与积
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We can build new vector spaces out of old ones using direct sums and direct
@@ -288,6 +303,11 @@ and projections) as linear maps, as well as the universal properties constructin
 into products and out of sums (if you are not familiar with the category-theoretic distinction
 between sums and products, you can simply ignore the universal property vocabulary and focus
 on the types of the following examples).
+
+我们可以通过直和与直积从已有的向量空间构建新的向量空间。让我们从两个向量空间开始。在这种情况下，
+和与积没有区别，我们可以直接使用乘积类型。在以下代码片段中，我们展示了如何获得所有结构映射（包含映射
+和投影）作为线性映射，以及如何通过通用性质构造到乘积的线性映射和从和出的线性映射（如果你不熟悉范畴论
+中和与积的区别，可以简单忽略通用性质的术语，专注于以下示例的类型）。
 EXAMPLES: -/
 -- QUOTE:
 
@@ -351,6 +371,10 @@ properties of sums and products.
 Note that the direct sum notation is scoped to the ``DirectSum`` namespace, and
 that the universal property of direct sums requires decidable equality on the
 indexing type (this is somehow an implementation accident).
+
+现在让我们转向任意向量空间族的和与积。在这里，我们将简单了解如何定义向量空间族，并访问和与积的通用性质。
+请注意，直和符号限定在 ``DirectSum`` 命名空间中，且直和的通用性质需要索引类型具有可判定的相等性（这在某
+种程度上是实现上的偶然情况）。
 EXAMPLES: -/
 
 -- QUOTE:
