@@ -7,10 +7,10 @@ import MIL.Common
 
 /- TEXT:
 
-Vector spaces and linear maps
+向量空间和线性映射
 -----------------------------
 
-Vector spaces
+向量空间
 ^^^^^^^^^^^^^
 
 .. index:: vector space
@@ -109,7 +109,7 @@ example {R M : Type*} [CommSemiring R] [AddCommMonoid M] [Module R M] :
 
 -- QUOTE.
 /- TEXT:
-Linear maps
+线性映射
 ^^^^^^^^^^^
 
 .. index:: linear map
