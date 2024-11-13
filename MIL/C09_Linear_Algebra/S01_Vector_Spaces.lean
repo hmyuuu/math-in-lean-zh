@@ -50,13 +50,11 @@ structures using a *completely unspecified* field :math:`K` that cannot be infer
 from :math:`V`.
 This would be very bad for the type class synthesis system.
 
-我们在 :numref:`Chapter %s <hierarchies>` 中解释了为什么我们需要两个单独的类型类
-``[AddCommGroup V] [Module K V]``。更简短的版本如下。从数学上我们想要说，拥有一个 :math:`K`-向
-量空间结构隐含了我们在:numref:`Chapter %s <hierarchies>` 中解释了为什么我们需要两个独立的类型类
-``[AddCommGroup V] [Module K V]``。简而言之，数学上我们希望表示拥有一个 :math:`K`-向量空间结构
-意味着拥有一个可交换加法群结构。我们可以将这一点告诉 Lean。但是，如果这样做，那么每当 Lean 需要
-在某个类型 :math:`V` 上找到一个群结构时，它将会开始寻找向量空间结构，但使用的是一个完全不确定的
-字段:math:`K`，而这个字段无法从 :math:`V` 中推导出来。这对类型类综合系统而言会非常糟糕。
+我们在 :numref:`第%s章 <hierarchies>` 中解释了为什么需要两个独立的类型类 
+``[AddCommGroup V] [Module K V]``。简而言之，数学上我们希望表示，拥有一个 :math:`K`-向量空间结
+构隐含着拥有一个加法交换群结构。我们可以将这一点告知 Lean。但是，如果这样做，那么每当 Lean 需要
+在某个类型 :math:`V` 上找到一个群结构时，它将会开始寻找向量空间结构，但使用的是一个*完全不确定*
+的字段 :math:`K`，而这个字段无法从 :math:`V` 中推导出来。这对类型类综合系统而言将非常不利。
 
 The multiplication of a vector `v` by a scalar `a` is denoted by
 `a • v`. We list a couple of algebraic rules about the interaction of this
